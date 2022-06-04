@@ -19,7 +19,7 @@
     <meta name="description" content="[toc] 全局介绍JVM&#x2F;JRE&#x2F;JDK 命名 .xml文件  groupId: 域名（顶级域名.公司.组织.个人.功能板块）  artifactId: 功能模块    命名规范  包：域名（顶级域名.公司.组织.个人.功能板块）  类：大驼峰  变量：小驼峰  常量：大写下划线连接     机制 引用机制  ​        基本数据类型：值传递（不与其它变量共享值) ​">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础">
-<meta property="og:url" content="http://example.com/2022/05/02/JAVA%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:url" content="http://example.com/2022/05/01/JAVA%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Cosmo&#39;s Kingdom">
 <meta property="og:description" content="[toc] 全局介绍JVM&#x2F;JRE&#x2F;JDK 命名 .xml文件  groupId: 域名（顶级域名.公司.组织.个人.功能板块）  artifactId: 功能模块    命名规范  包：域名（顶级域名.公司.组织.个人.功能板块）  类：大驼峰  变量：小驼峰  常量：大写下划线连接     机制 引用机制  ​        基本数据类型：值传递（不与其它变量共享值) ​">
 <meta property="og:locale" content="zh_CN">
@@ -54,17 +54,14 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011732179.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011736156.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011737373.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205021351221.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206021705205.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206022026456.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205031643788.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205031913743.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205031920975.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205031923163.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205031942479.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205032027303.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205041152856.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205041153924.png">
-<meta property="article:published_time" content="2022-05-02T01:34:16.026Z">
-<meta property="article:modified_time" content="2022-05-04T03:53:29.456Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206041243441.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206041240865.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206012102665.png">
+<meta property="article:published_time" content="2022-05-01T13:06:32.558Z">
+<meta property="article:modified_time" content="2022-06-04T07:11:10.189Z">
 <meta property="article:author" content="Cosmo">
 <meta property="article:tag" content="学校课程">
 <meta property="article:tag" content="CS语言基础">
@@ -288,8 +285,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-02 09:34" pubdate>
-        2022年5月2日 上午
+      <time datetime="2022-05-01 21:06" pubdate>
+        2022年5月1日 晚上
       </time>
     </span>
   
@@ -299,7 +296,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      21k 字
+      26k 字
     </span>
   
 
@@ -308,7 +305,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      173 分钟
+      216 分钟
     </span>
   
 
@@ -384,7 +381,7 @@
 <tbody><tr>
 <td>final</td>
 <td>声明对象构建之后，值不可变</td>
-<td>可用于声明不被继承的类&#x2F;不被重写的方法</td>
+<td>可用于声明不被继承的类&#x2F;不被重写的方法&#x2F;引用不被更改的变量</td>
 </tr>
 <tr>
 <td>static</td>
@@ -443,9 +440,9 @@
 </tr>
 </tbody></table>
 <h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><ul>
-<li><p>包声明</p>
+<li><p>包声明 <code>package</code></p>
 </li>
-<li><p>类声明</p>
+<li><p>类声明 <code>class</code></p>
 </li>
 <li><p>方法声明</p>
 <p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205012104339.png" srcset="/img/loading.gif" lazyload alt="image-20220318105228328"></p>
@@ -461,17 +458,12 @@
 <ol start="3">
 <li><p>方法名</p>
 </li>
-<li><p>(&lt;变量参数&gt;)</p>
+<li><p>参数列表</p>
 <p>可变长度参数： &lt;数据类型&gt;…</p>
 <p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205012104485.png" srcset="/img/loading.gif" lazyload alt="image-20220318112205842"></p>
 </li>
 <li><p>{&lt;代码块&gt;}</p>
 </li>
-</ol>
-</li>
-<li><p>变量声明</p>
-<ol>
-<li>类型</li>
 </ol>
 </li>
 </ul>
@@ -524,11 +516,11 @@
 <tr>
 <td>double</td>
 <td>双精度浮点</td>
-<td>后缀d&#x2F;D</td>
+<td>后缀d&#x2F;D，可省略</td>
 <td>2个浮点型</td>
 </tr>
 <tr>
-<td>bollean</td>
+<td>boolean</td>
 <td>布尔</td>
 <td>仅具有true&#x2F;false，无法与0&#x2F;非0整型替换</td>
 <td>1种布尔型</td>
@@ -636,7 +628,7 @@
 <td>循环</td>
 </tr>
 <tr>
-<td>if&#x2F;then&#x2F;else if&#x2F;else</td>
+<td>if&#x2F;then&#x2F;else ；if&#x2F;else</td>
 <td></td>
 <td></td>
 </tr>
@@ -761,15 +753,16 @@
 
 
 
-<h1 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h1><h2 id="Lambda函数"><a href="#Lambda函数" class="headerlink" title="Lambda函数"></a>Lambda函数</h2><p>匿名函数特点</p>
+<h1 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h1><h2 id="Lambda函数"><a href="#Lambda函数" class="headerlink" title="Lambda函数"></a>Lambda函数</h2><p><strong>匿名函数组成</strong></p>
+<p>简写的函数</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204302058604.png" srcset="/img/loading.gif" lazyload alt="image-20220430205825565"></p>
+<p><strong>匿名函数特点</strong></p>
 <ul>
-<li>匿名。无需声明修饰符&#x2F;返回类型&#x2F;名称。</li>
+<li>匿名。省略修饰符&#x2F;返回类型&#x2F;名称。</li>
 <li>函数。不属于任何类，有函数体&#x2F;（参数列表&#x2F;返回值）。</li>
 <li>传递。匿名函数可作为参数传递给方法，或作为变量的值</li>
 </ul>
-<p>匿名函数组成</p>
-<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204302058604.png" srcset="/img/loading.gif" lazyload alt="image-20220430205825565"></p>
-<p>方法引用</p>
+<p><strong>方法引用</strong></p>
 <p>双冒号（<code>::</code>）操作符是 Java 中的<strong>方法引用</strong>。 使用一个方法的引用时，目标引用放在 <code>::</code> 之前，目标引用提供的方法名称放在 <code>::</code> 之后，即 <code>目标引用（类）::方法（类中的方法）</code>。</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">// e.g. 引用Person类中的getAge()方法</span><br>Person::getAge;<br></code></pre></td></tr></table></figure>
 
@@ -782,10 +775,17 @@
 
 
 <h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><p>集合是存储元素对象的容器。</p>
-<h2 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h2><p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204301133811.png" srcset="/img/loading.gif" lazyload alt="image-20220430113343704"></p>
+<h2 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h2><p>集合框架，用于表示和操作集合的体系结构，包含</p>
+<ul>
+<li>接口(Interfaces)：表示集合的抽象数据类型</li>
+<li>实现(Implementations)：集合接口的具体实现类，由不同的数据结构实现</li>
+<li>算法(Algorithms)：对集合执行搜索&#x2F;排序等操作</li>
+</ul>
+<p>即，Java提供了一套包含，多种集合类型，多种数据结构实现，以及操作处理算法的集合框架，供开发人员直接使用</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204301133811.png" srcset="/img/loading.gif" lazyload alt="image-20220430113343704"></p>
 <h2 id="LIST"><a href="#LIST" class="headerlink" title="LIST"></a>LIST</h2><pre><code class=" mermaid">graph LR;
-	0[java.util.List/接口] --基本实现类--- java.util.ArrayList/类
-	0 --基本实现类--- java.util.LinkedList/类
+0[java.util.List/接口] --基本实现类--- java.util.ArrayList/类
+0 --基本实现类--- java.util.LinkedList/类
 </code></pre>
 
 <table>
@@ -798,18 +798,18 @@
 </thead>
 <tbody><tr>
 <td>java.util.List<E></td>
-<td>有序，允许重复元素，可实现迭代器<br/>引用泛型必须为引用数据类不能是基本数据类型</td>
-<td>List.of() 返回空集合对象&#x2F;集合不可变<br/>List.of(elements…) 基于指定元素创建集合对象<br/>add(int index, E element)  将元素插入到指定索引处<br/>set(int index, E element) 将指定索引处元素替换<br/>get(int index) 获取指定索引处元素<br/>getName()  获取元素名<br/>remove(int index) 移除指定索引处元素</td>
+<td>有序，允许重复元素<br>集合类型常量不可改变集合结构，如增&#x2F;删集合元素将引发异常；可以替换元素，元素对象属性值可以改变<br/>集合为逻辑上的容器，容器中仅保存元素对象的引用地址；操作集合中的元素时，实际操作的是元素引用的对象</td>
+<td><code>of()</code>：静态方法，返回空列表对象<br/><code>of(elements…) </code>：静态方法，基于指定元素创建集合对象<br/><code>add(int index, E element)</code> : 将元素插入到指定索引处<br/><code>set(int index, E element)</code> ：将指定索引处元素替换<br/><code>get(int index) </code>：获取指定索引处元素<br/><code>getName()</code>：  获取元素名<br/><code>remove(int index)</code>： 移除指定索引处元素<br/><code>toArray(T[] a)</code>：列表转换为数组。创建0长度数组实例即可，方法内部仅将自动调整</td>
 </tr>
 <tr>
 <td>java.util.ArrayList<E></td>
 <td>基于对象数组数据结构的实现</td>
-<td>toArray() List转数组<br/>asList() 数组转List</td>
+<td></td>
 </tr>
 <tr>
 <td>java.util.LinkedList<E></td>
 <td>基于双向链表数据结构的实现</td>
-<td></td>
+<td>为每个元素创建2个节点，保存前&#x2F;后元素的地址</td>
 </tr>
 </tbody></table>
 <p><strong>声明与创建</strong></p>
@@ -859,24 +859,20 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204302001137.png" srcset="/img/loading.gif" lazyload alt="image-20220430200156100"><br/>Iterator<E> iterator()</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204302001137.png" srcset="/img/loading.gif" lazyload alt="image-20220430200156100"><br/></td>
 <td>获取集合对象的迭代器</td>
 </tr>
 <tr>
-<td><code>迭代器.next()</code></td>
-<td>向后移动游标后返回游标指向的元素</td>
+<td><code>next()</code></td>
+<td>向后移动游标后，返回游标指向的元素</td>
 </tr>
 <tr>
-<td><code>迭代器.hasNext()</code></td>
+<td><code>hasNext()</code></td>
 <td>Iterator中是否有下一个元素</td>
 </tr>
 <tr>
-<td><code>迭代器.remove()</code></td>
+<td><code>remove()</code></td>
 <td>从集合移除当前游标指向的元素</td>
-</tr>
-<tr>
-<td><code>Map.of()</code></td>
-<td>返回空键值对对象</td>
 </tr>
 </tbody></table>
 <p>示例</p>
@@ -908,11 +904,11 @@
 <td>基于key获取对应的value，如果value不存在，返回null</td>
 </tr>
 <tr>
-<td><code>Map.of(K,V,K,V...)</code></td>
-<td>基于指定元素创建键值对对象</td>
+<td><code>of(K,V,K,V...)</code></td>
+<td>静态方法，基于指定元素创建键值对对象</td>
 </tr>
 </tbody></table>
-<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a><strong>泛型</strong></h1><p>泛型，即“参数化类型”，是以类或接口为参数的类型参数，用<code>&lt;&gt;</code>声明，只接受引用类型，不接受基本类型。</p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a><strong>泛型</strong></h1><p>泛型，即<strong>“参数化类型”</strong>，是以类或接口为参数的类型参数，用<code>&lt;&gt;</code>声明，只接受引用类型，不接受基本类型。</p>
 <h2 id="泛型类与泛型方法"><a href="#泛型类与泛型方法" class="headerlink" title="泛型类与泛型方法"></a>泛型类与泛型方法</h2><p>泛型类</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">GenericsAccept</span>&lt;<span class="hljs-title">T</span>&gt; &#123;<br>  <br>  <span class="hljs-comment">// 类中，T为泛型形参</span><br>  <span class="hljs-keyword">private</span> T t;<br> <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">set</span>(<span class="hljs-params">T t</span>)</span> &#123;<br>    <span class="hljs-keyword">this</span>.t = t;<br>  &#125;<br> <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> T <span class="hljs-title">get</span>()</span> &#123;<br>    <span class="hljs-keyword">return</span> t;<br>  &#125;<br> <br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>  <br>  	<span class="hljs-comment">// 实例化时，传入泛型的类型实参 Integer/String</span><br>    GenericsAccept&lt;Integer&gt; integerG = <span class="hljs-keyword">new</span> Box&lt;Integer&gt;();<br>    GenericsAccept&lt;String&gt; stringG = <span class="hljs-keyword">new</span> Box&lt;String&gt;();<br> <br>    integerG.<span class="hljs-keyword">add</span>(<span class="hljs-keyword">new</span> Integer(<span class="hljs-number">10</span>));<br>    stringG.<span class="hljs-keyword">add</span>(<span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;菜鸟教程&quot;</span>));<br> <br>    System.<span class="hljs-keyword">out</span>.printf(<span class="hljs-string">&quot;整型值为 :%d\n\n&quot;</span>, integerG.<span class="hljs-keyword">get</span>());<br>    System.<span class="hljs-keyword">out</span>.printf(<span class="hljs-string">&quot;字符串为 :%s\n&quot;</span>, stringG.<span class="hljs-keyword">get</span>());<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">/* 输出</span><br><span class="hljs-comment">整型值为 :10</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">字符串为 :菜鸟教程</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
 
@@ -975,7 +971,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204302103384.png" srcset="/img/loading.gif" lazyload alt="image-20220430210353334"><br/>Stream<E> stream()</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204302103384.png" srcset="/img/loading.gif" lazyload alt="image-20220430210353334"><br/></td>
 <td>获取集合对象的集合流</td>
 <td>Initial Operations<br/>初始化操作</td>
 </tr>
@@ -995,7 +991,7 @@
 <td>Intermediate Operations<br/>中间操作</td>
 </tr>
 <tr>
-<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011158914.png" srcset="/img/loading.gif" lazyload alt="image-20220501115812867"><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011200655.png" srcset="/img/loading.gif" lazyload alt="image-20220501120015607"><br/><code>map()</code></td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011158914.png" srcset="/img/loading.gif" lazyload alt="image-20220501115812867"><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011200655.png" srcset="/img/loading.gif" lazyload alt="image-20220501120015607"><code>map()</code></td>
 <td>基于条件将集合流中的元素映射为新类型元素，映射</td>
 <td>Intermediate Operations<br/>中间操作</td>
 </tr>
@@ -1010,17 +1006,22 @@
 <td>Intermediate Operations<br/>中间操作</td>
 </tr>
 <tr>
+<td><code>findFirst()</code></td>
+<td>从流中取第一个符合条件元素，封装到<code>Optional</code></td>
+<td></td>
+</tr>
+<tr>
 <td><code>java.lang.Comparator</code><br/>Comparator类<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011440920.png" srcset="/img/loading.gif" lazyload alt="image-20220501144047875"><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011441915.png" srcset="/img/loading.gif" lazyload alt="image-20220501144115869"></td>
 <td>比较器<br/><code>comparing()</code>，基于参数表达式排序<br/><code>reversed()</code>，倒序</td>
 <td>结合<code>sorted()</code></td>
 </tr>
 <tr>
-<td><code>java.util.stream.Collectors</code><br/>Collectors类<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011447855.png" srcset="/img/loading.gif" lazyload alt="image-20220501144727820"></td>
-<td>·用于操作聚合结果的工具类<br/><code>toList()/toSet()</code>，转换聚合结果为指定数据引用类型<br/><code>groupingBy()</code>，按参数表达式以MAP分组<br/><code>toMap(K,V)</code>，基于给定键值以MAP分组</td>
+<td><code>java.util.stream.Collectors</code><br/>Collectors类<br/><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011447855.png" srcset="/img/loading.gif" lazyload alt="image-20220501144727820"></td>
+<td>用于操作聚合结果的工具类<br/><code>toList()/toSet()</code>，转换聚合结果为指定数据引用类型<br/><code>groupingBy()</code>，按传入的表达式参数以<code>MAP</code>形式分组<br/><code>toMap(K,V)</code>，基于给定键值以<code>MAP</code>形式分组</td>
 <td>结合<code>collect()</code></td>
 </tr>
 </tbody></table>
-<h2 id="OPTIONAL"><a href="#OPTIONAL" class="headerlink" title="OPTIONAL"></a>OPTIONAL</h2><p><code>java.util.Optional&lt;T&gt;</code>，为解决空引用异常引入的，用于封装单值元素的容器(single-value container)</p>
+<h2 id="OPTIONAL"><a href="#OPTIONAL" class="headerlink" title="OPTIONAL"></a>OPTIONAL</h2><p><code>java.util.Optional&lt;T&gt;</code>，为解决空引用异常引入的，用于封装<strong>单值</strong>元素的容器(single-value container)。</p>
 <table>
 <thead>
 <tr>
@@ -1030,12 +1031,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>Optional<T> Optional.of(T value)</td>
+<td><code>Optional&lt;T&gt; Optional.of(T value)</code></td>
 <td>基于必不为空对象，创建optional容器，注入为空元素将抛出NullPointerException异常</td>
 <td>Initial Operations<br/>初始化操作</td>
 </tr>
 <tr>
-<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011732179.png" srcset="/img/loading.gif" lazyload alt="image-20220501173204128">Optional<T> Optional.ofNullable(T value)</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205011732179.png" srcset="/img/loading.gif" lazyload alt="image-20220501173204128"><code>Optional&lt;T&gt; Optional.ofNullable(T value)</code></td>
 <td>基于可能为空的对象，创建optional容器</td>
 <td>Initial Operations<br/>初始化操作</td>
 </tr>
@@ -1054,144 +1055,269 @@
 <td>与Stream中一致</td>
 <td>Intermediate Operations<br/>中间操作</td>
 </tr>
+<tr>
+<td><code>.orElse()</code></td>
+<td>如果<code>Optional</code>实例有值则将其返回，否则返回<code>orElse</code>方法传入的参数</td>
+<td>Terminal Operations<br/>终止操作</td>
+</tr>
 </tbody></table>
 <h2 id="操作链"><a href="#操作链" class="headerlink" title="操作链"></a>操作链</h2><p>中间操作执行后，将结果置入一个新集合流，从而允许基于新集合流实现后续操作，形成集合流的操作链。</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// Optional操作链</span><br>Optional&lt;USB&gt; = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span><span class="hljs-constructor">Nullable(<span class="hljs-params">usb</span>)</span><br>	.map(USB::getVersion)<br>	.ifPresent ( System. out: : println);<br>	<br><span class="hljs-comment">// Stream操作链</span><br>List&lt;Apple&gt; = apples.stream<span class="hljs-literal">()</span><br>	.filter(a -&gt; a.get<span class="hljs-constructor">Weight()</span> &gt;= <span class="hljs-number">50</span>);<br>	.map(a -&gt; a.get<span class="hljs-constructor">Color()</span>);<br>	.collect(collectors.<span class="hljs-keyword">to</span><span class="hljs-constructor">List()</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// Optional操作链</span><br>Optional&lt;USB&gt; = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Optional</span>.</span></span><span class="hljs-keyword">of</span><span class="hljs-constructor">Nullable(<span class="hljs-params">usb</span>)</span><br>	.map(USB::getVersion)<br>	.ifPresent ( System. out: : println);<br>	<br><span class="hljs-comment">// Stream操作链</span><br>List&lt;Apple&gt; = apples.stream<span class="hljs-literal">()</span><br>	.filter(a -&gt; a.get<span class="hljs-constructor">Weight()</span> &gt;= <span class="hljs-number">50</span>)<br>	.map(a::get<span class="hljs-constructor">Color()</span>)<br>	.collect(collectors.<span class="hljs-keyword">to</span><span class="hljs-constructor">List()</span>);<br></code></pre></td></tr></table></figure>
 
 
 
-<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><p>异常，是发生在程序执行过程中的，扰乱了程序正常流程的事件。当方法执行中发生错误时，该方法创建一个对象并将其传递给运行时系统(runtime system)，该对象称为异常对象(exception object)。创建一个异常对象，并将其交给运行时系统，称为抛出异常(throwing an exception)。</p>
-<h2 id="异常类型"><a href="#异常类型" class="headerlink" title="异常类型"></a>异常类型</h2><pre><code class=" mermaid">graph LR;
-	0[错误/异常类型] --- 1[受检异常Chechked Exceptions];
+<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><p>异常，是发生在程序执行过程中的，扰乱了程序正常流程的事件。当方法执行中发生错误时，该方法创建一个对象并将其传递给运行时<code>系统(runtime system)</code>，该对象称为<code>异常对象(exception object)</code>。创建一个异常对象，并将其交给运行时系统，称为<code>抛出异常(throwing an exception)</code>。</p>
+<h2 id="异常类型"><a href="#异常类型" class="headerlink" title="异常类型"></a>异常类型</h2><p><strong>相关类</strong></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206021705205.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="java-lang-Throwable类"><a href="#java-lang-Throwable类" class="headerlink" title="java.lang.Throwable类"></a>java.lang.Throwable类</h3><p>方法：</p>
+<ul>
+<li><code>String getMessage()</code>：返回异常信息字符串</li>
+<li><code>printStackTrace()</code>：打印异常栈信息</li>
+</ul>
+<p><strong>类型</strong></p>
+<pre><code class=" mermaid">graph LR;
+	0[错误/异常类型] --- 1[受检异常Checked Exceptions];
 	1 -.- 1.1[程序与程序控制之外的外部资源互交时产生的错误];
 	1 -.- 1.2[如文件无法读取/数据库无法访问/网络无法连接等]
 	0 --- 2[非受检异常Unchecked Exceptions];
 	2 -.- 2.1[程序中的错误逻辑/代码];
 	2 -.- 2.2[如空指针异常/数组集合索引越界等];
-	0 --- 3[程序错误];
+	0 --- 3[程序错误Error];
 	3 -.- 3.1[程序外部在特殊条件下产生];
 	3 -.- 3.2[如系统内存溢出/磁盘损坏]
 </code></pre>
 
-<p>异常类框架</p>
-<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205021351221.png" srcset="/img/loading.gif" lazyload alt="image-20220502135117157"></p>
-<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>可能抛出<strong>受检异常</strong>的方法，必须显式的处理异常，否则无法编译。</p>
+
+
+
+
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p><strong>异常处理流程</strong></p>
+<ul>
+<li><p><code>调用栈(Call Stack)</code>：开始于主函数，终止于发生错误的方法的方法列表</p>
+</li>
+<li><p><code>异常处理程序(exception handler)</code>：处理异常的代码块。在调用栈中反序检索得到  (如<code>catch&#123;&#125;</code>)</p>
+</li>
+<li><p><code>捕获异常(catch the exception) </code>：系统在调用栈中找到适当的异常处理程序 (若未找到程序终止)</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206022026456.png" srcset="/img/loading.gif" lazyload alt="image-20220602202640394"></p>
+</li>
+</ul>
+<p><strong>显示处理</strong></p>
+<p>可能抛出**受检异常(CheckedException)**的方法，必须显式捕获&#x2F;抛出异常，否则无法编译。</p>
+<p>非受检异常(UncheckedException)无需显式捕获处理，将终止程序，直接抛出异常并打印异常栈信息。</p>
 <ol>
-<li><p><code>try catch</code> 捕获处理异常</p>
+<li><p><code>try catch</code> 显示捕获处理异常</p>
 <p>每个catch块都是一个异常处理程序，负责处理指定的异常。</p>
-<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs fsharp"><span class="hljs-comment">// try-catch 模块</span><br><span class="hljs-keyword">try</span> &#123;<br>	<span class="hljs-comment">// 可能抛出受检异常的代码块</span><br>&#125; catch (ExceptionType name) &#123;<br>	<span class="hljs-comment">// 出现异常类型1执行的操作</span><br>&#125; catch (ExceptionType name) &#123;<br>	<span class="hljs-comment">// 出现异常类型2执行的操作</span><br>&#125;<br><br><span class="hljs-comment">// 示例</span><br><span class="hljs-keyword">try</span> &#123;<br>	Files.readString(Path.<span class="hljs-keyword">of</span>(path))<br>&#125; catch (IOException e) &#123;<br>	System.out.println(e.getMessage()); <span class="hljs-comment">// 返回异常信息字符串</span><br>	e.printTraceStack;					<span class="hljs-comment">// 打印异常栈信息</span><br>&#125;<br><br><span class="hljs-comment">// finally 模块</span><br><span class="hljs-operator">/*</span> 无异常时，执行<span class="hljs-keyword">try</span>块代码 <span class="hljs-operator">-&gt;</span> 执行<span class="hljs-keyword">finally</span>块代码<br>   引发异常时，从<span class="hljs-keyword">try</span>块跳转到catch块代码，执行<span class="hljs-keyword">finally</span>块代码<br>   <span class="hljs-keyword">finally</span>块可用于避免由于方法返回、方法继续执行或异常，而意外绕过资源清理代码<br>   仅用于释放资源，禁止参与业务逻辑的处理，块内禁止使用<span class="hljs-keyword">return</span>语句 <span class="hljs-operator">*/</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String getTryCatchFinally() &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 可能抛出受检异常的代码块</span><br>        System.out.println(<span class="hljs-string">&quot;try块内异常前&quot;</span>);<br>        Files.readString(Path.<span class="hljs-keyword">of</span>(path);<br>        System.out.println(<span class="hljs-string">&quot;try块内异常后&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;try中结果”;</span><br><span class="hljs-string">    &#125; catch (IOException e) &#123;</span><br><span class="hljs-string">        // 出现异常类型执行的操作，不出现异常将被忽略</span><br><span class="hljs-string">        System.out.println (&quot;</span>catch块内<span class="hljs-string">&quot;);</span><br><span class="hljs-string">    &#125; finally &#123;</span><br><span class="hljs-string">        //不出现异常，在执行return前，程序将跳转finally模块执行，无return语句时将顺序执行之后的代码</span><br><span class="hljs-string">        System.out.println(&quot;</span><span class="hljs-keyword">finally</span>块内”);<br>    &#125;<br>    System.out.println(<span class="hljs-string">&quot;finally块后”);</span><br><span class="hljs-string">    return &quot;</span><span class="hljs-keyword">finally</span>后结果”;<br>&#125;<br><br><span class="hljs-operator">/*</span> 无异常时<br>   <span class="hljs-keyword">try</span>块内异常前<br>   <span class="hljs-keyword">try</span>块内异常后<br>   <span class="hljs-keyword">finally</span>块内<br>   <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;try中结果” */</span><br><span class="hljs-string">/* 引发异常时</span><br><span class="hljs-string">   try块内异常前</span><br><span class="hljs-string">   catch块内</span><br><span class="hljs-string">   finally块内</span><br><span class="hljs-string">   finally块后</span><br><span class="hljs-string">   return &quot;</span><span class="hljs-keyword">finally</span>后结果” <span class="hljs-operator">*/</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs fsharp"><span class="hljs-comment">// try-catch 模块</span><br><span class="hljs-keyword">try</span> &#123;<br>	<span class="hljs-comment">// 可能抛出受检异常的代码块</span><br>&#125; catch (ExceptionType name <span class="hljs-operator">|</span> ExceptionType name) &#123;<br>	<span class="hljs-comment">// 出现异常类型1执行的操作</span><br>&#125; catch (ExceptionType name) &#123;<br>	<span class="hljs-comment">// 出现异常类型2执行的操作</span><br>&#125;<br><br><span class="hljs-comment">// 示例</span><br><span class="hljs-keyword">try</span> &#123;<br>	Files.readString(Path.<span class="hljs-keyword">of</span>(path))<br>&#125; catch (IOException e) &#123;<br>	System.out.println(e.getMessage()); <span class="hljs-comment">// 返回异常信息字符串</span><br>	e.printTraceStack;					<span class="hljs-comment">// 打印异常栈信息</span><br>&#125;<br><br><span class="hljs-comment">// finally 模块</span><br><span class="hljs-operator">/*</span> 无异常时，执行<span class="hljs-keyword">try</span>块代码 <span class="hljs-operator">-&gt;</span> 执行<span class="hljs-keyword">finally</span>块代码 <span class="hljs-operator">-&gt;</span> <span class="hljs-keyword">try</span>内<span class="hljs-keyword">return</span>语句 <span class="hljs-operator">/</span> 继续执行块外代码<br>   引发异常时，从<span class="hljs-keyword">try</span>块异常处 <span class="hljs-operator">-&gt;</span> catch块代码 <span class="hljs-operator">-&gt;</span> 执行<span class="hljs-keyword">finally</span>块代码 <span class="hljs-operator">-&gt;</span> catch内<span class="hljs-keyword">return</span>语句 <span class="hljs-operator">/</span>继续执行块外代码<br>   <br>   <span class="hljs-keyword">finally</span>块可用于避免由于方法返回、方法执行异常而意外绕过关闭资源对象代码<br>   仅用于释放资源，禁止参与业务逻辑的处理，块内禁止使用<span class="hljs-keyword">return</span>语句 <span class="hljs-operator">*/</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String getTryCatchFinally() &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">// 可能抛出受检异常的代码块</span><br>        System.out.println(<span class="hljs-string">&quot;try块内异常前&quot;</span>);<br>        Files.readString(Path.<span class="hljs-keyword">of</span>(path);<br>        System.out.println(<span class="hljs-string">&quot;try块内异常后&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;try中结果”;</span><br><span class="hljs-string">    &#125; catch (IOException e) &#123;</span><br><span class="hljs-string">        // 出现异常类型执行的操作，不出现异常将被忽略</span><br><span class="hljs-string">        System.out.println (&quot;</span>catch块内<span class="hljs-string">&quot;);</span><br><span class="hljs-string">    &#125; finally &#123;</span><br><span class="hljs-string">        //不出现异常，在执行return前，程序将跳转finally模块执行，无return语句时将顺序执行之后的代码</span><br><span class="hljs-string">        System.out.println(&quot;</span><span class="hljs-keyword">finally</span>块内”);<br>    &#125;<br>    System.out.println(<span class="hljs-string">&quot;finally块后”);</span><br><span class="hljs-string">    return &quot;</span><span class="hljs-keyword">finally</span>后结果”;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p><code>throws/throw</code> 抛出异常</p>
+<p>可以在 构造函数&#x2F;静态方法&#x2F;实例方法&#x2F;方法内的代码块&#x2F;Lambda表达式 等中声明抛出异常</p>
 <p><code>throws</code>子句，使当前方法抛出异常，交由调用者处理异常。</p>
-<p><code>throw</code>声明，抛出一个异常类的异常实例。</p>
-<p>构造函数&#x2F;静态&#x2F;实例方法&#x2F;方法内的代码块&#x2F;Lambda表达式等中可声明抛出异常。</p>
+<p><code>throw</code>声明，抛出一个异常类的异常实例，跳出当前流程</p>
+<p>使用<code>throw</code>抛出受检&#x2F;自定义异常E，则其所在的函数必须使用<code>throws</code>关键字抛出E或E的父类异常。</p>
+<p>构造函数&#x2F;静态&#x2F;实例方法&#x2F;方法内的代码块&#x2F;Lambda表达式等中可声明抛出异常。其中抽象方法抛出异常时。重写抽象方法的实例方法才可抛出异常。</p>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-comment">// throws子句 ; throw声明</span><br>methodname <span class="hljs-keyword">throws</span> Exception1,Exception2,..,ExceptionN  &#123;  &#125;  <br><br><span class="hljs-comment">// 示例1</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getThrows</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException</span>&#123;<br>	Files.readString(Path.of(path);<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>	<span class="hljs-keyword">try</span> &#123;<br>		getThrows();<br>	&#125; <span class="hljs-keyword">catch</span>(IOException e) &#123;<br>		System.out.println(e.getMessage());<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 结合自定义异常 </span><br><span class="hljs-comment">// 自定义异常：通过继承相关异常类实现</span><br><span class="hljs-comment">/*  继承RuntimeException异常类</span><br><span class="hljs-comment">    实现自定义非受检异常</span><br><span class="hljs-comment">    调用RuntimeException构造函数</span><br><span class="hljs-comment">    实现对自定义异常的相关操作 */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RuntimeException</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span> <span class="hljs-params">(String message)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>(message);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyException</span> <span class="hljs-params">(String message, Throwable cause)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>(message，cause);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 示例2: 检测异常转非检测异常</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">String <span class="hljs-title">shiftException</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        Files.readString(Path.of(path);<br>    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> MyException(<span class="hljs-string">&quot;文件读取错误&quot;</span>, e)<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 示例3:</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">divide</span><span class="hljs-params">(<span class="hljs-keyword">double</span> divisor, <span class="hljs-keyword">double</span> dividend)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (dividend == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> MyException(<span class="hljs-string">&quot;被除数为空&quot;</span>); <br>    <span class="hljs-keyword">return</span> divisor / dividend;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ol>
 <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><p>进程 (Processes): 操作系统进行资源分配的最小单元，应用程序的执行实例。</p>
 <p>线程 (Threads): 进程中的运行实体，操作系统调度的最小任务单位。当程序中所有线程终止，进程随之终止。</p>
 <h2 id="线程的创建"><a href="#线程的创建" class="headerlink" title="线程的创建"></a>线程的创建</h2><ol>
-<li><p>实现<code>Runnable</code>接口</p>
-<p><code>Runnable</code>接口是仅有抽象方法<code>run()</code>的函数式接口。基于实现<code>Runnable</code>接口的实现，将子线程的执行任务与线程本身解耦，适用于高级线程管理API(线程池)。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 实现Runnable接口 创建线程</span><br><span class="hljs-comment">/* 1. 定义一个实现Runnable接口的任务类，根据该线程待执行任务实现run()方法</span><br><span class="hljs-comment">   2. 将Runnable对象基于构造函数传递给Thread对象 */</span><br><br><span class="hljs-comment">// 定义一个实现Runnable接口的任务类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloRunnable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">String</span> name;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">HelloRunnable</span>(<span class="hljs-title class_">String</span> name) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;<br>    &#125;<br>	<br>	<span class="hljs-comment">// 根据该线程待执行任务实现run()方法</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">run</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">for</span> (int i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>            <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(name + <span class="hljs-string">&quot;线程运行: &quot;</span> + i);<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-title class_">Thread</span>.<span class="hljs-title function_">sleep</span>((int) <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">10</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-title class_">InterruptedException</span> e) &#123;<br>                e.<span class="hljs-title function_">printStackTrace</span>();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">getHelloRunnable</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-comment">// 将Runnable对象基于构造函数传递给Thread对象</span><br>    <span class="hljs-title class_">Thread</span> hr1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">HelloRunnable</span>(<span class="hljs-string">&quot;ThreadA&quot;</span>));<br>    <span class="hljs-title class_">Thread</span> hr2=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">HelloRunnable</span>(<span class="hljs-string">&quot;ThreadB&quot;</span>));<br>    hr1.<span class="hljs-title function_">start</span>();<br>    hr2.<span class="hljs-title function_">start</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+<li><p>实现<code>Runnable</code>接口，创建<code>Thread</code>实例，以<code>Runnable</code>实现类实例为构造函数参数</p>
+<p>实现线程和任务解耦</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">// 定义一个实现Runnable接口的任务类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloRunnable</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-title class_">String</span> name;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title class_">HelloRunnable</span>(<span class="hljs-title class_">String</span> name) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;<br>    &#125;<br>	<br>	<span class="hljs-comment">// 根据该线程待执行任务实现run()方法</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">run</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">for</span> (int i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>            <span class="hljs-title class_">System</span>.<span class="hljs-property">out</span>.<span class="hljs-title function_">println</span>(name + <span class="hljs-string">&quot;线程运行: &quot;</span> + i);<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-title class_">Thread</span>.<span class="hljs-title function_">sleep</span>((int <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">10</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (<span class="hljs-title class_">InterruptedException</span> e) &#123;<br>                e.<span class="hljs-title function_">printStackTrace</span>();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">getHelloRunnable</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-comment">// 将Runnable对象基于构造函数传递给Thread对象</span><br>    <span class="hljs-title class_">Thread</span> hr1=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">HelloRunnable</span>(<span class="hljs-string">&quot;ThreadA&quot;</span>));<br>    <span class="hljs-title class_">Thread</span> hr2=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">HelloRunnable</span>(<span class="hljs-string">&quot;ThreadB&quot;</span>));<br>    hr1.<span class="hljs-title function_">start</span>();<br>    hr2.<span class="hljs-title function_">start</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>继承<code>Thread</code>类</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// 继承Thread类 创建线程</span><br><span class="hljs-comment">/* 继承Thread类，并重写run()方法实现任务 */</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">HelloThread</span> <span class="hljs-title">extends</span> <span class="hljs-title">Thread</span> &#123;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HelloThread</span>(<span class="hljs-params">String name</span>)</span> &#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    @Override<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span>()</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>            System.<span class="hljs-keyword">out</span>.println(name + <span class="hljs-string">&quot;线程运行: &quot;</span> + i);<br>            <span class="hljs-keyword">try</span> &#123;<br>                sleep((<span class="hljs-built_in">int</span>) Math.random() * <span class="hljs-number">10</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getHelloThread</span>()</span> &#123;<br>    HelloThread ht1=<span class="hljs-keyword">new</span> HelloThread(<span class="hljs-string">&quot;ThreadA&quot;</span>);<br>    HelloThread ht2=<span class="hljs-keyword">new</span> HelloThread(<span class="hljs-string">&quot;ThreadB&quot;</span>);<br>    ht1.start();<br>    ht2.start();<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>继承<code>Thread</code>类，重写<code>run()</code>方法</p>
+<p>线程和任务未解耦</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// 继承Thread类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">HelloThread</span> <span class="hljs-title">extends</span> <span class="hljs-title">Thread</span> &#123;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HelloThread</span>(<span class="hljs-params">String name</span>)</span> &#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    @Override<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span>()</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>            System.<span class="hljs-keyword">out</span>.println(name + <span class="hljs-string">&quot;线程运行: &quot;</span> + i);<br>            <span class="hljs-keyword">try</span> &#123;<br>                sleep((<span class="hljs-built_in">int</span>) Math.random() * <span class="hljs-number">10</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getHelloThread</span>()</span> &#123;<br>	<span class="hljs-comment">// 创建继承Thread类的类的对象</span><br>    HelloThread ht1=<span class="hljs-keyword">new</span> HelloThread(<span class="hljs-string">&quot;ThreadA&quot;</span>);<br>    HelloThread ht2=<span class="hljs-keyword">new</span> HelloThread(<span class="hljs-string">&quot;ThreadB&quot;</span>);<br>    ht1.start();<br>    ht2.start();<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ol>
+<h3 id="java-lang-Runnable接口"><a href="#java-lang-Runnable接口" class="headerlink" title="java.lang.Runnable接口"></a>java.lang.Runnable接口</h3><p>作用：定义预执行的任务</p>
+<p>方法：</p>
+<ul>
+<li><code>run()</code> : 唯一的抽象方法，需要实现类重写方法时在方法中实现需要线程执行的任务</li>
+</ul>
 <h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205031643788.png" srcset="/img/loading.gif" lazyload alt="image-20220503164327678"></p>
-<table>
-<thead>
-<tr>
-<th>相关方法</th>
-<th>说明</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>sleep()</code></td>
-<td>静态方法，作用于当前线程。<br/>挂起当前线程，使线程进入阻塞状态，导致当前线程暂停执行一段指定的时间。<br/><code>sleep</code>周期可以通过中断<code>Interrupt</code>来终止。</td>
-<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205031913743.png" srcset="/img/loading.gif" lazyload alt="image-20220503191330680"></td>
-</tr>
-<tr>
-<td><code>interrupt()</code></td>
-<td>非静态方法，作用于线程实例。<br/>线程停止正在执行的操作，设置中断标识 &#x2F; 阻塞状态时抛出异常<code>InterruptedException</code>，可通过检测中断标识 &#x2F; 线程捕获异常使线程执行其他操作。</td>
-<td>线程捕获异常<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205031920975.png" srcset="/img/loading.gif" lazyload alt="image-20220503192045903"></td>
-</tr>
-<tr>
-<td><code>interrupted()</code></td>
-<td>静态方法，作用于当前线程。<br/>测试当前线程是否被中断（检查中断标志），返回一个boolean值并清除中断状态。</td>
-<td></td>
-</tr>
-<tr>
-<td><code>isInterrupted()</code></td>
-<td>非静态方法，作用于线程实例。<br/>测试当前线程是否被中断，不清除中断状态。</td>
-<td>检测中断标识<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205031923163.png" srcset="/img/loading.gif" lazyload alt="image-20220503192341104"></td>
-</tr>
-<tr>
-<td><code>join()</code></td>
-<td>非静态方法，作用于线程实例。<br/>作用于指定线程实例。导致当前线程暂停执行，直到指定线程终止。<br/><code>join</code>周期可以通过中断<code>Interrupt</code>来终止。</td>
-<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205031942479.png" srcset="/img/loading.gif" lazyload alt="image-20220503194201430"></td>
-</tr>
-<tr>
-<td><code>setDaemon(true)</code></td>
-<td>非静态方法，作用于线程实例。<br/>将线程实例设置为守护线程 <code>Daemon Thread</code>。与用户线程相对，守护线程运行在后台为用户线程提供服务（如垃圾回收线程），不会影响JVM终止（所有用户进程终止后JVM终止）。</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h2><table>
-<thead>
-<tr>
-<th>概念</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>原子操作（<em>atomic operation</em>）</td>
-<td>不可被中断的一个或一系列操作。</td>
-</tr>
-<tr>
-<td>变量缓存</td>
-<td>线程从主内存复制变量副本，并保存在本地缓存（CPU高级数据缓存），线程基于变量完成操作，将结果写回主内存。<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205032027303.png" srcset="/img/loading.gif" lazyload alt="image-20220503202745242"></td>
-</tr>
-<tr>
-<td>变量可见性</td>
-<td>线程在加锁前从主内存读取变量，在释放锁后直接写回主内存。</td>
-</tr>
-</tbody></table>
-<p>为确保并发的 <em>操作原子性</em> 和 <em>变量可变性</em>，有：</p>
-<table>
-<thead>
-<tr>
-<th>方式</th>
-<th>说明</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>volatile</code>关键字</td>
-<td>保证变量可见性，但不能保证操作原子性。</td>
-<td></td>
-</tr>
-<tr>
-<td>内部锁（<em>intrinsic lock</em>）</td>
-<td>每一个<em>对象</em> 都有<em>一个</em> 与之关联的内部锁.<br/>一个需要独占某对象访问权限的线程，在访问该对象之前，需要获取（<em>acquire</em>）对象内部锁，并在访问结束后释放（<em>release</em>）对象内部锁。<br/>一个线程在获取锁和释放锁之间的时间段内，被称为拥有 (<em>own</em>) 内部锁。当一个线程拥有一个内部锁，其他线程请求同步操作时阻塞。</td>
-<td></td>
-</tr>
-<tr>
-<td>同步方法</td>
-<td>用<code>synchronized</code>关键字修饰方法，锁定该方法。</td>
-<td></td>
-</tr>
-<tr>
-<td>同步语句</td>
-<td>用<code>synchronized</code>声明同步代码块，锁定该代码块。</td>
-<td>同步代码块：<code>synchronized(this)</code>{}<br/>对象监视器：<code>synchronized(非this对象)</code>{}</td>
-</tr>
-<tr>
-<td>重入锁（<em>Lock</em>）</td>
-<td>基于<code>java.util.concurrent.locks.Lock</code>接口，可以实现线程有限等待 &#x2F; 请求得到返回值。</td>
-<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205041152856.png" srcset="/img/loading.gif" lazyload alt="image-20220504115202525"><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205041153924.png" srcset="/img/loading.gif" lazyload alt="image-20220504115314696"></td>
-</tr>
-</tbody></table>
+<h3 id="java-lang-Thread类"><a href="#java-lang-Thread类" class="headerlink" title="java.lang.Thread类"></a>java.lang.Thread类</h3><p>作用：定义预执行的线程</p>
+<p>方法：</p>
+<ul>
+<li><p><code>run()</code>：实现<code>Runnable</code>接口，但重写方法为空，需要继承类时再重写方法，在方法中实现需要线程执行的任务执行完毕后，自动停止线程</p>
+</li>
+<li><p><code>start()</code>：启动线程</p>
+</li>
+<li><p><code>sleep()</code>：静态方法，挂起当前线程，使线程进入非可执行状态，可以通过中断<code>(Interrupt)</code>来终止</p>
+</li>
+<li><p><code>interrupt()</code>：设置中断标识，使指定线程中断，抛出<code>InterruptedException</code>异常 (抛出异常后中断标识清除)</p>
+</li>
+<li><p><code>boolean interrupted()</code>：静态方法，检查当前线程是否中断，返回<code>boolean</code>值，清除中断状态</p>
+</li>
+<li><p><code>join()</code>：当前线程暂停执行，直到指定线程终止，可以通过中断<code>(Interrupt)</code>来终止</p>
+</li>
+</ul>
+<h3 id="java-util-concurrent-CountDownLatch类"><a href="#java-util-concurrent-CountDownLatch类" class="headerlink" title="java.util.concurrent.CountDownLatch类"></a>java.util.concurrent.CountDownLatch类</h3><p>作用：允许多个线程等待的同步工具</p>
+<p>方法：</p>
+<ul>
+<li><code>countDown()</code>：减少锁计数器的计数，计数达到零则释放所有等待线程</li>
+<li><code>await()</code>：当前线程暂停执行直到锁计数器递减到<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206041243441.png" srcset="/img/loading.gif" lazyload alt="image-20220604124336371" style="zoom: 67%;" /></li>
+</ul>
+<h2 id="线程同步"><a href="#线程同步" class="headerlink" title="线程同步"></a>线程同步</h2><h3 id="synchronized关键字"><a href="#synchronized关键字" class="headerlink" title="synchronized关键字"></a>synchronized关键字</h3><p>作用对象：</p>
+<ul>
+<li><p>可以作用于类、方法 (包括静态方法)、代码块</p>
+</li>
+<li><p>不得作用于抽象方法、构造函数</p>
+</li>
+</ul>
+<p>作用：修饰部分仅允许一个线程独占访问资源</p>
+<h3 id="volatile关键字"><a href="#volatile关键字" class="headerlink" title="volatile关键字"></a>volatile关键字</h3><p>作用对象：变量</p>
+<p>作用：保证变量的可见性，即各线程不在本地缓存变量副本，每次使用即时从主内存加载变量</p>
+<h3 id="java-util-concurrent-locks-Lock接口"><a href="#java-util-concurrent-locks-Lock接口" class="headerlink" title="java.util.concurrent.locks.Lock接口"></a>java.util.concurrent.locks.Lock接口</h3><p>作用：控制多线程访问共享资源的工具，提供比同步操作更广泛、更灵活的锁定操作，提供对共享资源的独占访问权限 (一次只有一个线            程可以获取该锁)</p>
+<p>方法：</p>
+<ul>
+<li><code>lock()</code> ：锁定任意代码区域 <code>try代码块</code></li>
+<li><code>unlock()</code>：操作结束后释放锁 <code>finally代码块</code></li>
+</ul>
+<p>实现类：<code>ReentrantLock(重入锁)/ReadLock/WriteLock</code></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206041240865.png" srcset="/img/loading.gif" lazyload alt="image-20220604124016767"></p>
+<h3 id="java-util-concurrent-ExecutorService接口"><a href="#java-util-concurrent-ExecutorService接口" class="headerlink" title="java.util.concurrent.ExecutorService接口"></a>java.util.concurrent.ExecutorService接口</h3><p>作用：继承于<code>Executor</code>，提供了基于指定线程池策略，创建<code>Executor</code>对象的工厂方法</p>
+<p>方法：</p>
+<ul>
+<li><p><code>newSingleThreadExecutor()</code>：创建只有1个工作线程的线程池，串行执行提交的任务</p>
+</li>
+<li><p><code>newFixedThreadPool(int nThreads)</code>：创建固定大小的线程池，每提交一个任务创建一个线程，直到达到指定数量</p>
+</li>
+<li><p><code>execute(Runnable r)</code>：添加执行任务到<code>Executor线程池</code></p>
+</li>
+<li><p><code>shutdown()</code>：禁止添加新任务，等待当前执行中以及任务队列中的所有任务执行完成，关闭线程池</p>
+</li>
+<li><p><code>List&lt;Runnable&gt; shutdownNow()</code>：取消任务队列中需执行的任务，返回未执行任务列表。通过向线程池线程发送 <code>interrupt</code>中断信号，由其中执行的任务捕获处理异常。执行中的任务结束后关闭线程池。</p>
+</li>
+</ul>
+<h3 id="java-util-concurrent-atomic包"><a href="#java-util-concurrent-atomic包" class="headerlink" title="java.util.concurrent.atomic包"></a>java.util.concurrent.atomic包</h3><p>作用：实现对特定变量类型的单个变量进行原子操作</p>
+<p>包含类：如标量类：AtomicBoolean，AtomicInteger；数组类：AtomicIntegerArray等</p>
+<p>方法：<code>get()/set()/increment()</code>：类似在<code>volatile</code>变量上读写</p>
+<h3 id="java-lang-ThreadLocal-lt-T-gt-类"><a href="#java-lang-ThreadLocal-lt-T-gt-类" class="headerlink" title="java.lang.ThreadLocal&lt;T&gt;类"></a>java.lang.ThreadLocal&lt;T&gt;类</h3><p>作用：提供线程局部变量，如充当web容器，持有每个请求线程的变量副本</p>
+<h1 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h1><h2 id="I-x2F-O"><a href="#I-x2F-O" class="headerlink" title="I&#x2F;O"></a>I&#x2F;O</h2><p>IO流，数据源&#x2F;数据目标、输入&#x2F;输出的抽象表示</p>
+<p><strong>文件的数据形式</strong></p>
+<p>数据文件是基于<code>byte(字节)</code>而非<code>bit(位)</code>保存以及传输</p>
+<p>1个<code>byte(字节)</code> &#x3D;&#x3D; 8个二进制<code>bit(位)</code> &#x3D;&#x3D; 1个255以内的十进制整数</p>
+<p>1个<code>char(字符)</code>占的字节与编码有关。英文字符占1个字节；中文字符，在<code>UTF8(Windows 10)</code>中占3个字节，在<code>GBK (Windows 7)</code>中占2个字节</p>
+<h3 id="java-io-InputStream抽象类"><a href="#java-io-InputStream抽象类" class="headerlink" title="java.io.InputStream抽象类"></a>java.io.InputStream抽象类</h3><p>输入流</p>
+<p>实现子类：FileInputStream，ByteArrayInputStream等</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206012102665.png" srcset="/img/loading.gif" lazyload alt="image-20220601210226621"></p>
+<p>方法：</p>
+<ul>
+<li><p>构造函数：抛出<code>IOException</code></p>
+</li>
+<li><p><code>int read() throws IOException</code>：抽象方法，由具体子类实现。基于单字节操作，返回流中下一字节的十进制整数形式；到达流末无可读字节，返回-1</p>
+<p><code>int read(byte[] b)</code>：字节数组缓冲区，将流中字节读取到字节数组中，第1个字节置入数组[0]…，直到读取到数组长度的字节位置为止；返回读取的字节长度；如果没有可读字节，返回-1</p>
+</li>
+<li><p><code>close() throws IOException</code>：关闭资源</p>
+</li>
+<li><p><code>long transferTo(out) throws IOExecption</code>：直接将输入流中字节转移至输出流，返回总字节长度</p>
+</li>
+<li><p><code>byte[] readAllBytes() throws IOException</code>：将输入流中所有字节读出到字节数组</p>
+</li>
+</ul>
+<h3 id="java-io-OutputStream抽象类"><a href="#java-io-OutputStream抽象类" class="headerlink" title="java.io.OutputStream抽象类"></a>java.io.OutputStream抽象类</h3><p>输出流</p>
+<p>实现子类同输入流</p>
+<p>方法</p>
+<ul>
+<li><p>构造函数：抛出<code>IOException</code></p>
+</li>
+<li><p><code>void write(int b) throws IOException</code> ：抽象方法，基于单字节操作，将十进制整数按字节写入输出</p>
+</li>
+<li><p><code>void write(byte[] b, int off, int len)</code>，从字节数组[off]开始读取，至数组[len]结束</p>
+</li>
+<li><p><code>close() throws IOException</code>：关闭资源</p>
+</li>
+</ul>
+<h2 id="自动关闭"><a href="#自动关闭" class="headerlink" title="自动关闭"></a>自动关闭</h2><p>完整IO代码</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">implementIO</span>()</span> &#123;<br>	<span class="hljs-comment">// try代码块中进行具体操作前，要将IO流声明为全局变量</span><br>	FileInputStream <span class="hljs-keyword">in</span> = <span class="hljs-literal">null</span>;<br>	FileOutputStream <span class="hljs-keyword">out</span> = <span class="hljs-literal">null</span>;<br>	<br>	<span class="hljs-keyword">try</span> &#123;<br>		<span class="hljs-comment">// 实例化IO流(FileIn/OutputStream从文件系统的文件中读取输入字节)</span><br>		<span class="hljs-keyword">in</span> = FileInputStream(<span class="hljs-string">&quot;D:/input.txt&quot;</span>)<br>		<span class="hljs-keyword">out</span> = FileOutputStream(<span class="hljs-string">&quot;D:/output.txt&quot;</span>)<br>		<br>		<span class="hljs-comment">// 声明存储返回流下一数据的变量、字节缓冲区</span><br>		<span class="hljs-built_in">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[<span class="hljs-number">4</span>];<br>		<span class="hljs-built_in">int</span> len = <span class="hljs-number">0</span>;<br>		<br>		<span class="hljs-comment">// 从输入流中循环读入长度为4的字节数组覆盖字节缓冲区并写入输出流</span><br>		<span class="hljs-keyword">while</span>((len = <span class="hljs-keyword">in</span>.read(buffer)) != <span class="hljs-number">-1</span>) &#123;<br>			<span class="hljs-keyword">out</span>.write(buffer, <span class="hljs-number">0</span>, len);<br>		&#125;<br>	&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>		e.printStackTrace();<br>	&#125; <span class="hljs-keyword">finally</span> &#123;<br>		<span class="hljs-comment">// 资源对象必须被关闭</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">in</span> != <span class="hljs-literal">null</span>) &#123;<br>			<span class="hljs-comment">// close方法抛出io异常</span><br>			<span class="hljs-keyword">try</span> &#123;<br>				<span class="hljs-keyword">in</span>.close()<br>			&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>				e.printStackTrace();<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">out</span> != <span class="hljs-literal">null</span>) &#123;<br>			<span class="hljs-keyword">try</span> &#123;<br>				<span class="hljs-keyword">out</span>.close()<br>			&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>				e.printStackTrace();<br>			&#125;<br>		&#125;<br>	&#125;<br>	<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="java-lang-AutoCloseable接口"><a href="#java-lang-AutoCloseable接口" class="headerlink" title="java.lang.AutoCloseable接口"></a>java.lang.AutoCloseable接口</h3><p>任何实现了java.lang.AutoCloseable接口的类型，均是支持自动关闭的资源类型，java.io.Closeable接口继承AutoCloseable接口</p>
+<h3 id="try-with-resources语句"><a href="#try-with-resources语句" class="headerlink" title="try-with-resources语句"></a>try-with-resources语句</h3><p>在<code>try()</code>语句中声明需要被关闭的资源，资源将在<code>try&#123;&#125;</code>结束后自动关闭，如：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// 在try()语句中创建资源实例</span><br><span class="hljs-keyword">try</span>(FileInputStream <span class="hljs-keyword">in</span> = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;D:/input.txt&quot;</span>);<br>	FileOutputStream <span class="hljs-keyword">out</span> = <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">&quot;D:/output.txt&quot;</span>)) &#123;<br>		<span class="hljs-built_in">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[<span class="hljs-number">4</span>];<br>		<span class="hljs-built_in">int</span> len = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">while</span>((len = <span class="hljs-keyword">in</span>.read(buffer)) != <span class="hljs-number">-1</span>) &#123;<br>			<span class="hljs-keyword">out</span>.write(buffer, <span class="hljs-number">0</span>, len);<br>		&#125;<br>	&#125;<br><br><span class="hljs-comment">// 在try()语句外创建资源实例，在语句中声明</span><br>FileInputStream <span class="hljs-keyword">in</span> = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;D:/input.txt&quot;</span>);<br>FileOutputStream <span class="hljs-keyword">out</span> = <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">&quot;D:/output.txt&quot;</span>);<br><span class="hljs-keyword">try</span>(<span class="hljs-keyword">in</span>; <span class="hljs-keyword">out</span>) &#123;<br>		<span class="hljs-built_in">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[<span class="hljs-number">4</span>];<br>		<span class="hljs-built_in">int</span> len = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">while</span>((len = <span class="hljs-keyword">in</span>.read(buffer)) != <span class="hljs-number">-1</span>) &#123;<br>			<span class="hljs-keyword">out</span>.write(buffer, <span class="hljs-number">0</span>, len);<br>		&#125;<br>	&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>NIO2 (java8) 将文件路径与文件操作分离，支持异步非阻塞</p>
+<h3 id="java-nio-file-Path接口"><a href="#java-nio-file-Path接口" class="headerlink" title="java.nio.file.Path接口"></a>java.nio.file.Path接口</h3><p>作用：不依赖于系统的描述文件路径 (即运行在不同操作系统下具体实现不同)</p>
+<p>方法</p>
+<ol>
+<li><p>创建：</p>
+<ul>
+<li><p><code>java.nio.file.Paths类</code></p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Path p <span class="hljs-operator">=</span> Paths.get(<span class="hljs-string">&quot;/tmp/foo&quot;</span>)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>Path.of()静态方法</code></p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Path p <span class="hljs-operator">=</span> Path.of(<span class="hljs-string">&quot;/tmp/foo&quot;</span>)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>获取：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 如 对于路径<span class="hljs-string">&quot;D:/test/input.txt&quot;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>Path getFileName()</code>：返回文件名或名称元素序列的最后一个元素</p>
+<p><code>&quot;input.txt&quot;</code></p>
+</li>
+<li><p><code>Path getParent()</code>：返回父目录的路径</p>
+<p><code>D:\test</code></p>
+</li>
+<li><p><code>Path getRoot()</code>：返回路径的根</p>
+<p><code>D:\    </code></p>
+</li>
+</ul>
+</li>
+<li><p>拼接：</p>
+<ul>
+<li><p><code>Path resolve(Path other)</code>：拼接各级路径</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs abnf">Path dir <span class="hljs-operator">=</span> Path.of(<span class="hljs-string">&quot;D:/test&quot;</span>)<span class="hljs-comment">;</span><br>Path file <span class="hljs-operator">=</span> Path.of(<span class="hljs-string">&quot;input.txt&quot;</span>)<span class="hljs-comment">;</span><br>Path p <span class="hljs-operator">=</span> dir.resolve(file)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h3 id="java-nio-file-Files类"><a href="#java-nio-file-Files类" class="headerlink" title="java.nio.file.Files类"></a>java.nio.file.Files类</h3><p>作用：通过丰富的<strong>静态方法</strong>，读取&#x2F;写入&#x2F;操作文件与目录</p>
+<p>方法（以下方法均为静态方法）：</p>
+<ol>
+<li><p>检查</p>
+<ul>
+<li><code>boolean exists(Path path) / notExists(Path path)</code>：检查路径是否存在</li>
+<li><code>boolean isDirectory(Path path)</code>：检查是否为目录</li>
+</ul>
+</li>
+<li><p>创建</p>
+<ul>
+<li><p><code>Path createDirectory(Path dir) throws IOException</code>：创建单级目录，目录路径为多级或已存在则异常</p>
+</li>
+<li><p><code> Path createDirectories(Path dir) throws IOException</code>：创建多级目录</p>
+</li>
+<li><p><code>Path createFile(path) throws IOException</code>：基于指定路径创建文件，文件已存在则异常</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> static void createFile throws IOException &#123;<br>	Path file = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Path</span>.</span></span><span class="hljs-keyword">of</span>(<span class="hljs-string">&quot;D:/test/input.txt&quot;</span>);<br>	<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Files</span>.</span></span>create<span class="hljs-constructor">Directories(<span class="hljs-params">file</span>.<span class="hljs-params">getParent</span>()</span>);<br>	<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Files</span>.</span></span>create<span class="hljs-constructor">File(<span class="hljs-params">file</span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>复制</p>
+<ul>
+<li><p><code>Path copy(Path source, Path target, CopyOption... options) throws IOException</code>：将文件复制到目标文件，默认如果文件已经存在则异常</p>
+<p><code>java.nio.file.StandardCopyOption枚举</code>：实现了<code>CopyOption接口</code>，提供复制选项<code>CopyOption</code></p>
+<ul>
+<li><code>ATOMIC_MOVE</code>：将文件作为原子文件操作移动 (多线程操作)</li>
+<li><code>COPY_ATTRIBUTES</code>：将属性复制到新文件</li>
+<li><code>REPLACE_TXISTING</code>：如果文件已存在则替换现有文件</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> createFile <span class="hljs-keyword">throws</span> IOException &#123;<br>	Path dir = Path.of(<span class="hljs-string">&quot;D:/test&quot;</span>);<br>	Path <span class="hljs-keyword">source</span> = dir.resolve(<span class="hljs-string">&quot;input.txt&quot;</span>);<br>	Path target = dir.resolve(<span class="hljs-string">&quot;output.txt&quot;</span>);<br>	Files.<span class="hljs-keyword">copy</span>(<span class="hljs-keyword">source</span>, target, StandardCopyOption.REPLACE_EXISTING);<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>移动</p>
+<ul>
+<li><code>Path move(Path source, Path target, CopyOption... options) throws IOException</code>：将文件移动或重命名 (相同目录下) 为目标文件，默认目标文件存在则异常</li>
+</ul>
+</li>
+<li><p>删除</p>
+<ul>
+<li><code>delete(Path path) throws IOException</code>：基于指定路径删除文件&#x2F;目录，路径不存在&#x2F;删除目录不为空则异常</li>
+<li><code>boolean deleteIfExists(Path path) throws IOException</code>：路径不存在时不删除，返回是否删除成功，删除目录不为空则异常</li>
+</ul>
+</li>
+<li><p>遍历</p>
+</li>
+</ol>
 
             </div>
             <hr>
