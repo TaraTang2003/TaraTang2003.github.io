@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Cosmo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数据结构 Series，一维数组，pandas.Series( data, index, dtype, name, copy)  DataFrame，二维数组，pandas.DataFrame( data, index, columns, dtype, copy) &lt;index&gt;：行标签 &lt;columns&gt;：列标签   索引切片查询数组行&#x2F;列标签情况 123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandas库操作备忘">
+<meta property="og:url" content="http://example.com/2022/07/26/pandas%E5%BA%93%E6%93%8D%E4%BD%9C%E5%A4%87%E5%BF%98/index.html">
+<meta property="og:site_name" content="Cosmo&#39;s Kingdom">
+<meta property="og:description" content="数据结构 Series，一维数组，pandas.Series( data, index, dtype, name, copy)  DataFrame，二维数组，pandas.DataFrame( data, index, columns, dtype, copy) &lt;index&gt;：行标签 &lt;columns&gt;：列标签   索引切片查询数组行&#x2F;列标签情况 123456">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202207261130866.png">
+<meta property="article:published_time" content="2022-07-26T03:37:42.619Z">
+<meta property="article:modified_time" content="2022-07-26T03:36:45.092Z">
+<meta property="article:author" content="Cosmo">
+<meta property="article:tag" content="数据挖掘">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202207261130866.png">
+  
+  
+  <title>Pandas库操作备忘 - Cosmo&#39;s Kingdom</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cosmo&#39;s Kingdom</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                查看
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-exp-fill"></i>
+                乐园
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/books/">
+                    
+                    书
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/movies/">
+                    
+                    影
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/idea/">
+                    
+                    想法
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/copys/">
+                    
+                    摘抄
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/travel/">
+                    
+                    足迹
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Pandas库操作备忘">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-07-26 11:37" pubdate>
+        2022年7月26日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Pandas库操作备忘</h1>
+            
+            <div class="markdown-body">
+              <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><ol>
+<li><p><code>Series</code>，一维数组，<code>pandas.Series( data, index, dtype, name, copy)</code></p>
+</li>
+<li><p><code>DataFrame</code>，二维数组，<code>pandas.DataFrame( data, index, columns, dtype, copy)</code></p>
+<p><code>&lt;index&gt;</code>：行标签</p>
+<p><code>&lt;columns&gt;</code>：列标签</p>
+</li>
+</ol>
+<h1 id="索引切片"><a href="#索引切片" class="headerlink" title="索引切片"></a>索引切片</h1><p>查询数组行&#x2F;列标签情况</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><pre><code class="hljs pgsql">sr.<span class="hljs-keyword">index</span> # Range<span class="hljs-keyword">Index</span>(start=<span class="hljs-number">0</span>, stop=<span class="hljs-number">5</span>, step=<span class="hljs-number">1</span>)<br>df.<span class="hljs-keyword">index</span> # Range<span class="hljs-keyword">Index</span>(start=<span class="hljs-number">0</span>, stop=<span class="hljs-number">5</span>, step=<span class="hljs-number">1</span>)<br>df.<span class="hljs-keyword">index</span>.<span class="hljs-keyword">values</span> # <span class="hljs-keyword">array</span>类型<br>df.<span class="hljs-keyword">columns</span> # <span class="hljs-keyword">Index</span>([<span class="hljs-string">&#x27;姓名&#x27;</span>, <span class="hljs-string">&#x27;班级&#x27;</span>], dtype=<span class="hljs-string">&#x27;object&#x27;</span>)<br>df.<span class="hljs-keyword">columns</span>.<span class="hljs-keyword">values</span> # <span class="hljs-keyword">array</span>类型<br>df.axes # 返回含行列情况的数组<br></code></pre></td></tr></table></figure>
+
+
+
+<p>按行索引&#x2F;切片</p>
+<ul>
+<li><p>索引 <code>df.iloc</code></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">df.iloc[0] # series<br>df.iloc[[0]] # dataframe<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>切片 <code>df[] / df.iloc</code></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 连续多行，前开后闭</span><br><span class="hljs-attribute">df</span>[<span class="hljs-number">2</span>:<span class="hljs-number">3</span>] # data frame<br><span class="hljs-attribute">df</span>.iloc[<span class="hljs-number">2</span>:<span class="hljs-number">3</span>] # data frame<br><span class="hljs-comment"># 不连续多行</span><br><span class="hljs-attribute">df</span>.iloc[[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]] # data frame<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>按列索引&#x2F;切片</p>
+<ul>
+<li><p><code>df[] / df.loc[] / df.iloc[]</code></p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs prolog"># series<br>testdf3[<span class="hljs-string">&#x27;A&#x27;</span>] # 按列名索引得到单列<br>testdf3.loc[:,<span class="hljs-string">&#x27;A&#x27;</span>] # 按列名索引得到单列<br>testdf3.iloc[:,<span class="hljs-number">0</span>] # 按列index索引得到单列<br><br># data frame<br>testdf3[[<span class="hljs-string">&#x27;A&#x27;</span>,<span class="hljs-string">&#x27;B&#x27;</span>]] # 按列名索引得到单/多列<br>testdf3.loc[:,[<span class="hljs-string">&#x27;A&#x27;</span>,<span class="hljs-string">&#x27;B&#x27;</span>]] # 按列名索引得到单/多列<br>testdf3.iloc[:,[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]] # 按列index索引得到单/多列<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>行列同时索引&#x2F;切片</p>
+<ul>
+<li><p><code>df.loc[] / df.iloc[]</code></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">df</span>.iloc[[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>],<span class="hljs-number">0</span>] # <span class="hljs-number">1</span>. series, 单行/单列索引<br><span class="hljs-attribute">df</span>.iloc[[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">0</span>]] # <span class="hljs-number">2</span>. dataframe, 单行/单列索引<br><span class="hljs-attribute">df</span>.iloc[[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]] # <span class="hljs-number">2</span>. dataframe, 不连续多行/多列索引<br><span class="hljs-attribute">df</span>.iloc[[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>],<span class="hljs-number">1</span>:<span class="hljs-number">3</span>] # <span class="hljs-number">3</span>. dataframe, 连续多行/多列切片<br><br><span class="hljs-attribute">df</span>.loc[<span class="hljs-number">1</span>,[<span class="hljs-string">&quot;A&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>]] # series 对应上述<span class="hljs-number">1</span><br><span class="hljs-attribute">df</span>.loc[[<span class="hljs-number">1</span>],[<span class="hljs-string">&quot;A&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>]] # df 对应上述<span class="hljs-number">2</span><br><span class="hljs-attribute">df</span>.loc[[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>],[<span class="hljs-string">&quot;A&quot;</span>,<span class="hljs-string">&quot;D&quot;</span>]] # df 对应上述<span class="hljs-number">2</span><br><span class="hljs-attribute">df</span>.loc[[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>],<span class="hljs-string">&quot;A&quot;</span>:<span class="hljs-string">&quot;D&quot;</span>] # df 对应上述<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<p><code>df.loc</code> 按名称，<code>df.iloc</code> 按<code>index</code>。</p>
+</li>
+</ul>
+<h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><p>查询数据的基本信息</p>
+<ul>
+<li><p>查询数据前&#x2F;后片段</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs excel">df.head(<span class="hljs-built_in">n</span>) # 前<span class="hljs-built_in">n</span>行<br>df.tail(<span class="hljs-built_in">n</span>) # 尾<span class="hljs-built_in">n</span>行<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查询数据维度 (行&#x2F;列总数)</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">df</span>.shape  # (<span class="hljs-number">3453</span>, <span class="hljs-number">27</span>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查询数据类型 &#x2F; 索引</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">df.dtypes <span class="hljs-meta"># 各列数据类型</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查询数据总体情况</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">df.<span class="hljs-built_in">info</span>()<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202207261130866.png" srcset="/img/loading.gif" lazyload alt="image-20220726113023806"></p>
+</li>
+</ul>
+<h1 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h1><p>参考资料：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/48882741">Pandas DataFrame切片 - 知乎</a></li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+                    
+                      <a class="hover-with-bg" href="/tags/python/">python</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+                        <span class="hidden-mobile">数据结构与算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
