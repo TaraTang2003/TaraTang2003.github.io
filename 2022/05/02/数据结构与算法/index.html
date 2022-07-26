@@ -16,13 +16,35 @@
   <meta name="author" content="Cosmo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="[toc] Dynamic Programming1.  Matrix-Chain Multiplication Problem   名词 释义 示例    fully parenthesized A product of matrices is fully parenthesized if it is either a single matrix or the product of two fu">
+    <meta name="description" content="Analysis of Algorithm1. Fibonacci 2. Mathematical InductionSteps:  Example:  3. Asymptotic NotationO&#x2F;Omega&#x2F;Theta    Caculating rules:   integral approximation：  Sortingelementary operations:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法">
 <meta property="og:url" content="http://example.com/2022/05/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Cosmo&#39;s Kingdom">
-<meta property="og:description" content="[toc] Dynamic Programming1.  Matrix-Chain Multiplication Problem   名词 释义 示例    fully parenthesized A product of matrices is fully parenthesized if it is either a single matrix or the product of two fu">
+<meta property="og:description" content="Analysis of Algorithm1. Fibonacci 2. Mathematical InductionSteps:  Example:  3. Asymptotic NotationO&#x2F;Omega&#x2F;Theta    Caculating rules:   integral approximation：  Sortingelementary operations:">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205151134007.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205151150085.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205151149284.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205181056402.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205181056459.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205181057520.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205181100863.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205181103257.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205190855934.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205191704365.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/selectionSort.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/insertionSort.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205191657242.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205191659629.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205191700068.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/mergeSort.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205191925439.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205192051820.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/quickSort.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205200935915.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205200834078.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205201524341.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204271512030.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204271516442.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204271554311.png">
@@ -39,14 +61,30 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204271620212.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204271620191.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204271637939.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206201116378.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206210852391.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206212039320.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206201859272.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206201905096.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211434333.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211435035.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211436268.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211426684.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211427893.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211442081.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211443050.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211701160.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206221013831.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211933762.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206212109137.png">
 <meta property="article:published_time" content="2022-05-02T01:37:18.081Z">
-<meta property="article:modified_time" content="2022-05-02T10:48:20.590Z">
+<meta property="article:modified_time" content="2022-07-26T03:17:39.192Z">
 <meta property="article:author" content="Cosmo">
 <meta property="article:tag" content="学校课程">
 <meta property="article:tag" content="CS理论基础">
 <meta property="article:tag" content="全英">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204271512030.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205151134007.png">
   
   
   <title>数据结构与算法 - Cosmo&#39;s Kingdom</title>
@@ -276,7 +314,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      6.4k 字
     </span>
   
 
@@ -285,7 +323,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14 分钟
+      54 分钟
     </span>
   
 
@@ -317,7 +355,117 @@
             <h1 style="display: none">数据结构与算法</h1>
             
             <div class="markdown-body">
-              <p>[toc]</p>
+              <h1 id="Analysis-of-Algorithm"><a href="#Analysis-of-Algorithm" class="headerlink" title="Analysis of Algorithm"></a>Analysis of Algorithm</h1><h2 id="1-Fibonacci"><a href="#1-Fibonacci" class="headerlink" title="1. Fibonacci"></a>1. Fibonacci</h2><p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205151134007.png" srcset="/img/loading.gif" lazyload alt="image-20220515113412973"></p>
+<h2 id="2-Mathematical-Induction"><a href="#2-Mathematical-Induction" class="headerlink" title="2. Mathematical Induction"></a>2. Mathematical Induction</h2><p>Steps:</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205151150085.png" srcset="/img/loading.gif" lazyload alt="image-20220515115005051"></p>
+<p>Example:</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205151149284.png" srcset="/img/loading.gif" lazyload alt="image-20220515114943245"></p>
+<h2 id="3-Asymptotic-Notation"><a href="#3-Asymptotic-Notation" class="headerlink" title="3. Asymptotic Notation"></a>3. Asymptotic Notation</h2><p>O&#x2F;Omega&#x2F;Theta</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205181056402.png" srcset="/img/loading.gif" lazyload alt="image-20220518105617271"></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205181056459.png" srcset="/img/loading.gif" lazyload alt="image-20220518105639409"></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205181057520.png" srcset="/img/loading.gif" lazyload alt="image-20220518105702424"></p>
+<p>Caculating rules:</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205181100863.png" srcset="/img/loading.gif" lazyload alt="image-20220518110015745"><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205181103257.png" srcset="/img/loading.gif" lazyload alt="image-20220518110319192"></p>
+<p> integral approximation：</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205190855934.png" srcset="/img/loading.gif" lazyload alt="image-20220519085521868"></p>
+<h1 id="Sorting"><a href="#Sorting" class="headerlink" title="Sorting"></a>Sorting</h1><p><strong>elementary operations</strong>: swap&#x2F;move. Each swap requires three data moves</p>
+<p><strong>Properties</strong></p>
+<p>• <strong>In-place:</strong> use only fixed additional space, independent of input size . </p>
+<p>• <strong>Stable:</strong> records with equal keys have their order unchanged by the algorithm i.e. they appear in the same order in unsorted                    input and sorted output.</p>
+<p><strong>Divide and conquer</strong></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205191704365.png" srcset="/img/loading.gif" lazyload alt="image-20220519170408339"></p>
+<h2 id="1-Selection-sort"><a href="#1-Selection-sort" class="headerlink" title="1. Selection sort"></a>1. Selection sort</h2><p><img src="https://www.runoob.com/wp-content/uploads/2019/03/selectionSort.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs livecodeserver">Find <span class="hljs-keyword">the</span> maximum <span class="hljs-keyword">element</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> front unsorted part <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> list <span class="hljs-keyword">by</span> sequential scan, <span class="hljs-keyword">and</span> swap <span class="hljs-keyword">it</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">the</span> head <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> backward sorted part.(Big sorted <span class="hljs-keyword">first</span>)<br>Find <span class="hljs-keyword">the</span> minimum <span class="hljs-keyword">element</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> backward unsorted part <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> list <span class="hljs-keyword">by</span> sequential scan, <span class="hljs-keyword">and</span> swap <span class="hljs-keyword">it</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">the</span> <span class="hljs-function"><span class="hljs-keyword">end</span> <span class="hljs-title">of</span> <span class="hljs-title">the</span> <span class="hljs-title">front</span> <span class="hljs-title">sorted</span> <span class="hljs-title">part</span>.(<span class="hljs-title">Small</span> <span class="hljs-title">sorted</span> <span class="hljs-title">first</span>)</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>Time complexity analysis:</p>
+<ul>
+<li><p><em>best case</em></p>
+<p><strong>comparision</strong> —— (n-1) + (n-2) + … + 1 &#x3D; (n-1) * n &#x2F; 2</p>
+<p><strong>swap</strong> —— 0</p>
+<p>O(n^2)</p>
+</li>
+<li><p><em>worst case</em></p>
+<p>**comparision **—— (n-1) + (n-2) + … + 1 &#x3D; (n-1) * n &#x2F; 2</p>
+<p><strong>swap</strong> —— n-1</p>
+<p>O(n^2).</p>
+</li>
+<li><p><em>average case</em> </p>
+<p>O(n^2)</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">selectionSort</span>(<span class="hljs-params">arr</span>):<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(arr) - <span class="hljs-number">1</span>):<br>    	<br>    	<span class="hljs-comment"># COMPARISION</span><br>        minIndex = i<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(i + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(arr)):<br>            <span class="hljs-keyword">if</span> arr[j] &lt; arr[minIndex]:<br>                minIndex = j<br>        <br>        <span class="hljs-comment"># SWAP</span><br>        <span class="hljs-keyword">if</span> i != minIndex:<br>            arr[i], arr[minIndex] = arr[minIndex], arr[i]<br>    <span class="hljs-keyword">return</span> arr<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-Insertion-sort"><a href="#2-Insertion-sort" class="headerlink" title="2.Insertion sort"></a>2.Insertion sort</h2><p><img src="https://www.runoob.com/wp-content/uploads/2019/03/insertionSort.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Find <span class="hljs-keyword">the</span> head <span class="hljs-keyword">element</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> backward unsorted part <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> list, sequentially compare <span class="hljs-keyword">it</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">the</span> elements <span class="hljs-keyword">in</span> sorted list <span class="hljs-built_in">from</span> <span class="hljs-function"><span class="hljs-keyword">end</span> <span class="hljs-title">to</span> <span class="hljs-title">start</span> <span class="hljs-title">and</span> <span class="hljs-title">insert</span> <span class="hljs-title">it</span> <span class="hljs-title">in</span> <span class="hljs-title">the</span> <span class="hljs-title">fit</span> <span class="hljs-title">position</span> <span class="hljs-title">with</span> <span class="hljs-title">other</span> <span class="hljs-title">ele</span>&#x27;<span class="hljs-title">s</span> <span class="hljs-title">movements</span>.</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>Time complexity analysis:</p>
+<ul>
+<li><p><em>best case</em></p>
+<p><strong>comparision</strong> ——n-1</p>
+<p><strong>move</strong> —— 0</p>
+<p>O(n)</p>
+</li>
+<li><p><em>worst case</em></p>
+<p>**comparision **——  1 + 2 + … + (n-1) &#x3D; (n-1) * n &#x2F; 2</p>
+<p><strong>move</strong> —— 1 + 2 + … + (n-1) &#x3D; (n-1) * n &#x2F; 2</p>
+<p>O(n^2).</p>
+</li>
+<li><p><em>average case</em></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205191657242.png" srcset="/img/loading.gif" lazyload alt="image-20220519165751192"></p>
+<p><strong>average comparision</strong> —— <img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205191659629.png" srcset="/img/loading.gif" lazyload alt="image-20220519165945597"><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205191700068.png" srcset="/img/loading.gif" lazyload alt="image-20220519170039026"></p>
+<p><strong>average move</strong> —— Note that the number of moves is at most the number of comparisons. Thus, we can only care about the average number of comparisons.</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">insertionSort</span>(<span class="hljs-params">arr</span>):<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(arr)):<br>        preIndex = i-<span class="hljs-number">1</span><br>        current = arr[i]<br>        <span class="hljs-keyword">while</span> preIndex &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> arr[preIndex] &gt; current:<br>            arr[preIndex+<span class="hljs-number">1</span>] = arr[preIndex]<br>            preIndex-=<span class="hljs-number">1</span><br>        arr[preIndex+<span class="hljs-number">1</span>] = current<br>    <span class="hljs-keyword">return</span> arr<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-Merge-sort"><a href="#3-Merge-sort" class="headerlink" title="3. Merge sort"></a>3. Merge sort</h2><p><img src="https://www.runoob.com/wp-content/uploads/2019/03/mergeSort.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">Divide </span><span class="hljs-keyword">and </span>Conquer<br></code></pre></td></tr></table></figure>
+
+
+
+<p>Time complexity analysis:</p>
+<p><em>The First Comprehension</em></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205191925439.png" srcset="/img/loading.gif" lazyload alt="image-20220519192546406"></p>
+<p>Because in every merge <code>n</code> ele wil divide into half recursively, till every zone has only <code>1</code> ele. While every merge will execute operations to each ele (total <code>n</code> ele).</p>
+<ul>
+<li><code>1</code> recurrence : <code>2</code> zones, <code>n/2</code> ezch zone.</li>
+<li><code>2</code> recurrence : <code>4</code> zones, <code>n/4</code> ezch zone.</li>
+<li><code>3</code> recurrence : <code>8</code> zones, <code>n/8</code> ezch zone.</li>
+<li><code>... ...</code></li>
+<li><code>log2 n</code> recurrence : <code>n</code> zones, <code>1</code> ezch zone.</li>
+</ul>
+<p><em>The Second Comprehension</em></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205192051820.png" srcset="/img/loading.gif" lazyload alt="image-20220519205110738"></p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs nsis">def mergeSort(arr):<br>    import math<br>    <br>    <span class="hljs-comment"># DIVIDE</span><br>    if(len(arr)&lt;<span class="hljs-number">2</span>):<br>        <span class="hljs-keyword">return</span> arr<br>    middle = math.floor(len(arr)/<span class="hljs-number">2</span>)<br>    <span class="hljs-literal">left</span>, <span class="hljs-literal">right</span> = arr[<span class="hljs-number">0</span>:middle], arr[middle:]<br>    <span class="hljs-keyword">return</span> merge(mergeSort(<span class="hljs-literal">left</span>), mergeSort(<span class="hljs-literal">right</span>))<br><br>def merge(<span class="hljs-literal">left</span>,<span class="hljs-literal">right</span>):<br>    result = []<br>    <span class="hljs-comment"># COMPARISION</span><br>    while <span class="hljs-literal">left</span> and <span class="hljs-literal">right</span>:<br>        if <span class="hljs-literal">left</span>[<span class="hljs-number">0</span>] &lt;= <span class="hljs-literal">right</span>[<span class="hljs-number">0</span>]:<br>            result.append(<span class="hljs-literal">left</span>.<span class="hljs-keyword">pop</span>(<span class="hljs-number">0</span>))<br>        else:<br>            result.append(<span class="hljs-literal">right</span>.<span class="hljs-keyword">pop</span>(<span class="hljs-number">0</span>))<span class="hljs-comment">;</span><br>    <br>    while <span class="hljs-literal">left</span>:<br>        result.append(<span class="hljs-literal">left</span>.<span class="hljs-keyword">pop</span>(<span class="hljs-number">0</span>))<br>    while <span class="hljs-literal">right</span>:<br>        result.append(<span class="hljs-literal">right</span>.<span class="hljs-keyword">pop</span>(<span class="hljs-number">0</span>))<span class="hljs-comment">;</span><br>    <span class="hljs-keyword">return</span> result<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-Quick-sort"><a href="#4-Quick-sort" class="headerlink" title="4. Quick sort"></a>4. Quick sort</h2><p><img src="https://www.runoob.com/wp-content/uploads/2019/03/quickSort.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">Divide </span><span class="hljs-keyword">and </span>Conquer<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205200935915.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205200834078.png" srcset="/img/loading.gif" lazyload alt="image-20220520083403016"></p>
+<p>Time complexity analysis:</p>
+<p><strong>Lower Bound Theory</strong></p>
+<p>Decision tree</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205201524341.png" srcset="/img/loading.gif" lazyload alt="image-20220520152419282"></p>
+<h2 id="6-HeapSort"><a href="#6-HeapSort" class="headerlink" title="6. HeapSort"></a>6. HeapSort</h2><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Heap<br><span class="hljs-number">1.</span> Put <span class="hljs-keyword">the</span> ele <span class="hljs-keyword">in</span> list <span class="hljs-keyword">into</span> <span class="hljs-keyword">the</span> heap.<br><span class="hljs-number">2.</span> Heapify <span class="hljs-keyword">the</span> heap <span class="hljs-keyword">as</span> maximum-heap.<br><span class="hljs-number">3.</span> Swap <span class="hljs-keyword">the</span> top ele <span class="hljs-keyword">with</span> <span class="hljs-keyword">the</span> <span class="hljs-function"><span class="hljs-keyword">end</span> <span class="hljs-title">of</span> <span class="hljs-title">the</span> <span class="hljs-title">heap</span>(<span class="hljs-title">the</span> <span class="hljs-title">ele</span> <span class="hljs-title">behind</span> <span class="hljs-title">the</span> <span class="hljs-title">heap</span> <span class="hljs-title">is</span> <span class="hljs-title">sorted</span> ) <span class="hljs-title">and</span> <span class="hljs-title">heapify</span> <span class="hljs-title">the</span> <span class="hljs-title">heap</span> <span class="hljs-title">as</span> <span class="hljs-title">maximum-heap</span> <span class="hljs-title">recursively</span>.</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>Time complexity analysis:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">buildMaxHeap</span>(<span class="hljs-params">arr</span>):<br>    <span class="hljs-keyword">import</span> math<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(math.floor(<span class="hljs-built_in">len</span>(arr)/<span class="hljs-number">2</span>),-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>):<br>        heapify(arr,i)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">heapify</span>(<span class="hljs-params">arr, i</span>):<br>    left = <span class="hljs-number">2</span>*i+<span class="hljs-number">1</span><br>    right = <span class="hljs-number">2</span>*i+<span class="hljs-number">2</span><br>    largest = i<br>    <span class="hljs-keyword">if</span> left &lt; arrLen <span class="hljs-keyword">and</span> arr[left] &gt; arr[largest]:<br>        largest = left<br>    <span class="hljs-keyword">if</span> right &lt; arrLen <span class="hljs-keyword">and</span> arr[right] &gt; arr[largest]:<br>        largest = right<br><br>    <span class="hljs-keyword">if</span> largest != i:<br>        swap(arr, i, largest)<br>        heapify(arr, largest)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">swap</span>(<span class="hljs-params">arr, i, j</span>):<br>    arr[i], arr[j] = arr[j], arr[i]<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">heapSort</span>(<span class="hljs-params">arr</span>):<br>    <span class="hljs-keyword">global</span> arrLen<br>    arrLen = <span class="hljs-built_in">len</span>(arr)<br>    buildMaxHeap(arr)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(arr)-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,-<span class="hljs-number">1</span>):<br>        swap(arr,<span class="hljs-number">0</span>,i)<br>        arrLen -=<span class="hljs-number">1</span><br>        heapify(arr, <span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> arr<br></code></pre></td></tr></table></figure>
+
+
+
 <h1 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a>Dynamic Programming</h1><h2 id="1-Matrix-Chain-Multiplication-Problem"><a href="#1-Matrix-Chain-Multiplication-Problem" class="headerlink" title="1.  Matrix-Chain Multiplication Problem"></a>1.  Matrix-Chain Multiplication Problem</h2><table>
 <thead>
 <tr>
@@ -364,7 +512,7 @@
 <ol>
 <li><strong>Finish <em>M[i, i+1] for 1≤i≤4</em></strong></li>
 </ol>
-   <figure class="highlight apache"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">e</span>.g. M[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>] -&gt; <span class="hljs-number">4</span> x <span class="hljs-number">10</span> x <span class="hljs-number">3</span> -&gt; <span class="hljs-number">120</span><br></code></pre></td></tr></table></figure>
+   <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">e</span>.g. M[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>] -&gt; <span class="hljs-number">4</span> x <span class="hljs-number">10</span> x <span class="hljs-number">3</span> -&gt; <span class="hljs-number">120</span><br></code></pre></td></tr></table></figure>
 
 <p>   <img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204271612845.png" srcset="/img/loading.gif" lazyload alt="image-20220427161252811"></p>
 <ol start="2">
@@ -393,32 +541,188 @@
 <p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204271637939.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
-<p>​        </p>
-<h2 id="2-Longest-Common-Subsequence-Problem"><a href="#2-Longest-Common-Subsequence-Problem" class="headerlink" title="2. Longest Common Subsequence Problem"></a>2. <strong>Longest Common</strong> Subsequence Problem</h2><table>
+<h1 id="Greedy-Algorithm"><a href="#Greedy-Algorithm" class="headerlink" title="Greedy Algorithm"></a>Greedy Algorithm</h1><h1 id="Graph"><a href="#Graph" class="headerlink" title="Graph"></a>Graph</h1><table>
 <thead>
 <tr>
 <th>名词</th>
 <th>释义</th>
-<th>示例</th>
+<th>备注</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>LCS</td>
-<td>Longest Common Subsequence</td>
-<td><em>X</em> &#x3D; {A, B, C, B, D, A, B} and <em>Y</em> &#x3D; {B, D, C, A, B, A}，L&#x3D; {B，C，B，A}</td>
-</tr>
-<tr>
-<td></td>
+<td>graph</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
+<td>directed graph (digraph)</td>
+<td>有向图</td>
 <td></td>
+</tr>
+<tr>
+<td>adjacent graph</td>
+<td>连接图</td>
 <td></td>
+</tr>
+<tr>
+<td>order</td>
 <td></td>
+<td>number of its vertices</td>
+</tr>
+<tr>
+<td>size</td>
+<td></td>
+<td>number of its edges</td>
+</tr>
+<tr>
+<td>degree</td>
+<td></td>
+<td>number of edges connecting a vertex</td>
+</tr>
+<tr>
+<td>out-neighbour &#x2F; out-degree</td>
+<td>出度</td>
+<td>there is an arc from <em>u</em> to <em>v</em>, <em>v</em> is out-neighbour of <em>u</em><br/>number of out-neighbour</td>
+</tr>
+<tr>
+<td>in-neighbour &#x2F; in-degree</td>
+<td>入度</td>
+<td>there is an arc from <em>u</em> to <em>v</em>, <em>u</em> is in-neighbour of <em>v</em><br/>number of in-neighbour</td>
+</tr>
+<tr>
+<td>source</td>
+<td></td>
+<td>a vertex with in-degree 0</td>
+</tr>
+<tr>
+<td>sink</td>
+<td></td>
+<td>a vertex with out-degree 0</td>
+</tr>
+<tr>
+<td>walk</td>
+<td>路径</td>
+<td></td>
+</tr>
+<tr>
+<td>path</td>
+<td></td>
+<td>a walk in which  no node is repeated</td>
+</tr>
+<tr>
+<td>cycle</td>
+<td></td>
+<td>a walk in which <em>v0</em> &#x3D; <em>vn</em> and no other node is repeated</td>
+</tr>
+<tr>
+<td>underlying graph</td>
+<td>基本图</td>
+<td>graph without arc</td>
+</tr>
+<tr>
+<td>sub(di)graphs</td>
+<td>子图</td>
+<td>节点<em>G</em> 和 边<em>E</em>都是另一图节点&#x2F;边的子集</td>
+</tr>
+<tr>
+<td>spanning subdigraph</td>
+<td>生成子图</td>
+<td>节点<em>G</em>与另一图相同  边<em>E</em>是另一图边的子集</td>
+</tr>
+<tr>
+<td>reverse digraph</td>
+<td>反向有向图</td>
+<td></td>
+</tr>
+<tr>
+<td>adjacency matrix</td>
+<td>邻接矩阵</td>
+<td></td>
+</tr>
+<tr>
+<td>adjacency list</td>
+<td>邻接表</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206201116378.png" srcset="/img/loading.gif" lazyload alt="image-20220620111643283" style="zoom:33%;" /></td>
+</tr>
+<tr>
+<td>directed acyclic graph (DAG)</td>
+<td>有向无环图</td>
+<td></td>
+</tr>
+<tr>
+<td>grith &#x2F;  directed grith</td>
+<td>周长 &#x2F; 有向周长</td>
+<td>the length of the shortest cycle &#x2F; directed cycle</td>
 </tr>
 </tbody></table>
-<h1 id="Greedy-Algorithm"><a href="#Greedy-Algorithm" class="headerlink" title="Greedy Algorithm"></a>Greedy Algorithm</h1>
+<h2 id="1-Graph-traversal-algorithm"><a href="#1-Graph-traversal-algorithm" class="headerlink" title="1. Graph traversal algorithm"></a>1. Graph traversal algorithm</h2><p>node status :</p>
+<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206210852391.png" srcset="/img/loading.gif" lazyload alt="image-20220621085154972" style="zoom:67%;" />
+
+
+
+<p>graph traversal :</p>
+<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206212039320.png" srcset="/img/loading.gif" lazyload alt="image-20220621203901262" style="zoom:67%;" />
+
+
+
+
+
+<p>search forest :</p>
+<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206201859272.png" srcset="/img/loading.gif" lazyload alt="image-20220620185911229" style="zoom:67%;" />
+
+
+
+<p>traversal arc :</p>
+<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206201905096.png" srcset="/img/loading.gif" lazyload alt="image-20220620190518045" style="zoom:67%;" />
+
+
+
+<h2 id="2-Depth-first-search-DFS"><a href="#2-Depth-first-search-DFS" class="headerlink" title="2. Depth-first search (DFS)"></a>2. Depth-first search (DFS)</h2><p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211434333.png" srcset="/img/loading.gif" lazyload alt="image-20220621143418286" style="zoom:67%;" /><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211435035.png" srcset="/img/loading.gif" lazyload alt="image-20220621143516983" style="zoom:67%;" /></p>
+<p>数据结构为栈，优先级为newly inserted node(最新入栈节点)的PFS</p>
+<p>seen(入栈) &#x2F; done(出栈) &#x2F; pred array</p>
+<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211436268.png" srcset="/img/loading.gif" lazyload alt="image-20220621143645226" style="zoom:67%;" />
+
+
+
+<h2 id="3-Breadth-first-search-BFS"><a href="#3-Breadth-first-search-BFS" class="headerlink" title="3. Breadth-first search (BFS)"></a>3. Breadth-first search (BFS)</h2><p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211426684.png" srcset="/img/loading.gif" lazyload alt="image-20220621142614593" style="zoom:67%;" /><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211427893.png" srcset="/img/loading.gif" lazyload alt="image-20220621142757832" style="zoom:67%;" /></p>
+<p>数据结构为队列，优先级为nodes with smallest depth(最先入队列节点)的PFS</p>
+<p>d(深度) &#x2F; pred array</p>
+<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211442081.png" srcset="/img/loading.gif" lazyload alt="image-20220621144217034" style="zoom:67%;" />
+
+
+
+<h2 id="4-Priority-first-search-PFS"><a href="#4-Priority-first-search-PFS" class="headerlink" title="4. Priority first search (PFS)"></a>4. Priority first search (PFS)</h2><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211443050.png" srcset="/img/loading.gif" lazyload alt="image-20220621144357985" style="zoom:67%;" />
+
+<h2 id="5-Topological-sorting"><a href="#5-Topological-sorting" class="headerlink" title="5. Topological sorting"></a>5. Topological sorting</h2><p>拓扑排序 &lt;&#x3D;&gt; 有向无环图</p>
+<p>拓扑排序需要找到节点间顺序</p>
+<ol>
+<li><p>利用DFS拓扑排序</p>
+<p>List of finishing times by DFS, in reverse order (since there are no back arcs, each node finishes before anything pointing to it)</p>
+<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211701160.png" srcset="/img/loading.gif" lazyload alt="image-20220621170106099" style="zoom:67%;" />
+
+
+</li>
+<li><p>删除入度为0节点即其出边拓扑排序</p>
+<p>Zero in-degree sorting – Find a node of in-degree zero, delete it and its related edges, repeat until all nodes listed</p>
+</li>
+</ol>
+<h2 id="5-Grith-and-cycle"><a href="#5-Grith-and-cycle" class="headerlink" title="5. Grith and cycle"></a>5. Grith and cycle</h2><p>Grith computing</p>
+<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206221013831.png" srcset="/img/loading.gif" lazyload alt="image-20220622101319739" style="zoom:67%;" />
+
+
+
+<p>Graph connectivity</p>
+<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206211933762.png" srcset="/img/loading.gif" lazyload alt="image-20220621193344721" style="zoom:67%;" />
+
+<ul>
+<li>connected : 无向图任意两点链接</li>
+<li>components : disconnected的无向图最大连接子图</li>
+<li>strongly connected : 图任意两节点互相可达</li>
+<li>weakly connected ： 图的基本图是连接的</li>
+<li>strong components ： 互相可达的子节点的最大有向图</li>
+</ul>
+<h2 id="6-Dijkstra’s-algorithm"><a href="#6-Dijkstra’s-algorithm" class="headerlink" title="6. Dijkstra’s algorithm"></a>6. Dijkstra’s algorithm</h2><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206212109137.png" srcset="/img/loading.gif" lazyload alt="image-20220621210914092" style="zoom:67%;" />
+
             </div>
             <hr>
             <div>
