@@ -58,7 +58,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202207311933931.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202207311940922.png">
 <meta property="article:published_time" content="2022-07-26T10:34:35.105Z">
-<meta property="article:modified_time" content="2022-07-31T11:41:39.214Z">
+<meta property="article:modified_time" content="2022-07-31T12:30:47.430Z">
 <meta property="article:author" content="Cosmo">
 <meta property="article:tag" content="机器学习算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -292,7 +292,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.1k 字
+      3.7k 字
     </span>
   
 
@@ -301,7 +301,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      26 分钟
+      31 分钟
     </span>
   
 
@@ -494,7 +494,6 @@
 <p>​        计算出所有的<code>Gain(D, a, t)</code>，选取信息增益最大的划分点。</p>
 <p>​        本例中为<code>t=0.381</code>，时<code>Gain(D, a, t)=0.262</code>最大，则取为该属性信息增益值。</p>
 <p>​        <img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202207311614738.png" srcset="/img/loading.gif" lazyload alt="image-20220731161449662"></p>
-<p><strong>缺失值处理</strong></p>
 <h2 id="2-3-CART"><a href="#2-3-CART" class="headerlink" title="2.3 CART"></a>2.3 CART</h2><p><code>Classification and Regression Tree</code></p>
 <h3 id="基尼系数"><a href="#基尼系数" class="headerlink" title="基尼系数"></a>基尼系数</h3><p><strong>基尼值</strong></p>
 <p><code>Gini(D)</code>反映了从数据集<code>D</code>中随机抽取两个样本，其类别标记不一致的概率。因此，<code>Gini(D)</code>越小，则数据集<code>D</code>的纯度越高 (决策树分支节点包含的样本尽可能属于同一类别) </p>
@@ -561,9 +560,18 @@
 <p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202207311940922.png" srcset="/img/loading.gif" lazyload alt="image-20220731194009819"></p>
 </li>
 </ol>
-<h1 id="4-sklearn实现决策树"><a href="#4-sklearn实现决策树" class="headerlink" title="4. sklearn实现决策树"></a>4. sklearn实现决策树</h1><p>参考资料</p>
+<h1 id="4-sklearn实现决策树"><a href="#4-sklearn实现决策树" class="headerlink" title="4. sklearn实现决策树"></a>4. sklearn实现决策树</h1><p>库: <code>sklearn.tree</code></p>
+<ul>
+<li><p>分类器: <code>DecisionTreeClassifier</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.tree <span class="hljs-keyword">import</span> DecisionTreeClassifier<br><br>clf = DecisionTreeClassifier()					   <span class="hljs-comment"># 创建实例</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">DecisionTreeClassifier参数</span><br><span class="hljs-string">criterion:&#123;“gini”, “entropy”&#125;, default=”gini”</span><br><span class="hljs-string">=&gt; 分裂特征选择，分别对应基尼系数(CART), 信息增益(ID3)</span><br><span class="hljs-string">max_depth:int, default=None</span><br><span class="hljs-string">=&gt; 决策树最大深度</span><br><span class="hljs-string">min_samples_leaf:int or float, default=1</span><br><span class="hljs-string">=&gt; 样本数目少于此，终止分支</span><br><span class="hljs-string">min_impurity_decreasefloat, default=0.0</span><br><span class="hljs-string">=&gt; 信息增益阈值</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><br>clf = clf.fit(data_train, target_train)			   <span class="hljs-comment"># 训练，输入为训练集样本和训练集结果</span><br>classfier = clf.predit(data_test)				   <span class="hljs-comment"># 分类，输入为测试集样本</span><br>score = clf.score(data_test, target_test)          <span class="hljs-comment"># 准确率</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>库: <code>graphviz</code></p>
+<p>实现决策树可视化</p>
+<p>参考资料</p>
 <ol>
 <li><p>机器学习 - 周志华</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier">scikit-learn文档</a></p>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41725746/article/details/90447839">机器学习西瓜书（周志华）第四章 决策树</a></p>
 </li>
