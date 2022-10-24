@@ -16,14 +16,13 @@
   <meta name="author" content="Cosmo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 数据的读入、描述与分析 123456# s20x库中有部分封装好的函数library(s20x)# 1. 数据读入# header&#x3D;T 首行为字段名Stats20x.df &#x3D; read.table(&quot;Data&#x2F;STATS20x.txt&quot;, header&#x3D;T) 12345678910111213141516# 2. 数据描述# 2.1 基本统计量# 维度dim(Stats">
+    <meta name="description" content="1. 模型的建立  1.1 线性模型(the linear model) 原理 回归方程 (regression equation), the expected value of yyy given xxx： E(Yi∣xi)&#x3D;β0+β1xiE(Y_i|x_i)&#x3D;\beta_0+\beta_1x_i E(Yi​∣xi​)&#x3D;β0​+β1​xi​ 估计的回归方程 (estimated regress">
 <meta property="og:type" content="article">
-<meta property="og:title" content="R与数据分析(一) 一元线性回归模型">
-<meta property="og:url" content="http://example.com/2022/10/04/R%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90(%E4%B8%80)%20%20%E4%B8%80%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:title" content="R与数据分析(一) 回归模型">
+<meta property="og:url" content="http://example.com/2022/10/04/R%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90(%E4%B8%80)%20%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Cosmo&#39;s Kingdom">
-<meta property="og:description" content="1. 数据的读入、描述与分析 123456# s20x库中有部分封装好的函数library(s20x)# 1. 数据读入# header&#x3D;T 首行为字段名Stats20x.df &#x3D; read.table(&quot;Data&#x2F;STATS20x.txt&quot;, header&#x3D;T) 12345678910111213141516# 2. 数据描述# 2.1 基本统计量# 维度dim(Stats">
+<meta property="og:description" content="1. 模型的建立  1.1 线性模型(the linear model) 原理 回归方程 (regression equation), the expected value of yyy given xxx： E(Yi∣xi)&#x3D;β0+β1xiE(Y_i|x_i)&#x3D;\beta_0+\beta_1x_i E(Yi​∣xi​)&#x3D;β0​+β1​xi​ 估计的回归方程 (estimated regress">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210031046875.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210221602446.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210221056735.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210221554848.png">
@@ -38,6 +37,9 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210061518850.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210061518202.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210221905964.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241130357.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241156487.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241159335.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210041048958.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210031540222.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210061911413.png">
@@ -52,16 +54,24 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210221956798.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210221957825.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210221958946.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241215919.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241228860.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241100042.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241111542.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241234981.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241236430.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241146619.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241153308.png">
 <meta property="article:published_time" content="2022-10-04T02:05:19.529Z">
-<meta property="article:modified_time" content="2022-10-22T11:59:14.696Z">
+<meta property="article:modified_time" content="2022-10-24T04:37:33.904Z">
 <meta property="article:author" content="Cosmo">
 <meta property="article:tag" content="R">
 <meta property="article:tag" content="统计学">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210031046875.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210221602446.png">
   
   
-  <title>R与数据分析(一) 一元线性回归模型 - Cosmo&#39;s Kingdom</title>
+  <title>R与数据分析(一) 回归模型 - Cosmo&#39;s Kingdom</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -251,7 +261,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="R与数据分析(一) 一元线性回归模型">
+            <span class="h2" id="subtitle" title="R与数据分析(一) 回归模型">
               
             </span>
 
@@ -272,7 +282,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.4k 字
+      11k 字
     </span>
   
 
@@ -281,7 +291,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      63 分钟
+      90 分钟
     </span>
   
 
@@ -310,20 +320,16 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">R与数据分析(一) 一元线性回归模型</h1>
+            <h1 style="display: none">R与数据分析(一) 回归模型</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年10月22日 晚上
+                  本文最后更新于：2022年10月24日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="1-数据的读入-描述与分析"><a class="markdownIt-Anchor" href="#1-数据的读入-描述与分析"></a> 1. 数据的读入、描述与分析</h1>
-<figure class="highlight r"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><pre><code class="hljs R"><span class="hljs-comment"># s20x库中有部分封装好的函数</span><br>library<span class="hljs-punctuation">(</span>s20x<span class="hljs-punctuation">)</span><br><br><span class="hljs-comment"># 1. 数据读入</span><br><span class="hljs-comment"># header=T 首行为字段名</span><br>Stats20x.df <span class="hljs-operator">=</span> read.table<span class="hljs-punctuation">(</span><span class="hljs-string">&quot;Data/STATS20x.txt&quot;</span><span class="hljs-punctuation">,</span> header<span class="hljs-operator">=</span><span class="hljs-built_in">T</span><span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs R"><span class="hljs-comment"># 2. 数据描述</span><br><span class="hljs-comment"># 2.1 基本统计量</span><br><span class="hljs-comment"># 维度</span><br><span class="hljs-built_in">dim</span><span class="hljs-punctuation">(</span>Stats20x.df<span class="hljs-punctuation">)</span><br><span class="hljs-comment"># 统计量合集</span><br><span class="hljs-comment"># Min,Max,Mean</span><br><span class="hljs-comment"># 1st Qu&lt;-lower quartile,Med&lt;-median,3rd Qu&lt;-upper quartile,</span><br>summary<span class="hljs-punctuation">(</span>Stats20x.df<span class="hljs-operator">$</span>Exam<span class="hljs-punctuation">)</span><br><br><span class="hljs-comment"># 2.2 基本图像</span><br><span class="hljs-comment"># 散点图</span><br>plot<span class="hljs-punctuation">(</span>Exam<span class="hljs-operator">~</span>Test<span class="hljs-punctuation">,</span>data<span class="hljs-operator">=</span>Stats20x.df<span class="hljs-punctuation">)</span><br><span class="hljs-comment"># s20x中函数，平滑拟合函数趋势</span><br><span class="hljs-comment"># blue: locally weighted scatterplot smoothing smoother to the data(局部加权散点图平滑器)</span><br><span class="hljs-comment"># red: estimates of the variation about that line(添加固定数值的浮动变量)</span><br>trendscatter<span class="hljs-punctuation">(</span>Exam<span class="hljs-operator">~</span>Test<span class="hljs-punctuation">,</span> data <span class="hljs-operator">=</span> Stats20x.df<span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210031046875.png" srcset="/img/loading.gif" lazyload alt="trendscatter-平滑曲线" /></p>
-<h1 id="1-模型的建立"><a class="markdownIt-Anchor" href="#1-模型的建立"></a> 1. 模型的建立</h1>
+              <h1 id="1-模型的建立"><a class="markdownIt-Anchor" href="#1-模型的建立"></a> 1. 模型的建立</h1>
 <h2 id="11-线性模型the-linear-model"><a class="markdownIt-Anchor" href="#11-线性模型the-linear-model"></a> 1.1 线性模型(the linear model)</h2>
 <p><strong>原理</strong></p>
 <p>回归方程 (regression equation), the expected value of <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> given <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>：</p>
@@ -351,7 +357,7 @@
 <p>Residual <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>r</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">r_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (残差)：</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>r</mi><mi>i</mi></msub><mo>=</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><msub><mi>y</mi><mi>i</mi></msub><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">r_i=y_i-\hat{y_i}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span></span></span></span></p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs R">resid<span class="hljs-punctuation">(</span>examtest.fit<span class="hljs-punctuation">)</span><span class="hljs-punctuation">[</span><span class="hljs-number">20</span><span class="hljs-punctuation">]</span> <span class="hljs-comment"># 得到指定行的残差</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs R">resid<span class="hljs-punctuation">(</span>examtest.fit<span class="hljs-punctuation">)</span><span class="hljs-punctuation">[</span><span class="hljs-number">20</span><span class="hljs-punctuation">]</span> <span class="hljs-comment"># 得到指定行的残差</span><br></code></pre></td></tr></table></figure>
 <p>Residual Sum of Suqares <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mi>S</mi><mi>S</mi></mrow><annotation encoding="application/x-tex">RSS</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> (残差平方和)</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>R</mi><mi>S</mi><mi>S</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><msub><mi>r</mi><mi>i</mi></msub><mn>2</mn></msup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mover accent="true"><msub><mi>y</mi><mi>i</mi></msub><mo>^</mo></mover><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">RSS=\sum_{i=1}^n{r_i}^2=\sum_{i=1}^n(y_i-\hat{y_i})^2
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.929066em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
@@ -456,8 +462,8 @@ M1001 80H400000v40H1017z'/></svg></span></span></span><span class="vlist-s">​<
 <li>this difference to be about 2.9 to 7.1 marks</li>
 </ul>
 <h2 id="15-广义线性模型generalized-linear-mode"><a class="markdownIt-Anchor" href="#15-广义线性模型generalized-linear-mode"></a> 1.5 广义线性模型(generalized linear mode)</h2>
-<h3 id="二次模型the-quadratic-model"><a class="markdownIt-Anchor" href="#二次模型the-quadratic-model"></a> 二次模型(the quadratic model)</h3>
-<p>The quadratic curve model：</p>
+<h3 id="二次模型quadratic-model"><a class="markdownIt-Anchor" href="#二次模型quadratic-model"></a> 二次模型(quadratic model)</h3>
+<p>The quadratic model：</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo stretchy="false">(</mo><msub><mi>Y</mi><mi>i</mi></msub><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mi>β</mi><mn>0</mn></msub><mo>+</mo><msub><mi>β</mi><mn>1</mn></msub><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><msub><mi>β</mi><mn>2</mn></msub><msubsup><mi>x</mi><mi>i</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">E(Y_i|x_i)=\beta_0+\beta_1x_i+\beta_2x_i^2
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1111079999999998em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span></span></p>
 <p>以 <em>Exam</em> 和 <em>Assign</em> 为例</p>
@@ -467,6 +473,57 @@ M1001 80H400000v40H1017z'/></svg></span></span></span><span class="vlist-s">​<
 <p>从两图中能得到结论：Sure looks like some curvature, but, at least the scatter looks fairly constant around this curve.</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs R"><span class="hljs-comment"># add a square term</span><br>examassign.fit2<span class="hljs-operator">=</span>lm<span class="hljs-punctuation">(</span>Exam<span class="hljs-operator">~</span> Assign <span class="hljs-operator">+</span> I<span class="hljs-punctuation">(</span>Assign<span class="hljs-operator">^</span><span class="hljs-number">2</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">,</span> data <span class="hljs-operator">=</span> Stats20x.df<span class="hljs-punctuation">)</span><br>summary<span class="hljs-punctuation">(</span>examassign.fit2<span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210221905964.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<h3 id="乘法模型multiplicative-model"><a class="markdownIt-Anchor" href="#乘法模型multiplicative-model"></a> 乘法模型(multiplicative model)</h3>
+<p><strong>应用乘法模型对数据拟合的三个原则</strong></p>
+<ol>
+<li>
+<p>数据右偏分布</p>
+<blockquote>
+<p>right skewed, median &lt; mean</p>
+</blockquote>
+</li>
+<li>
+<p>数据幂增长（power increas）或幂下降（power decreas）</p>
+</li>
+<li>
+<p>常识</p>
+<blockquote>
+<p>This type of right-skew distribution is very common when it comes to things involving money , resources, growth, salary, age, advantage</p>
+<p>and energy, to name but a few.</p>
+</blockquote>
+</li>
+</ol>
+<p>以 <em>House Price</em> 和 <em>Age</em> 为例</p>
+<p>The multiplicative model：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false">(</mo><mi>P</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>β</mi><mn>0</mn></msub><mo>+</mo><msub><mi>β</mi><mn>1</mn></msub><mo>⋅</mo><mi>A</mi><mi>g</mi><mi>e</mi><mspace linebreak="newline"></mspace><mi>P</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi><mo>=</mo><msup><mi>e</mi><msub><mi>β</mi><mn>0</mn></msub></msup><mo>×</mo><mo stretchy="false">(</mo><msup><mi>e</mi><msub><mi>β</mi><mn>1</mn></msub></msup><msup><mo stretchy="false">)</mo><mrow><mi>A</mi><mi>g</mi><mi>e</mi></mrow></msup></mrow><annotation encoding="application/x-tex">log(Price) = \beta_0 + \beta_1 \cdot  Age \\ 
+Price=e^{\beta_0} \times(e^{\beta_1})^{Age}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault">e</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">e</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9824379999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.149108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999999em;"><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05278em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.891331em;"><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">A</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">e</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ol>
+<li>
+<p>由于数据经过对数变换后 mean 改变，median 不变。所以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>β</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\beta_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 视为对 median 的描述。</p>
+</li>
+<li>
+<p>depreciation （增长率）</p>
+<blockquote>
+<p>点估计增长率：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><msub><mi>β</mi><mn>1</mn></msub><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\hat{\beta_1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1523199999999998em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9578799999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span></span></span> 取得点估计值</p>
+<ol>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><msub><mi>β</mi><mn>1</mn></msub><mo>^</mo></mover><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\hat{\beta_1}&gt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1523199999999998em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9578799999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 时 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 每增加一个单位，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 的 median 增加了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><msub><mi>β</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">(exp(\beta_1)-1) \times 100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">%</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><msub><mi>β</mi><mn>1</mn></msub><mo>^</mo></mover><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\hat{\beta_1}&lt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1523199999999998em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9578799999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>时 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 每增加一个单位，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 的 median 减少了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><msub><mi>β</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">(1-exp(\beta_1)) \times 100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">%</span></span></span></span></li>
+</ol>
+<p>区间估计增长率：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><msub><mi>β</mi><mn>1</mn></msub><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\hat{\beta_1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1523199999999998em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9578799999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span></span></span> 取得区间估计值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">[</mo><mi>L</mi><mo separator="true">,</mo><mi>R</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[L,R]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">L</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">]</span></span></span></span></p>
+<ol>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><msub><mi>β</mi><mn>1</mn></msub><mo>^</mo></mover><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\hat{\beta_1}&gt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1523199999999998em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9578799999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 时 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 每增加一个单位，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 的 median 增加了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">[</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><mi>L</mi><mo stretchy="false">)</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">]</mo><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">[exp(L)-1, exp(R)-1]] \times 100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">%</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><msub><mi>β</mi><mn>1</mn></msub><mo>^</mo></mover><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\hat{\beta_1}&lt;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1523199999999998em;vertical-align:-0.19444em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9578799999999998em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;">^</span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>时 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 每增加一个单位，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 的 median 减少了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">[</mo><mn>1</mn><mo>−</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><mi>L</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mn>1</mn><mo>−</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">[1-exp(L),1-exp(R)] \times 100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">)</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">%</span></span></span></span></li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs R"><span class="hljs-comment"># add a log term</span><br>LogPriceAge.fit<span class="hljs-operator">=</span>lm<span class="hljs-punctuation">(</span><span class="hljs-built_in">log</span><span class="hljs-punctuation">(</span>price<span class="hljs-punctuation">)</span><span class="hljs-operator">~</span>age<span class="hljs-punctuation">,</span> data<span class="hljs-operator">=</span>Mazda.df<span class="hljs-punctuation">)</span><br>summary<span class="hljs-punctuation">(</span>LogPriceAge.fit<span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241130357.png" srcset="/img/loading.gif" lazyload alt="β0、β1相关情况" /></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs R"><span class="hljs-comment"># expotential confint</span><br><span class="hljs-built_in">exp</span><span class="hljs-punctuation">(</span>confint<span class="hljs-punctuation">(</span>LogPriceAge.fit<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241156487.png" srcset="/img/loading.gif" lazyload alt="eβ0、eβ1相关情况" /></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs R"><span class="hljs-comment"># depreciation</span><br><span class="hljs-number">100</span><span class="hljs-operator">*</span><span class="hljs-punctuation">(</span><span class="hljs-built_in">exp</span><span class="hljs-punctuation">(</span>confint<span class="hljs-punctuation">(</span>PriceAge.fit2<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span> <span class="hljs-operator">-</span> <span class="hljs-number">1</span><span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241159335.png" srcset="/img/loading.gif" lazyload alt="" /></p>
 <h2 id="16-模型检验checks-of-model-assumptions"><a class="markdownIt-Anchor" href="#16-模型检验checks-of-model-assumptions"></a> 1.6 模型检验(checks of model assumptions)</h2>
 <h3 id="eov-check"><a class="markdownIt-Anchor" href="#eov-check"></a> EOV check</h3>
 <p>检测线性模型是否合适。</p>
@@ -563,6 +620,222 @@ M1001 80H400000v40H1017z'/></svg></span></span></span><span class="vlist-s">​<
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs r"><span class="hljs-comment"># library(s20x), 可画出每个点的Cook距离</span><br>cooks20x<span class="hljs-punctuation">(</span>examtest.fit<span class="hljs-punctuation">)</span><br></code></pre></td></tr></table></figure>
 </li>
 </ul>
+</li>
+</ol>
+<h2 id="method_and_assumption_checks"><a class="markdownIt-Anchor" href="#method_and_assumption_checks"></a> Method_and_Assumption_Checks</h2>
+<ol>
+<li>
+<p>关联关系与初步建模</p>
+<table>
+<thead>
+<tr>
+<th>案例</th>
+<th>表述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assignment1 - Q1</td>
+<td>Since we have a <strong>linear relationship</strong> in the data, we have fitted <strong>a simple linear regression model</strong> to our data.</td>
+</tr>
+<tr>
+<td>Assignment1 - Q2</td>
+<td>We have applied <strong>a one sample t-test</strong> to it, equivalent to an intercept only linear model (<strong>null model</strong>).</td>
+</tr>
+<tr>
+<td>Assignment1 - Q3</td>
+<td></td>
+</tr>
+<tr>
+<td>第6章案例</td>
+<td>The scatter plot of age vs price showed clear <strong>nonlinearity</strong> and an increase in variability with price.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>模型调整</p>
+<blockquote>
+<p>根据 Fit_model 中的代码及生成图像描述每个模型、该模型模型检验情况、模型调整方向。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>案例</th>
+<th>表述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assignment1 - Q1</td>
+<td>The initial <strong>residuals and Cooks plot</strong> showed two distinct <strong>outliers</strong> USA and China). So we **limited **our countries and therefore could be following a totally different pattern so we limited our patternless scatter with fairly constant variability - so no problems. <br />The <strong>normaility checks</strong> don’t show any major problems (slightly long tails, if anything) and the <strong>Cook’s plot</strong> doesn’t reveal any further unduly <strong>influential points</strong>. <strong>Overall, all the model assumptions are satisfied</strong>.</td>
+</tr>
+<tr>
+<td>Assignment1 - Q2</td>
+<td></td>
+</tr>
+<tr>
+<td>Assignment1 - Q3</td>
+<td>After fitting the quadratic, the residuals were fine, there were no problems with normality and no unduly influential points. We have independence from taking a random sample.</td>
+</tr>
+<tr>
+<td>第6章案例</td>
+<td><strong>Residuals</strong> from a simple linear model showed failed the equality of variance and no-trend assumptions, and so the prices were <strong>log transformed</strong>. <strong>A simple linear model fifitted to logged price satisfified all assumptions</strong>.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>最终模型方程式</p>
+<blockquote>
+<p>Our model is: &lt;方程式&gt;</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>案例</th>
+<th>模型</th>
+<th>表述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assignment1 - Q1</td>
+<td>简单线性模型</td>
+<td><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241215919.png" srcset="/img/loading.gif" lazyload alt="" /></td>
+</tr>
+<tr>
+<td>Assignment1 - Q2</td>
+<td>零模型</td>
+<td><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241228860.png" srcset="/img/loading.gif" lazyload alt="" /></td>
+</tr>
+<tr>
+<td>Assignment1 - Q3</td>
+<td>二次模型</td>
+<td><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241100042.png" srcset="/img/loading.gif" lazyload alt="" /></td>
+</tr>
+<tr>
+<td>第6章案例</td>
+<td>对数模型</td>
+<td><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241111542.png" srcset="/img/loading.gif" lazyload alt="" /></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>模型评价（以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">R^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> 为指标）</p>
+<p>Our model explains <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">R^2 \times 100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.80556em;vertical-align:-0.05556em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">%</span></span></span></span> of the total variation in the response variable, and so will be reasonable for prediction.</p>
+</li>
+</ol>
+<h2 id="executive_summary"><a class="markdownIt-Anchor" href="#executive_summary"></a> Executive_Summary</h2>
+<ol>
+<li>
+<p>研究问题</p>
+<blockquote>
+<p>Question_of_interest/goal_of_the_study</p>
+</blockquote>
+</li>
+<li>
+<p>研究结论及依据</p>
+<table>
+<thead>
+<tr>
+<th>案例</th>
+<th>模型</th>
+<th>表述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assignment1 - Q1</td>
+<td>简单线性模型</td>
+<td>We restricted our analysis to countries with GDP less than 6,000 billion dollars.</td>
+</tr>
+<tr>
+<td>Assignment1 - Q2</td>
+<td>零模型</td>
+<td>We estimate that the <strong>mean life expectancy</strong> is somewhere between 67.3 and 72…3 years. This is consistent with the mean life expectancy being 68 years old. [Or we do not have any evidence to suggest that the mean life expectancy is different from 68 years.)<br /><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241234981.png" srcset="/img/loading.gif" lazyload alt="" /><br /><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241236430.png" srcset="/img/loading.gif" lazyload alt="" /></td>
+</tr>
+<tr>
+<td>Assignment1 - Q3</td>
+<td>二次模型</td>
+<td></td>
+</tr>
+<tr>
+<td>第6章案例</td>
+<td>对数模型</td>
+<td>There was clear evidence the price of the cars was <strong>exponentially decreasing</strong> as the cars got older (<em><strong>P-value</strong></em> <em>≈</em> 0)</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>结论定量说</p>
+<table>
+<thead>
+<tr>
+<th>案例</th>
+<th>模型</th>
+<th>表述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assignment1 - Q1</td>
+<td>简单线性模型</td>
+<td>We have <strong>strong evidence</strong> suggesting that electricity consumption is positively related to the GDP.</td>
+</tr>
+<tr>
+<td>Assignment1 - Q2</td>
+<td>零模型</td>
+<td>\</td>
+</tr>
+<tr>
+<td>Assignment1 - Q3</td>
+<td>二次模型</td>
+<td></td>
+</tr>
+<tr>
+<td>第6章案例</td>
+<td>对数模型</td>
+<td>We estimate that the <strong>median</strong> price for new Mazda cars (in 1991) was between A$23,600 to A$30,400 (to the nearest A$100).<br /><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241146619.png" srcset="/img/loading.gif" lazyload alt="" /></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>预测值定量说明</p>
+<table>
+<thead>
+<tr>
+<th>案例</th>
+<th>模型</th>
+<th>表述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assignment1 - Q1</td>
+<td>简单线性模型</td>
+<td>For each additional 100 billion dollars increase in GDP, the average electricity consumption increased by somewhere between 17 and 21 billion kilowatt- hours.</td>
+</tr>
+<tr>
+<td>Assignment1 - Q2</td>
+<td>零模型</td>
+<td>\</td>
+</tr>
+<tr>
+<td>Assignment1 - Q3</td>
+<td>二次模型</td>
+<td></td>
+</tr>
+<tr>
+<td>第6章案例</td>
+<td>对数模型</td>
+<td>We estimate that each additional year in age results in <strong>depreciation of between</strong> 13.9% to 16.3%.<br /><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210241153308.png" srcset="/img/loading.gif" lazyload alt="" /></td>
+</tr>
+</tbody>
+</table>
 </li>
 </ol>
 <h1 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h1>
