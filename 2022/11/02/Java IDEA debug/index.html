@@ -16,19 +16,45 @@
   <meta name="author" content="Cosmo">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://example.com/archives/2022/page/2/index.html">
+    <meta name="description" content="1. Terminal不翼而飞 IDEA 打不开终端，是人性的扭曲还是道德的沦丧：  噢，是因为我没配路径：   2. 依赖没下下来咋整 对 pom.xml 进行一个原名 reimport 现名 Reload project 的大动作：   3. mvn怎么就不是内部命令 我不就是偷懒用的内置maven吗，怎么就不配用maven命令行了呢：  什么，原来是我没配环境变量： 1F:\Intelli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java IDEA debug">
+<meta property="og:url" content="http://example.com/2022/11/02/Java%20IDEA%20debug/index.html">
 <meta property="og:site_name" content="Cosmo&#39;s Kingdom">
+<meta property="og:description" content="1. Terminal不翼而飞 IDEA 打不开终端，是人性的扭曲还是道德的沦丧：  噢，是因为我没配路径：   2. 依赖没下下来咋整 对 pom.xml 进行一个原名 reimport 现名 Reload project 的大动作：   3. mvn怎么就不是内部命令 我不就是偷懒用的内置maven吗，怎么就不配用maven命令行了呢：  什么，原来是我没配环境变量： 1F:\Intelli">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211020956532.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211020958584.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211021016308.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211021037197.png">
+<meta property="article:published_time" content="2022-11-02T10:43:42.183Z">
+<meta property="article:modified_time" content="2022-11-02T10:42:59.976Z">
 <meta property="article:author" content="Cosmo">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="debug">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211020956532.png">
   
   
-  <title>归档 - Cosmo&#39;s Kingdom</title>
+  <title>Java IDEA debug - Cosmo&#39;s Kingdom</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -55,7 +81,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -200,9 +226,43 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="Java IDEA debug">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-11-02 18:43" pubdate>
+        2022年11月2日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      216 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      2 分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -215,100 +275,109 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 24 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2022</p>
-    
-    <a href="/2022/09/08/%E7%BB%9F%E8%AE%A1%E5%AD%A6(%E4%BA%8C)%20%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">统计学(二) 参数估计</span>
-      <time style="float: right;">09-08</time>
-    </a>
-  
-    
-    <a href="/2022/09/05/%E6%AF%8F%E6%97%A5leetcode/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">每日leetcode</span>
-      <time style="float: right;">09-05</time>
-    </a>
-  
-    
-    <a href="/2022/09/01/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98(%E4%B8%80)%20%E6%95%B0%E6%8D%AE%E6%8F%8F%E8%BF%B0%E4%B8%8E%E5%88%86%E6%9E%90/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">数据挖掘(一) 数据描述与分析</span>
-      <time style="float: right;">09-01</time>
-    </a>
-  
-    
-    <a href="/2022/08/21/%E6%84%9F%E7%9F%A5%E6%9C%BA%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">感知机算法原理</span>
-      <time style="float: right;">08-21</time>
-    </a>
-  
-    
-    <a href="/2022/08/19/%E6%95%B0%E6%8D%AE%E5%BA%93(%E4%B8%80)%20%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">数据库(一) 关系模型</span>
-      <time style="float: right;">08-19</time>
-    </a>
-  
-    
-    <a href="/2022/08/11/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98(%E4%BA%8C)%20%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">数据挖掘(二) 数据预处理</span>
-      <time style="float: right;">08-11</time>
-    </a>
-  
-    
-    <a href="/2022/08/04/%E4%BB%8E%E5%BE%AE%E5%8D%9A%E7%88%AC%E8%99%AB%E6%A1%88%E4%BE%8B%E5%AD%A6%E4%B9%A0scrapy%E6%A1%86%E6%9E%B6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">从微博爬虫案例学习scrapy框架</span>
-      <time style="float: right;">08-04</time>
-    </a>
-  
-    
-    <a href="/2022/07/26/%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">决策树算法原理及实现</span>
-      <time style="float: right;">07-26</time>
-    </a>
-  
-    
-    <a href="/2022/07/26/%E6%95%B0%E6%8D%AE%E5%B7%A5%E5%85%B7(%E4%B8%80)%20pandas%E5%BA%93%E5%A4%87%E5%BF%98/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">数据工具(一) Pandas库备忘</span>
-      <time style="float: right;">07-26</time>
-    </a>
-  
-    
-    <a href="/2022/05/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">数据结构与算法</span>
-      <time style="float: right;">05-02</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java IDEA debug</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年11月2日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="1-terminal不翼而飞"><a class="markdownIt-Anchor" href="#1-terminal不翼而飞"></a> 1. Terminal不翼而飞</h1>
+<p>IDEA 打不开终端，是人性的扭曲还是道德的沦丧：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211020956532.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<p>噢，是因为我没配路径：</p>
+<img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211020958584.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<h1 id="2-依赖没下下来咋整"><a class="markdownIt-Anchor" href="#2-依赖没下下来咋整"></a> 2. 依赖没下下来咋整</h1>
+<p>对 <code>pom.xml</code> 进行一个原名 <code>reimport</code> 现名 <code>Reload project</code> 的大动作：</p>
+<img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211021016308.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<h1 id="3-mvn怎么就不是内部命令"><a class="markdownIt-Anchor" href="#3-mvn怎么就不是内部命令"></a> 3. mvn怎么就不是内部命令</h1>
+<p>我不就是偷懒用的内置maven吗，怎么就不配用maven命令行了呢：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211021037197.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<p>什么，原来是我没配环境变量：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">F</span>:\IntelliJ IDEA <span class="hljs-number">2021</span>.<span class="hljs-number">3</span>.<span class="hljs-number">2</span>\plugins\maven\lib\maven3\bin<br></code></pre></td></tr></table></figure>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2022/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2022/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2022/page/3/#board">3</a><a class="extend next" rel="next" href="/archives/2022/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/debug/">debug</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/02/JavaWeb(%E4%B8%80)%20Maven/">
+                        <span class="hidden-mobile">Java基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -392,6 +461,19 @@
 
 
 
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
 
 
 
@@ -412,9 +494,23 @@
 
 
 
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+  
 
 
 
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
 
 
 
