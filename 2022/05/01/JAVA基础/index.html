@@ -16,12 +16,12 @@
   <meta name="author" content="Cosmo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="全局介绍  JVM&#x2F;JRE&#x2F;JDK   命名   .xml文件   groupId: 域名（顶级域名.公司.组织.个人.功能板块）   artifactId: 功能模块     命名规范   包：域名（顶级域名.公司.组织.个人.功能板块）   类：大驼峰   变量：小驼峰   常量：大写下划线连接      机制  引用机制  ​		基本数据类型：值传递（不与其它变量共享值) ​		变量：引用">
+    <meta name="description" content="完结......开设于大二下的学校课程，和我学废了的Java。当时很懂，现在很懵。慢慢修补吧。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础">
 <meta property="og:url" content="http://example.com/2022/05/01/JAVA%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Cosmo&#39;s Kingdom">
-<meta property="og:description" content="全局介绍  JVM&#x2F;JRE&#x2F;JDK   命名   .xml文件   groupId: 域名（顶级域名.公司.组织.个人.功能板块）   artifactId: 功能模块     命名规范   包：域名（顶级域名.公司.组织.个人.功能板块）   类：大驼峰   变量：小驼峰   常量：大写下划线连接      机制  引用机制  ​		基本数据类型：值传递（不与其它变量共享值) ​		变量：引用">
+<meta property="og:description" content="完结......开设于大二下的学校课程，和我学废了的Java。当时很懂，现在很懵。慢慢修补吧。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205012104998.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205012104339.png">
@@ -61,9 +61,8 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206041240865.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206012102665.png">
 <meta property="article:published_time" content="2022-05-01T13:06:32.558Z">
-<meta property="article:modified_time" content="2022-07-26T03:37:08.721Z">
+<meta property="article:modified_time" content="2022-11-04T10:14:11.606Z">
 <meta property="article:author" content="Cosmo">
-<meta property="article:tag" content="java">
 <meta property="article:tag" content="学校课程">
 <meta property="article:tag" content="CS语言基础">
 <meta name="twitter:card" content="summary_large_image">
@@ -302,7 +301,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      213 分钟
+      215 分钟
     </span>
   
 
@@ -335,7 +334,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年7月26日 中午
+                  本文最后更新于：2022年11月4日 晚上
                 
               </p>
             
@@ -755,7 +754,7 @@
 </ul>
 <h2 id="多态"><a class="markdownIt-Anchor" href="#多态"></a> 多态</h2>
 <p>–作业–</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">//此题声明的接口/类，为以下所有选择题提供支持</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">I</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getI</span>()</span>;<br>&#125;<br><br><span class="hljs-comment">//F 实现 I 接口 </span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">F</span> <span class="hljs-title">implements</span> <span class="hljs-title">I</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getF</span>()</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;F getF&quot;</span>);<br>    &#125;<br>    @Override<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getI</span>()</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;F getI&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//S 继承 F 父类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">S</span> <span class="hljs-title">extends</span> <span class="hljs-title">F</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getS</span>()</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;S getS&quot;</span>);<br>    &#125;<br><br>    @Override<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getF</span>()</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;S getF&quot;</span>);<br>    &#125;<br><br>    @Override<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getI</span>()</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;S getI&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">//没有结果，无法编译/执行的为，错误</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//此题声明的接口/类，为以下所有选择题提供支持</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">I</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">getI</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-comment">//F 实现 I 接口 </span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">F</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">I</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getF</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;F getF&quot;</span>);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getI</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;F getI&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//S 继承 F 父类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">S</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">F</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getS</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;S getS&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getF</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;S getF&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getI</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;S getI&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">//没有结果，无法编译/执行的为，错误</span><br></code></pre></td></tr></table></figure>
 <h3 id="向上转型"><a class="markdownIt-Anchor" href="#向上转型"></a> 向上转型</h3>
 <p><strong>向上转型（upcasting），(隐式转换，implicit casting)</strong></p>
 <ul>
@@ -788,6 +787,13 @@
 <p>由普通的类来实现接口，必须将接口所有抽象方法重写</p>
 <p>由抽象类来实现接口，则接口的方法可根据需要选择是否重写。</p>
 <p>继承实现接口的抽象类时，子类必须重写抽象类未实现的方法。</p>
+<blockquote>
+<p>抽象类的作用即是：<br />
+将接口中不需要使用抽象方法交给抽象类完成，这样接口实现类只需要对接口需要方法进行重写，以降低接口实现类对接口实现过程难度</p>
+<pre><code class=" mermaid">graph LR;
+	Servt实现类 --extends---&gt; HttpServlet抽象类 --extends---&gt; GenericServlet抽象类 --extends---&gt; Servlet接口
+</code></pre>
+</blockquote>
 </li>
 <li>
 <p>定义了一个接口，就是定义了一个可以引用的类型，像类一样，在任何需要的地方作为类型使用</p>
@@ -1456,8 +1462,6 @@
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/java/">java</a>
                     
                       <a class="hover-with-bg" href="/tags/%E5%AD%A6%E6%A0%A1%E8%AF%BE%E7%A8%8B/">学校课程</a>
                     

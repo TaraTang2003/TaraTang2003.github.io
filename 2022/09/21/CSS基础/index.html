@@ -16,19 +16,20 @@
   <meta name="author" content="Cosmo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 语法 层叠样式表 (Cascading Style Sheets) 组成部分：   选择器  指定 HTML 元素    声明块  声明块被花括号包裹 声明块包含一或多条声明，分号分隔 每条声明是一个属性和值的键值对      选择器 CSS选择器 基本选择器   通配选择器 (universal selector)  选择所有元素。可以将其限制为特定的名称空间或所有名称空间 ()。 12">
+    <meta name="description" content="长期维护......一个CSS基础知识的备忘录。简单的不记，复杂的记不得。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS基础">
 <meta property="og:url" content="http://example.com/2022/09/21/CSS%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Cosmo&#39;s Kingdom">
-<meta property="og:description" content="1. 语法 层叠样式表 (Cascading Style Sheets) 组成部分：   选择器  指定 HTML 元素    声明块  声明块被花括号包裹 声明块包含一或多条声明，分号分隔 每条声明是一个属性和值的键值对      选择器 CSS选择器 基本选择器   通配选择器 (universal selector)  选择所有元素。可以将其限制为特定的名称空间或所有名称空间 ()。 12">
+<meta property="og:description" content="长期维护......一个CSS基础知识的备忘录。简单的不记，复杂的记不得。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209201048719.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209202006358.png">
 <meta property="article:published_time" content="2022-09-21T01:16:37.714Z">
-<meta property="article:modified_time" content="2022-09-21T01:16:20.067Z">
+<meta property="article:modified_time" content="2022-11-04T10:10:41.358Z">
 <meta property="article:author" content="Cosmo">
 <meta property="article:tag" content="前端">
+<meta property="article:tag" content="html&#x2F;css&#x2F;js">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209201048719.png">
   
@@ -256,7 +257,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.7k 字
+      5.1k 字
     </span>
   
 
@@ -265,7 +266,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      40 分钟
+      43 分钟
     </span>
   
 
@@ -298,7 +299,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年9月21日 上午
+                  本文最后更新于：2022年11月4日 晚上
                 
               </p>
             
@@ -390,7 +391,7 @@
 <p>直接子代组合器（Child combinator）</p>
 <blockquote>
 <p><code>&gt;</code> 组合器选择前一个元素的直接子代的节点。 语法：<code>A &gt; B</code></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&gt;<span class="hljs-selector-tag">p</span><br>&#123;<br>	<span class="hljs-attribute">background-color</span>:yellow;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &gt; <span class="hljs-selector-tag">p</span><br>&#123;<br>	<span class="hljs-attribute">background-color</span>:yellow;<br>&#125;<br></code></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>I will be styled.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>I will not be styled.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 </blockquote>
 </li>
@@ -418,10 +419,32 @@
 <p>是通过 <code>:</code> 添加到选择器的关键字，指定要选择的元素的特殊状态。</p>
 <p>LVHA 顺序 (对于<code>&lt;a&gt;</code>标签，有特殊的样式定义先后顺序)</p>
 <ul>
-<li><code>a:link</code> 超链接的默认样式</li>
-<li><code>a:visited</code> 已经访问过的链接的样式</li>
-<li><code>a:hover</code> 处于鼠标悬停状态的链接的样式</li>
-<li><code>a:active</code> 被激活（鼠标左键按下的一瞬间）的链接的样式</li>
+<li>
+<p><code>a:link</code> 超链接的默认样式</p>
+</li>
+<li>
+<p><code>a:visited</code> 已经访问过的链接的样式</p>
+</li>
+<li>
+<p><code>a:hover</code> 处于鼠标悬停状态的链接的样式</p>
+</li>
+<li>
+<p><code>a:active</code> 被激活（鼠标左键按下的一瞬间）的链接的样式</p>
+</li>
+<li>
+<p><code>:focus</code> 获得焦点的元素（如表单输入）</p>
+</li>
+<li>
+<p><code>:checked</code> 用户通过勾选/选中元素或取消勾选/取消选中的状态</p>
+</li>
+<li>
+<p><code>:nth-child(an+b)</code> 匹配属于其父元素的第 <code>an+b</code> 个子元素</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:nth-child</span>(<span class="hljs-number">2</span>)<br>&#123;<br>	<span class="hljs-attribute">background</span>:<span class="hljs-number">#ff0000</span>;<br>&#125;<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">2n+0/2n: 匹配位置为 2、4、6、8...的元素(从1开始), 可以使用关键字 even 来替换此表达式。</span><br><span class="hljs-comment">2n+1: 匹配位置为 1、3、5、7...的元素, 可以使用关键字 odd 来替换此表达式。</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>这是标题<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>第一个段落。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>第二个段落。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>第三个段落。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>第四个段落。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><code>&lt;p&gt;第一个段落。&lt;/p&gt;</code> 被匹配</p>
+</blockquote>
+</li>
 </ul>
 </blockquote>
 </li>
@@ -430,8 +453,8 @@
 <blockquote>
 <p>是通过 <code>::</code> 添加到选择器的关键字，允许对被选择元素的特定部分修改样式。</p>
 <ul>
-<li><code>p::first-line</code> 块级元素的第一行文本</li>
-<li><code>p::before/p::after</code> 在匹配元素内部前/后添加修饰性内容</li>
+<li><code>::first-line</code> 块级元素的第一行文本</li>
+<li><code>::before/::after</code> 在匹配元素内部的前/后添加修饰性内容</li>
 </ul>
 </blockquote>
 </li>
@@ -515,6 +538,8 @@
                     <i class="iconfont icon-tags"></i>
                     
                       <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                      <a class="hover-with-bg" href="/tags/html-css-js/">html/css/js</a>
                     
                   </div>
                 
