@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Cosmo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 长度单位  2. 传统盒模型布局  盒模型  设置外边距margin和内边距 padding 123456&#x2F;* 设置宽度 *&#x2F;&lt;margin&#x2F;padding&gt;: 25px 50px 75px 100px; &#x2F;* 上、右、下、左 *&#x2F;&lt;margin&#x2F;padding&gt;: 25px 50px; &#x2F;* 上下、右左 *&#x2F;&lt;margin&#x2F;padding&gt;: 25px">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS布局">
+<meta property="og:url" content="http://example.com/2022/09/27/CSS%E5%B8%83%E5%B1%80/index.html">
+<meta property="og:site_name" content="Cosmo&#39;s Kingdom">
+<meta property="og:description" content="1. 长度单位  2. 传统盒模型布局  盒模型  设置外边距margin和内边距 padding 123456&#x2F;* 设置宽度 *&#x2F;&lt;margin&#x2F;padding&gt;: 25px 50px 75px 100px; &#x2F;* 上、右、下、左 *&#x2F;&lt;margin&#x2F;padding&gt;: 25px 50px; &#x2F;* 上下、右左 *&#x2F;&lt;margin&#x2F;padding&gt;: 25px">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209261439090.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209271407350.png">
+<meta property="article:published_time" content="2022-09-27T08:10:09.804Z">
+<meta property="article:modified_time" content="2022-09-27T08:02:05.225Z">
+<meta property="article:author" content="Cosmo">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="html&#x2F;css&#x2F;js">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209261439090.png">
+  
+  
+  <title>CSS布局 - Cosmo&#39;s Kingdom</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cosmo&#39;s Kingdom</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                查看
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-exp-fill"></i>
+                乐园
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/books/">
+                    
+                    书
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/movies/">
+                    
+                    影
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/travel/">
+                    
+                    足迹
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CSS布局">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-09-27 16:10" pubdate>
+        2022年9月27日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSS布局</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年9月27日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="1-长度单位"><a class="markdownIt-Anchor" href="#1-长度单位"></a> 1. 长度单位</h1>
+<h1 id="2-传统盒模型布局"><a class="markdownIt-Anchor" href="#2-传统盒模型布局"></a> 2. 传统盒模型布局</h1>
+<h2 id="盒模型"><a class="markdownIt-Anchor" href="#盒模型"></a> 盒模型</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209261439090.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<p>设置外边距<code>margin</code>和内边距 <code>padding</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 设置宽度 */</span><br>&lt;<span class="hljs-attribute">margin</span>/<span class="hljs-attribute">padding</span>&gt;: <span class="hljs-number">25px</span> <span class="hljs-number">50px</span> <span class="hljs-number">75px</span> <span class="hljs-number">100px</span>; <span class="hljs-comment">/* 上、右、下、左 */</span><br>&lt;<span class="hljs-attribute">margin</span>/<span class="hljs-attribute">padding</span>&gt;: <span class="hljs-number">25px</span> <span class="hljs-number">50px</span>; <span class="hljs-comment">/* 上下、右左 */</span><br>&lt;<span class="hljs-attribute">margin</span>/<span class="hljs-attribute">padding</span>&gt;: <span class="hljs-number">25px</span>; <span class="hljs-comment">/* 全部 */</span><br><span class="hljs-attribute">margin</span>: auto; <span class="hljs-comment">/* 自动分配剩余空间，水平居中 */</span><br><span class="hljs-attribute">margin-left</span>: auto; <span class="hljs-comment">/* 水平居右 */</span><br></code></pre></td></tr></table></figure>
+<p>设置边框<code>border</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">borer: <span class="hljs-number">2px</span> dashed red; <span class="hljs-comment">/* 设置宽度、样式、颜色 */</span><br><span class="hljs-attribute">border-width</span>: <span class="hljs-number">2px</span> <span class="hljs-comment">/* 设置宽度 */</span><br>border-style: dashed; <span class="hljs-comment">/* 设置样式 */</span><br><span class="hljs-attribute">border-color</span>: red; <span class="hljs-comment">/* 设置颜色 */</span><br><span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>; <span class="hljs-comment">/* 设置圆角 */</span><br></code></pre></td></tr></table></figure>
+<p>设置盒模型</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>; <span class="hljs-comment">/* border + padding + content */</span><br><span class="hljs-comment">/* box-sizing属性 */</span><br><span class="hljs-attribute">box-sizing</span>: border-box; <span class="hljs-comment">/* border + padding + content */</span><br><span class="hljs-attribute">box-sizing</span>: content-box; <span class="hljs-comment">/* content */</span><br><span class="hljs-attribute">box-sizing</span>: inherit; <span class="hljs-comment">/* 继承父元素box-sizing属性 */</span><br></code></pre></td></tr></table></figure>
+<h2 id="正常布局流display"><a class="markdownIt-Anchor" href="#正常布局流display"></a> 正常布局流/display</h2>
+<p>正常布局流 (Normal Flow)</p>
+<p>把HTML中的元素以盒子模型的形式按块级元素 (Block-level elements)和行内元素 (Inline elements)展示。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* </span><br><span class="hljs-comment">display属性: 改变HTML元素的默认显示类型</span><br><span class="hljs-comment">HTML元素都有自己的默认display属性: inline/block</span><br><span class="hljs-comment">*/</span><br><span class="hljs-attribute">display</span>: inline/block; <span class="hljs-comment">/* 转变元素的块级或行内属性 */</span><br><span class="hljs-attribute">display</span>: none; <span class="hljs-comment">/* 元素不存在，不占用布局空间，结合js隐藏显示元素 */</span><br><span class="hljs-attribute">display</span>: inline-block; <span class="hljs-comment">/* 像行内元素一样，但允许在元素上设置宽度和高度 */</span><br></code></pre></td></tr></table></figure>
+<h2 id="定位position"><a class="markdownIt-Anchor" href="#定位position"></a> 定位/position</h2>
+<p>可以通过定位来让元素脱离正常布局流，拥有其他的定位属性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* </span><br><span class="hljs-comment">position属性: 改变HTML元素的默认显示类型，根据显示类型通过top、bottom、left、right属性改变元素定位 </span><br><span class="hljs-comment">*/</span><br><span class="hljs-attribute">position</span>: static; <span class="hljs-comment">/* 默认 静态定位，满足正常布局流t,b,l,r无效 */</span><br><span class="hljs-attribute">position</span>: relative; <span class="hljs-comment">/* 相对定位，相对于正常布局流中位置(static)定位 */</span><br><span class="hljs-attribute">position</span>: fixed; <span class="hljs-comment">/* 固定定位，相对于视口定位。处于浏览器窗口区域的固定位置，与页面无关，不随页面滚动 */</span><br><span class="hljs-attribute">position</span>: absolute; <span class="hljs-comment">/* 绝对定位，相对于上级元素(一直向上回溯至非static定位的父元素，直到&lt;html&gt;) */</span><br><span class="hljs-attribute">position</span>: stickey;<br></code></pre></td></tr></table></figure>
+<h2 id="溢出overflow"><a class="markdownIt-Anchor" href="#溢出overflow"></a> 溢出/overflow</h2>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">overflow</span>: visible;	<span class="hljs-comment">/* 默认值。内容不会被修剪，会呈现在元素框之外。 */</span><br><span class="hljs-attribute">overflow</span>: hidden	<span class="hljs-comment">/* 内容会被修剪，并且其余内容是不可见的。 */</span><br>overflow: scroll	<span class="hljs-comment">/* 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。 */</span><br>overflow: auto	<span class="hljs-comment">/* 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。 */</span><br></code></pre></td></tr></table></figure>
+<h1 id="3-弹性盒子布局"><a class="markdownIt-Anchor" href="#3-弹性盒子布局"></a> 3. 弹性盒子布局</h1>
+<p>弹性盒子 (flexible box) 布局的基本概念</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209271407350.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<p>主轴(main axis)、交叉轴(cross axis)、起始线(start)、终止线(end)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">display</span>: flex; <span class="hljs-comment">/* 指定为flex布局 */</span><br><span class="hljs-attribute">flex-direction</span>: row|row-reverse|column|column-reverse<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">row: 主轴为行，交叉轴为列，起始线为左</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<p>其它属性</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">flex-wrap</span>: wrap|nowrap|wrap-reverse; <span class="hljs-comment">/* 是否允许换行 */</span> <br><span class="hljs-attribute">flex-flow</span>: row wrap; <span class="hljs-comment">/* flex-direction + fles-wrap */</span><br><br><span class="hljs-comment">/* </span><br><span class="hljs-comment">控制可用空间的分布</span><br><span class="hljs-comment">一个flex子项是由元素自身尺寸(flex-basis/width/box-sizing),外部填充(flex-grow)或收缩(flex-shrink)规则共同决定 </span><br><span class="hljs-comment">*/</span><br><span class="hljs-attribute">flex</span>: ; <span class="hljs-comment">/* flex-grow flex-shrink flex-basis */</span><br><span class="hljs-comment">/* flex-basis优先级高于width,默认auto时取决于width/box-sizing */</span><br><span class="hljs-attribute">flex-basis</span>: auto|<span class="hljs-number">100px</span>;<br><span class="hljs-comment">/* 按比例分配可用空间 */</span><br><span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">1</span>;<br><span class="hljs-comment">/* 在默认宽度之和大于容器时收缩 */</span><br><span class="hljs-attribute">flex-shrink</span>: <span class="hljs-number">0.6</span>;<br></code></pre></td></tr></table></figure>
+<h1 id="4-网格布局"><a class="markdownIt-Anchor" href="#4-网格布局"></a> 4. 网格布局</h1>
+<h1 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2019/11/css-position.html">CSS定位详解 - 阮一峰</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904016439148551">flex-basis、flex-grow、flex-shrink</a></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                      <a class="hover-with-bg" href="/tags/html-css-js/">html/css/js</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/04/%E7%BB%9F%E8%AE%A1%E5%AD%A6(%E4%BA%94)%20%E7%9B%B8%E5%85%B3%E4%B8%8E%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">统计学(五) 相关与回归分析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/21/CSS%E5%9F%BA%E7%A1%80/">
+                        <span class="hidden-mobile">CSS基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            ✨&nbsp总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            💫&nbsp总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

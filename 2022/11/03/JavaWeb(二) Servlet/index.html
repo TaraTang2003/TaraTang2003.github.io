@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Cosmo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Java Servlet (Server Applet) 是运行在 Web 服务器或应用服务器上的程序，实现动态资源文件。 其作为 Web 浏览器或其他 HTTP 客户端和 HTTP 服务器上的数据库或应用程序之间的中间层，扩展服务器功能并响应传入请求。 Servlet接口实现类的开发步骤：  创建一个继承 HttpServlet 父类的 Java类，实现Servlet 接口 重写 HttpSer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb(二) Servlet">
+<meta property="og:url" content="http://example.com/2022/11/03/JavaWeb(%E4%BA%8C)%20Servlet/index.html">
+<meta property="og:site_name" content="Cosmo&#39;s Kingdom">
+<meta property="og:description" content="Java Servlet (Server Applet) 是运行在 Web 服务器或应用服务器上的程序，实现动态资源文件。 其作为 Web 浏览器或其他 HTTP 客户端和 HTTP 服务器上的数据库或应用程序之间的中间层，扩展服务器功能并响应传入请求。 Servlet接口实现类的开发步骤：  创建一个继承 HttpServlet 父类的 Java类，实现Servlet 接口 重写 HttpSer">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211031052783.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210281650009.png">
+<meta property="article:published_time" content="2022-11-03T12:26:30.745Z">
+<meta property="article:modified_time" content="2022-11-03T12:26:09.125Z">
+<meta property="article:author" content="Cosmo">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211031052783.png">
+  
+  
+  <title>JavaWeb(二) Servlet - Cosmo&#39;s Kingdom</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cosmo&#39;s Kingdom</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                查看
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-exp-fill"></i>
+                乐园
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/books/">
+                    
+                    书
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/movies/">
+                    
+                    影
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/travel/">
+                    
+                    足迹
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JavaWeb(二) Servlet">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-11-03 20:26" pubdate>
+        2022年11月3日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      30 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaWeb(二) Servlet</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年11月3日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>Java Servlet (Server Applet) 是运行在 Web 服务器或应用服务器上的程序，实现动态资源文件。</p>
+<p>其作为 Web 浏览器或其他 HTTP 客户端和 HTTP 服务器上的数据库或应用程序之间的中间层，扩展服务器功能并响应传入请求。</p>
+<p>Servlet接口实现类的开发步骤：</p>
+<ol>
+<li>创建一个继承 <code>HttpServlet</code> 父类的 Java类，实现<code>Servlet</code> 接口</li>
+<li>重写 <code>HttpServlet</code> 父类方法 <code>doGet() / doPost()</code></li>
+<li>在<code>web.xml</code>中注册类信息，完成路由分发</li>
+</ol>
+<h1 id="1-servlet结构"><a class="markdownIt-Anchor" href="#1-servlet结构"></a> 1. Servlet结构</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202211031052783.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<h1 id="2-servlet容器"><a class="markdownIt-Anchor" href="#2-servlet容器"></a> 2. Servlet容器</h1>
+<p>提供Servlet功能的服务器。</p>
+<h2 id="tomcat"><a class="markdownIt-Anchor" href="#tomcat"></a> Tomcat</h2>
+<p>轻量级Web服务器。</p>
+<p><strong>下载</strong></p>
+<p>下载文件夹压缩包，免去安装。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202210281650009.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<p><strong>目录结构</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><pre><code class="hljs bash">/bin 		包含Tomcat的启动文件startup.bat和关闭文件shutdown.bat<br>/conf       配置文件<br>/lib		Tomcat的jar包和一些规范(Servlet/jsp)jar包<br>/log  		运行日志<br>/temp		运行时临时文件<br>/webapp		web应用(供外界访问的web资源)<br>/work		Tomcat的工作目录(如: 包含编译后的jsp文件)<br></code></pre></td></tr></table></figure>
+<p><strong>使用Maven Tomcat插件</strong></p>
+<blockquote>
+<p>注意！！！ 插件是Tomcat7，不支持Servlet3.0，互搓的概率非常大，还是下载Tomcat后配入IDEA吧</p>
+</blockquote>
+<p><code>pom.xml</code>配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span><br>         <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>             <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>             <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>             <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>             <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span><br>                 <span class="hljs-comment">&lt;!-- 设置编码格式 --&gt;</span><br>                 <span class="hljs-tag">&lt;<span class="hljs-name">uriEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">uriEncoding</span>&gt;</span><br>                 <span class="hljs-comment">&lt;!-- 控制 tomcat 端口号 --&gt;</span><br>                 <span class="hljs-tag">&lt;<span class="hljs-name">port</span>&gt;</span>8080<span class="hljs-tag">&lt;/<span class="hljs-name">port</span>&gt;</span><br>                 <span class="hljs-comment">&lt;!-- 项目发布到 tomcat 后的名称 --&gt;</span><br>                 <span class="hljs-tag">&lt;<span class="hljs-name">path</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><br>             <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span><br>         <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br>     <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span><br> <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h1 id="3-servlet生命周期"><a class="markdownIt-Anchor" href="#3-servlet生命周期"></a> 3. Servlet生命周期</h1>
+<p>Servlet 由其容器实例化，每个Servlet实例化时都会经历生命周期。</p>
+<ul>
+<li><code>init()</code> 初始化</li>
+<li><code>service()</code> 处理客户端的请求</li>
+<li><code>destroy()</code> 销毁</li>
+</ul>
+<h1 id="4-servlet路由配置"><a class="markdownIt-Anchor" href="#4-servlet路由配置"></a> 4. Servlet路由配置</h1>
+<p>由于Servlet的java文件路经过深，我们将Servlet类文件映射至一个别名，实现路由分发。</p>
+<p>具体有两种实现方式，Servlet3.0及以上版本均支持注解实现。</p>
+<h2 id="webxml"><a class="markdownIt-Anchor" href="#webxml"></a> web.xml</h2>
+<p>web.xml主要用来配置Filter、Listener、Servlet等，非web工程必须l文件。本节学习记录Servleti相关标签。</p>
+<p><strong>根元素</strong></p>
+<blockquote>
+<p>根元素 <code>&lt;web-app&gt;</code>，其属性配置模式文件、指定路由配置是否全部依赖于<code>web.xml</code>（<code>metadata-complete=&quot;true&quot;</code>）等</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;2.4&quot;</span> </span><br><span class="hljs-tag">    <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://java.sun.com/xml/ns/j2ee&quot;</span> </span><br><span class="hljs-tag">    <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://java.sun.com/xml/ns/j2ee </span></span><br><span class="hljs-string"><span class="hljs-tag">    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">metadata-complete</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><strong>servlet元素</strong></p>
+<p><code>&lt;servlet&gt;&lt;/servlet&gt;</code> 用来声明一个servlet的数据，主要有以下子元素：</p>
+<ul>
+<li><code>&lt;servlet-name&gt;&lt;/servlet-name&gt;</code> 指定servlet的名称</li>
+<li><code>&lt;servlet-class&gt;&lt;/servlet-class&gt;</code> 指定servlet的类名称</li>
+<li><code>&lt;jsp-file&gt;&lt;/jsp-file&gt;</code> 指定web站台中的某个JSP网页的完整路径</li>
+<li><code>&lt;init-param&gt;&lt;/init-param&gt;</code> 用来定义参数，可有多个init-param。在servlet类中通过getInitParamenter(String name)方法访问初始化参数</li>
+<li><code>&lt;load-on-startup&gt;&lt;/load-on-startup&gt;</code>指定当Web应用启动时，装载Servlet的次序。当值为正数或零时：Servlet容器先加载数值小的servlet，再依次加载其他数值大的servlet。当值为负或未定义：Servlet容器将在Web客户首次访问这个servlet时加载它。</li>
+</ul>
+<p><code>&lt;servlet-mapping&gt;&lt;/servlet-mapping&gt;</code>用来定义servlet所对应的<code>URL 路由</code>，包含两个子元素：</p>
+<ul>
+<li><code>&lt;servlet-name&gt;&lt;/servlet-name&gt;</code> 指定servlet的名称</li>
+<li><code>&lt;url-pattern&gt;&lt;/url-pattern&gt;</code> 指定servlet所对应的URL</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">serservlet-name</span>&gt;</span>LoginServlet<span class="hljs-tag">&lt;/<span class="hljs-name">serservlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>com.controller.LoginServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlt-mapping</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>LoginServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/login<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlt-mapping</span>&gt;</span>               <br></code></pre></td></tr></table></figure>
+<h2 id="注解"><a class="markdownIt-Anchor" href="#注解"></a> 注解</h2>
+<p><strong>@WebServlet</strong></p>
+<p>为每个Servlet类配置一个<code>@WebServlet</code>注解，有以下参数：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>指定 Servlet 的 name 属性，等价于 <code>&lt;servlet-name&gt;</code>。如果没有显式指定，则该 Servlet 的取值即为类的全限定名。</td>
+</tr>
+<tr>
+<td>value/urlPatterns</td>
+<td>String[]</td>
+<td>指定一组 Servlet 的 URL 匹配模式。等价于<code>&lt;url-pattern&gt;</code>标签。</td>
+</tr>
+<tr>
+<td>loadOnStartup</td>
+<td>int</td>
+<td>指定 Servlet 的加载顺序，等价于 <code>&lt;load-on-startup&gt;</code>标签。</td>
+</tr>
+<tr>
+<td>initParams</td>
+<td>WebInitParam[]</td>
+<td>指定一组 Servlet 初始化参数，等价于<code>&lt;init-param&gt;</code>标签。</td>
+</tr>
+<tr>
+<td>asyncSupported</td>
+<td>boolean</td>
+<td>声明 Servlet 是否支持异步操作模式，等价于<code>&lt;async-supported&gt;</code> 标签。</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>该 Servlet 的描述信息，等价于 <code>&lt;description&gt;</code>标签。</td>
+</tr>
+<tr>
+<td>displayName</td>
+<td>String</td>
+<td>该 Servlet 的显示名，通常配合工具使用，等价于 <code>&lt;display-name&gt;</code>标签。</td>
+</tr>
+</tbody>
+</table>
+<p>示例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet(name = &quot;myUserServlet&quot;, </span><br><span class="hljs-meta">	urlPatterns = &quot;/user/test&quot;, </span><br><span class="hljs-meta">	loadOnStartup = 1,  </span><br><span class="hljs-meta">	initParams = &#123;</span><br><span class="hljs-meta">			@WebInitParam(name=&quot;name&quot;, value=&quot;小明&quot;), </span><br><span class="hljs-meta">			@WebInitParam(name=&quot;pwd&quot;, value=&quot;123456&quot;)</span><br><span class="hljs-meta">	&#125;</span><br><span class="hljs-meta">)</span><br></code></pre></td></tr></table></figure>
+<h1 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/RioTian/p/15646257.html">IDEA | 使用Maven创建Web项目并配置Tomcat</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hellojava/archive/2012/12/28/2835730.html">web.xml文件详解</a></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/02/Java%20IDEA%20debug/">
+                        <span class="hidden-mobile">Java IDEA debug</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            ✨&nbsp总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            💫&nbsp总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

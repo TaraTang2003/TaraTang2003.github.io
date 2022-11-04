@@ -1,0 +1,2109 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Cosmo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="LC-3基本原理  基本概念  1）名词    英语 中文 释义     Instruction Set Architecture 指令集架构 specifies the set of instructions the computer can perform   data types, addressing mode     Microarchitecture 微架构 detailed org">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理">
+<meta property="og:url" content="http://example.com/2022/05/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Cosmo&#39;s Kingdom">
+<meta property="og:description" content="LC-3基本原理  基本概念  1）名词    英语 中文 释义     Instruction Set Architecture 指令集架构 specifies the set of instructions the computer can perform   data types, addressing mode     Microarchitecture 微架构 detailed org">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154189.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154125.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154341.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154067.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154903.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281216696.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154534.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154122.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154011.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154223.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154930.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154036.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154687.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154699.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154021.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154959.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154908.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154202.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154275.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154794.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155435.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155971.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155706.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155167.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155904.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155521.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155017.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155722.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155366.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155310.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155614.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155482.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155154.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156133.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156577.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156364.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156013.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156457.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203290950109.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203290950137.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156668.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156567.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156742.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156021.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156637.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156975.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203290950269.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156324.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156468.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156178.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156842.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156522.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156359.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203271857743.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156528.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203271838583.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203271840668.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203271843971.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204060844583.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011147499.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011630205.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011630719.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011547311.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011744882.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011839349.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011919091.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204060852416.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204060903873.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204141826615.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204141833926.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281012880.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281105675.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291432712.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291359904.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291433027.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291420138.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281114791.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281124149.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281130628.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206150910442.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281134162.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204201242640.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291353939.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291355421.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291356689.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281027881.png">
+<meta property="article:published_time" content="2022-05-02T01:34:57.413Z">
+<meta property="article:modified_time" content="2022-07-26T03:34:41.646Z">
+<meta property="article:author" content="Cosmo">
+<meta property="article:tag" content="学校课程">
+<meta property="article:tag" content="CS理论基础">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154189.png">
+  
+  
+  <title>计算机组成原理 - Cosmo&#39;s Kingdom</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cosmo&#39;s Kingdom</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                查看
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-exp-fill"></i>
+                乐园
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/books/">
+                    
+                    书
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/movies/">
+                    
+                    影
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/travel/">
+                    
+                    足迹
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="计算机组成原理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-02 09:34" pubdate>
+        2022年5月2日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      20k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      167 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计算机组成原理</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年7月26日 中午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="lc-3基本原理"><a class="markdownIt-Anchor" href="#lc-3基本原理"></a> LC-3基本原理</h1>
+<h2 id="基本概念"><a class="markdownIt-Anchor" href="#基本概念"></a> 基本概念</h2>
+<h3 id="1名词"><a class="markdownIt-Anchor" href="#1名词"></a> 1）名词</h3>
+<table>
+<thead>
+<tr>
+<th>英语</th>
+<th>中文</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instruction Set Architecture</td>
+<td>指令集架构</td>
+<td>specifies the set of instructions the computer can perform</td>
+</tr>
+<tr>
+<td>data types, addressing mode</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Microarchitecture</td>
+<td>微架构</td>
+<td>detailed organization of a processor implementation</td>
+</tr>
+<tr>
+<td>different implementations of a single ISA</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Circuits</td>
+<td>电路</td>
+<td>combine basic operations to realize microarchitecture</td>
+</tr>
+<tr>
+<td>many different ways to implement a single function (e.g., addition)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Assembly language</td>
+<td>汇编语言</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2知识点"><a class="markdownIt-Anchor" href="#2知识点"></a> 2）知识点</h3>
+<h4 id="转换层次"><a class="markdownIt-Anchor" href="#转换层次"></a> 转换层次</h4>
+<p>Layers of a Computer System and Its Transformation</p>
+<pre><code class=" mermaid">graph TB;
+	1[Problem] --Software Design---&gt; 2[Algorithm] 
+	2 --Programming---&gt; 3[Program];
+	3 --Compiling/Interpreting---&gt; 4[Instruction Set Architecture/ISA];
+	4 --Processor Design---&gt; 5[Microarchitecture];
+	5 --Logic/Circuit Design---&gt; 6[Circuit];
+	6 --Process Engineering/Fabrication---&gt; 7[Devices]
+</code></pre>
+<p>Many Choices at Each Level</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154189.png" srcset="/img/loading.gif" lazyload alt="image-20220311175852098" /></p>
+<h2 id="运算与转换"><a class="markdownIt-Anchor" href="#运算与转换"></a> 运算与转换</h2>
+<h3 id="1名词-2"><a class="markdownIt-Anchor" href="#1名词-2"></a> 1）名词</h3>
+<table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>analog number</td>
+<td>模拟信号</td>
+<td></td>
+</tr>
+<tr>
+<td>digital number</td>
+<td>数字信号</td>
+<td></td>
+</tr>
+<tr>
+<td>binary digit（bit）</td>
+<td>位</td>
+<td>信息的基本单位</td>
+</tr>
+<tr>
+<td>Non-positional notation/Weighted positional notation</td>
+<td>非位置数字/权重位置数字</td>
+<td></td>
+</tr>
+<tr>
+<td>unsigned integer/signed Integers</td>
+<td>无符号整数/有符号整数</td>
+<td></td>
+</tr>
+<tr>
+<td>sign-magnitude/set MS bit</td>
+<td>符号值/符号位</td>
+<td>二进制数中的第一位0/1</td>
+</tr>
+<tr>
+<td>sign-and-magnitude</td>
+<td>原码</td>
+<td></td>
+</tr>
+<tr>
+<td>1’s Complement</td>
+<td>1的补码/反码</td>
+<td></td>
+</tr>
+<tr>
+<td>2’s Complement</td>
+<td>2的补码/补码</td>
+<td></td>
+</tr>
+<tr>
+<td>overflow</td>
+<td>溢出</td>
+<td></td>
+</tr>
+<tr>
+<td>Binary</td>
+<td>二进制</td>
+<td></td>
+</tr>
+<tr>
+<td>Decimal</td>
+<td>十进制</td>
+<td></td>
+</tr>
+<tr>
+<td>Hexdecimal</td>
+<td>十六进制</td>
+<td>前缀0x</td>
+</tr>
+<tr>
+<td>arithmetic circuits</td>
+<td>运算电路</td>
+<td></td>
+</tr>
+<tr>
+<td>Binary</td>
+<td>二进制</td>
+<td></td>
+</tr>
+<tr>
+<td>Decimal</td>
+<td>十进制</td>
+<td></td>
+</tr>
+<tr>
+<td>Single-precision IEEE floating point number</td>
+<td>IEEE标准单精度浮点数</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2知识点-2"><a class="markdownIt-Anchor" href="#2知识点-2"></a> 2）知识点</h3>
+<h4 id="考点总结"><a class="markdownIt-Anchor" href="#考点总结"></a> 考点总结</h4>
+<ul>
+<li>码间转换
+<ul>
+<li>无符号数与反码/补码转换（进制转换）</li>
+<li>有符号数与反码/补码转换（保留符号取反+1）</li>
+<li>不同位数补码转换（4位&lt;-&gt;8位）</li>
+</ul>
+</li>
+<li>溢出判断（进制求和相同）</li>
+<li>IEEE浮点数计算（位数意义/计算公式）</li>
+<li>ASCII理解判断</li>
+</ul>
+<h4 id="反码补码溢出"><a class="markdownIt-Anchor" href="#反码补码溢出"></a> 反码/补码/溢出</h4>
+<p>原码-&gt;反码-&gt;补码</p>
+<ul>
+<li>
+<p>怎么求</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154125.png" srcset="/img/loading.gif" lazyload alt="image-20220312125344078" /></p>
+</li>
+<li>
+<p>出现原因</p>
+<pre><code class=" mermaid">graph LR;
+	0[sign-magnitude] --符号值加法结果不准确--&gt; 1[1&#x27;s Complement] --+-0/符号值加法结果部分准确--&gt; 2[2&#x27;s Complement]
+</code></pre>
+</li>
+</ul>
+<p>– 作业 –</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154341.png" srcset="/img/loading.gif" lazyload alt="image-20220317103346095" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154067.png" srcset="/img/loading.gif" lazyload alt="image-20220317103310654" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154903.png" srcset="/img/loading.gif" lazyload alt="image-20220317103228365" /><br />
+<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281216696.png" srcset="/img/loading.gif" lazyload alt="image-20220317103454561" /></p>
+<p>溢出</p>
+<p>补码的二进制运算结果 与 其十进制不一致</p>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154534.png" srcset="/img/loading.gif" lazyload alt="image-20220317103028204" /></p>
+<h4 id="进制转换"><a class="markdownIt-Anchor" href="#进制转换"></a> 进制转换</h4>
+<ul>
+<li>它进制 -&gt; 十进制：权重加和（整数/小数）</li>
+<li>十进制 -&gt; 它进制：
+<ul>
+<li>辗转相除取余数（整数）/（辗转相乘取整数部分（小数））<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154122.png" srcset="/img/loading.gif" lazyload alt="image-20220312131957387" /></li>
+<li>减幂<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154011.png" srcset="/img/loading.gif" lazyload alt="" /></li>
+</ul>
+</li>
+</ul>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154223.png" srcset="/img/loading.gif" lazyload alt="image-20220317102836428" /></p>
+<h4 id="ascii码"><a class="markdownIt-Anchor" href="#ascii码"></a> ASCII码</h4>
+<p>对译表</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154930.png" srcset="/img/loading.gif" lazyload alt="image-20220312134956533" /></p>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154036.png" srcset="/img/loading.gif" lazyload alt="image-20220317103106351" /></p>
+<h4 id="ieee浮点数"><a class="markdownIt-Anchor" href="#ieee浮点数"></a> IEEE浮点数</h4>
+<ol>
+<li>
+<p>IEEE单精度浮点数</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154687.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<ul>
+<li>
+<p>指数 (整数Bin) --&gt; (Dec)</p>
+</li>
+<li>
+<p>小数 (小数Bin) --&gt; (Dec)</p>
+<p>1+小数/0+小数</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154699.png" srcset="/img/loading.gif" lazyload alt="image-20220317103252665" /></p>
+<h2 id="数字逻辑"><a class="markdownIt-Anchor" href="#数字逻辑"></a> 数字逻辑</h2>
+<h3 id="1名词-3"><a class="markdownIt-Anchor" href="#1名词-3"></a> 1）名词</h3>
+<table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>metal-oxide semiconductor (MOS)</td>
+<td>金属氧化物半导体</td>
+<td></td>
+</tr>
+<tr>
+<td>Complementary Metal-Oxide Semiconductor (CMOS)</td>
+<td>互补金属氧化物半导体</td>
+<td>同时含有n/p型MOS的电路</td>
+</tr>
+<tr>
+<td>Gate</td>
+<td>栅极</td>
+<td></td>
+</tr>
+<tr>
+<td>Source</td>
+<td>源极</td>
+<td>#1</td>
+</tr>
+<tr>
+<td>Drain</td>
+<td>漏极</td>
+<td>#2</td>
+</tr>
+<tr>
+<td>Logic Gate</td>
+<td>逻辑门</td>
+<td></td>
+</tr>
+<tr>
+<td>Inverter</td>
+<td>反相器，非门</td>
+<td></td>
+</tr>
+<tr>
+<td>Combinational Logic Circuit</td>
+<td>组合逻辑电路</td>
+<td></td>
+</tr>
+<tr>
+<td>Decoder</td>
+<td>译码器</td>
+<td></td>
+</tr>
+<tr>
+<td>Multiplexer (MUX)</td>
+<td>多路复用器</td>
+<td></td>
+</tr>
+<tr>
+<td>Full Adder</td>
+<td>全加器</td>
+<td></td>
+</tr>
+<tr>
+<td>Four-bit Adder</td>
+<td>4位加法器</td>
+<td></td>
+</tr>
+<tr>
+<td>Logical Completeness</td>
+<td>逻辑完备性</td>
+<td></td>
+</tr>
+<tr>
+<td>carry-in</td>
+<td>进位输入</td>
+<td></td>
+</tr>
+<tr>
+<td>carry-out</td>
+<td>进位输出</td>
+<td></td>
+</tr>
+<tr>
+<td>Storage Element</td>
+<td>存储单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Sequential Logi Circuit</td>
+<td>时序逻辑电路</td>
+<td></td>
+</tr>
+<tr>
+<td>Latch/Trigger/Register</td>
+<td>锁存器/触发器/寄存器</td>
+<td>latch强调的是它的工作特性<br>trigger强调的是工作机制( 如沿触发或电平触发等)<br>register则是它在计算机组成中的作用<br></td>
+</tr>
+<tr>
+<td>R-S Latch</td>
+<td>RS锁存器</td>
+<td></td>
+</tr>
+<tr>
+<td>quiescent</td>
+<td>静态</td>
+<td>RS均为1，维持原态</td>
+</tr>
+<tr>
+<td>set</td>
+<td>置</td>
+<td></td>
+</tr>
+<tr>
+<td>Gated D-Latch</td>
+<td>门控D锁存器‘</td>
+<td></td>
+</tr>
+<tr>
+<td>Address Space</td>
+<td>寻址空间</td>
+<td></td>
+</tr>
+<tr>
+<td>Address ability</td>
+<td>寻址能力</td>
+<td></td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>内存</td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td>状态</td>
+<td>The state of a system is a snapshot of all the relevant elements of the system at the moment the snapshot is taken.</td>
+</tr>
+<tr>
+<td>Finite State Machine (FSM)</td>
+<td>有限状态机</td>
+<td></td>
+</tr>
+<tr>
+<td>Master-slave flipflop</td>
+<td>主从触发器</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2知识点-3"><a class="markdownIt-Anchor" href="#2知识点-3"></a> 2）知识点</h3>
+<h4 id="考点总结-2"><a class="markdownIt-Anchor" href="#考点总结-2"></a> 考点总结</h4>
+<ul>
+<li>p/n型MOS晶体管电路逻辑</li>
+<li>逻辑完备性概念</li>
+<li>门控D锁存器的工作逻辑</li>
+<li>内存的动态判断</li>
+<li>寻址能力/地址宽度/寻址空间概念理解</li>
+<li>有限状态机的概念及特点</li>
+<li>时序逻辑电路的工作逻辑</li>
+</ul>
+<h4 id="mos晶体管"><a class="markdownIt-Anchor" href="#mos晶体管"></a> MOS晶体管</h4>
+<table>
+<thead>
+<tr>
+<th>MOS type</th>
+<th>Theorem</th>
+<th>Structure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n型MOS</td>
+<td>栅极+2.9V --&gt; 1<br/>栅极0         --&gt; 0</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154021.png" srcset="/img/loading.gif" lazyload alt="" /></td>
+</tr>
+<tr>
+<td>p型MOS</td>
+<td>栅极+2.9V --&gt; 0<br/>栅极0         --&gt; 1</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154959.png" srcset="/img/loading.gif" lazyload alt="image-20220321100545998" /></td>
+</tr>
+</tbody>
+</table>
+<h4 id="逻辑门"><a class="markdownIt-Anchor" href="#逻辑门"></a> 逻辑门</h4>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Circuit</th>
+<th>Note</th>
+<th>Symbol</th>
+<th>Re</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>非门/反相器</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154908.png" srcset="/img/loading.gif" lazyload alt="image-20220321102139880" /></td>
+<td>NOT</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154202.png" srcset="/img/loading.gif" lazyload alt="image-20220321102716139" /></td>
+<td></td>
+</tr>
+<tr>
+<td>或非门</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154275.png" srcset="/img/loading.gif" lazyload alt="image-20220321102329484" /></td>
+<td>NOR</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281154794.png" srcset="/img/loading.gif" lazyload alt="image-20220321103355179" /></td>
+<td></td>
+</tr>
+<tr>
+<td>或门</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155435.png" srcset="/img/loading.gif" lazyload alt="image-20220321102455465" /></td>
+<td>OR</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155971.png" srcset="/img/loading.gif" lazyload alt="image-20220321103344767" /></td>
+<td>或非门 + 反相器</td>
+</tr>
+<tr>
+<td>与非门</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155706.png" srcset="/img/loading.gif" lazyload alt="image-20220321102900910" /></td>
+<td>NAND</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155167.png" srcset="/img/loading.gif" lazyload alt="image-20220321103326689" /></td>
+<td></td>
+</tr>
+<tr>
+<td>与门</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155904.png" srcset="/img/loading.gif" lazyload alt="image-20220321102920226" /></td>
+<td>AND</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155521.png" srcset="/img/loading.gif" lazyload alt="image-20220321103242973" /></td>
+<td>与非门+反相器</td>
+</tr>
+</tbody>
+</table>
+<h4 id="组合逻辑电路"><a class="markdownIt-Anchor" href="#组合逻辑电路"></a> 组合逻辑电路</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Circuit</th>
+<th>Func</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>译码器</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155017.png" srcset="/img/loading.gif" lazyload alt="image-20220321105022965" /></td>
+<td></td>
+</tr>
+<tr>
+<td>多路复用器</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155722.png" srcset="/img/loading.gif" lazyload alt="image-20220321105220337" /></td>
+<td>有选择信号Si决定被选择的输入输出</td>
+</tr>
+<tr>
+<td>全加器</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155366.png" srcset="/img/loading.gif" lazyload alt="image-20220321105421712" /></td>
+<td>作两位数与进位输入的加法运算输出加和与进位输出</td>
+</tr>
+<tr>
+<td>4位全加器</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155310.png" srcset="/img/loading.gif" lazyload alt="image-20220321105513560" /></td>
+<td>由4个全加器组成，计算4位数加法</td>
+</tr>
+</tbody>
+</table>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155614.png" srcset="/img/loading.gif" lazyload alt="image-20220322101434842" /></p>
+<h4 id="逻辑完备性"><a class="markdownIt-Anchor" href="#逻辑完备性"></a> 逻辑完备性</h4>
+<ul>
+<li>
+<p>通过不同数量的与或非门就能实现其真值表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">Can implement <span class="hljs-keyword">ANY</span> truth <span class="hljs-keyword">table</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">AND</span>, <span class="hljs-keyword">OR</span>, NOT.<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>与或非逻辑门的集合</p>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fsharp">The <span class="hljs-built_in">set</span> og <span class="hljs-keyword">hates</span> &#123;AND,OR,NOT&#125;.<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155482.png" srcset="/img/loading.gif" lazyload alt="image-20220322100924843" /></p>
+<h4 id="存储单元"><a class="markdownIt-Anchor" href="#存储单元"></a> 存储单元</h4>
+<pre><code class=" mermaid">graph LR;
+	1[R-S锁存器] --控制电路---&gt; 2[门控D锁存器];
+	2 --多个---&gt; 3[寄存器];
+	3 --多个+寻址能力---&gt; 4[内存]
+</code></pre>
+<ul>
+<li>
+<p>R-S锁存器</p>
+<table>
+<thead>
+<tr>
+<th>R-S四种状态</th>
+<th>图示</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>静态</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281155154.png" srcset="/img/loading.gif" lazyload alt="image-20220321142409270" /></td>
+<td>保持置0的状态不变</td>
+</tr>
+<tr>
+<td>静态</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156133.png" srcset="/img/loading.gif" lazyload alt="image-20220321151629097" /></td>
+<td>保持置1的状态不变</td>
+</tr>
+<tr>
+<td>置0/清除</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156577.png" srcset="/img/loading.gif" lazyload alt="image-20220321142601915" /></td>
+<td>1.置R=0使状态置0<br>2.再置R=1记忆当前状态</td>
+</tr>
+<tr>
+<td>置1</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156364.png" srcset="/img/loading.gif" lazyload alt="image-20220321151654974" /></td>
+<td>1.置S=0使状态置0<br/>2.再置S=1记忆当前状态</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>门控D锁存器</p>
+<ul>
+<li>
+<p>R-S锁存器 + 控制电路</p>
+<p>WE = 1:</p>
+<ul>
+<li>输入端 D = 0 --&gt; R = 0 置0</li>
+<li>输入端 D = 0 --&gt; S = 0 置1</li>
+</ul>
+<p>WE = 0:</p>
+<p>输入端D无效，R/S为1，存储被记忆状态</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156013.png" srcset="/img/loading.gif" lazyload alt="image-20220321152758606" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>寄存器</p>
+<p>将多个宽度为1-bit的锁存器组成指定宽度的独立单元，由同一控制信号控制</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156457.png" srcset="/img/loading.gif" lazyload alt="image-20220321153321568" /></p>
+</li>
+</ul>
+<p>​	寄存器存储编号</p>
+<p>​	<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203290950109.png" srcset="/img/loading.gif" lazyload alt="image-20220321153710871" /></p>
+<p>​     可 从右至左/从左至右，保持一致即可，首索引为0.</p>
+<h4 id="内存"><a class="markdownIt-Anchor" href="#内存"></a> 内存</h4>
+<ul>
+<li>
+<p>寻址空间</p>
+<p>内存中可独立识别的存储位置总数为 <strong>寻址空间</strong>，如 16MB内存，包含约1600万个位置的存储空间。</p>
+</li>
+</ul>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino">识别 <span class="hljs-number">2</span>^n 个存储位置，需要地址的宽度为 n-bit。<br><span class="hljs-number">16</span>MB ~ <span class="hljs-number">16</span> <span class="hljs-number">000</span> <span class="hljs-number">000</span>个存储位置 = <span class="hljs-number">16</span> <span class="hljs-number">777</span> <span class="hljs-number">216</span>个存储位置 = <span class="hljs-number">2</span>^<span class="hljs-number">24</span>个存储位置 = <span class="hljs-number">24</span>-bit宽度地址<br></code></pre></td></tr></table></figure>
+<ul>
+<li>寻址能力</li>
+</ul>
+<p>​		每个存储位置的bit数目为 <strong>寻址能力</strong>，如 16MB内存，包含约1600万个位置的存储空间，每个位置存储1Byte=8bit信息。</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tap">每个存储位置包含的bit数目<br>16MB ~<span class="hljs-number"> 16 </span>000 000个存储位置 =<span class="hljs-number"> 16 </span>777 216个存储位置 * 1Byte =<span class="hljs-number"> 16 </span>777<span class="hljs-number"> 216 </span>* 8bit<br></code></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203290950137.png" srcset="/img/loading.gif" lazyload alt="image-20220321165416531" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156668.png" srcset="/img/loading.gif" lazyload alt="image-20220321165428938" /></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arduino">寻址空间(<span class="hljs-number">2</span>^地址宽度) * 寻址能力<br>该内存的地址空间为<span class="hljs-number">4</span>，内存地址需要<span class="hljs-number">2</span>-bit来表示; 寻址能力为<span class="hljs-number">3</span>，意味着每个内存位置能存储<span class="hljs-number">3</span>-bit信息。<br><br>WE:读/写<br>A[<span class="hljs-number">1</span>:<span class="hljs-number">0</span>]:地址对象（如 地址<span class="hljs-number">3</span>，A=<span class="hljs-number">11</span>）<br></code></pre></td></tr></table></figure>
+<pre><code class=" mermaid">graph LR;
+	1[地址宽度/2] --译码器---&gt; 2[寻址空间/2^2];
+	2 --多路复用器选中---&gt; 3[一个位置/寻址能力-bit/3-bit]
+</code></pre>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156567.png" srcset="/img/loading.gif" lazyload alt="image-20220322101932774" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156742.png" srcset="/img/loading.gif" lazyload alt="image-20220322103502367" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156021.png" srcset="/img/loading.gif" lazyload alt="image-20220322102239645" /></p>
+<h4 id="有限状态机"><a class="markdownIt-Anchor" href="#有限状态机"></a> 有限状态机</h4>
+<p>特点</p>
+<ul>
+<li>
+<p>有限数目的状态</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">A finite <span class="hljs-built_in">number</span> <span class="hljs-keyword">of</span> states.<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>有限数目的外部输入</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fortran">A finite <span class="hljs-keyword">number</span> of <span class="hljs-keyword">external</span> inputs.<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>有限数目的外部输出</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fortran">A finite <span class="hljs-keyword">number</span> of <span class="hljs-keyword">external</span> outputs.<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>显示注明的状态转移</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pf">An explicit specification of <span class="hljs-literal">all</span> <span class="hljs-keyword">state</span> transitions.<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>显示注明的对外输出</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">An <span class="hljs-keyword">explicit</span> specification of what determines each <span class="hljs-keyword">external</span> output value.<br></code></pre></td></tr></table></figure>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156637.png" srcset="/img/loading.gif" lazyload alt="image-20220322103324911" /></p>
+</li>
+</ul>
+<h4 id="时序逻辑电路"><a class="markdownIt-Anchor" href="#时序逻辑电路"></a> 时序逻辑电路</h4>
+<p>例：交通警告牌的时序逻辑电路</p>
+<p>逻辑说明</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156975.png" srcset="/img/loading.gif" lazyload alt="image-20220322104121759" /><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203290950269.png" srcset="/img/loading.gif" lazyload alt="image-20220322104136884" /></p>
+<p>逻辑实现</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156324.png" srcset="/img/loading.gif" lazyload alt="image-20220322104151834" /></p>
+<ul>
+<li>触发机制：时钟</li>
+</ul>
+<p>​		状态转移通过时钟电路触发，时钟电路具有周期性，当 低电平0 转换为 高电平1，下一周期开始，状态转移。</p>
+<p>​		<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156468.png" srcset="/img/loading.gif" lazyload alt="image-20220322104449299" /></p>
+<ul>
+<li>
+<p>组成部分</p>
+<table>
+<thead>
+<tr>
+<th>组成部分</th>
+<th>电路图示例</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组合逻辑电路</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156178.png" srcset="/img/loading.gif" lazyload alt="image-20220322104730885" /></td>
+<td>实现输入与记忆状态到输出与下一记忆状态的状态转移</td>
+</tr>
+<tr>
+<td>存储器单元</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156842.png" srcset="/img/loading.gif" lazyload alt="image-20220322104934603" /></td>
+<td>使用两个主从锁存器组成一个存储器单元，以避免状态在当前周期即被瞬时覆盖的问题</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156522.png" srcset="/img/loading.gif" lazyload alt="image-20220322105205462" /></p>
+<h2 id="冯诺伊曼模型"><a class="markdownIt-Anchor" href="#冯诺伊曼模型"></a> 冯诺伊曼模型</h2>
+<h3 id="1名词-4"><a class="markdownIt-Anchor" href="#1名词-4"></a> 1）名词</h3>
+<table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The Von Neumann Model</td>
+<td>冯诺伊曼模型</td>
+<td></td>
+</tr>
+<tr>
+<td>input/output/memory/processing unit/control unit</td>
+<td>输入/输出/内存/处理单元/控制单元</td>
+<td></td>
+</tr>
+<tr>
+<td>instruction</td>
+<td>指令</td>
+<td></td>
+</tr>
+<tr>
+<td>opcode</td>
+<td>操作码</td>
+<td></td>
+</tr>
+<tr>
+<td>operand</td>
+<td>操作数</td>
+<td></td>
+</tr>
+<tr>
+<td>source register</td>
+<td>源寄存器</td>
+<td>SR</td>
+</tr>
+<tr>
+<td>destination register</td>
+<td>目的寄存器</td>
+<td>DR</td>
+</tr>
+<tr>
+<td>instruction cycle</td>
+<td>指令周期</td>
+<td></td>
+</tr>
+<tr>
+<td>phase</td>
+<td>指令节拍</td>
+<td></td>
+</tr>
+<tr>
+<td>FETCH</td>
+<td>取指令</td>
+<td></td>
+</tr>
+<tr>
+<td>DECODE</td>
+<td>译码</td>
+<td></td>
+</tr>
+<tr>
+<td>EVALUATE ADDRESS</td>
+<td>地址计算</td>
+<td></td>
+</tr>
+<tr>
+<td>FETCH OPERAND</td>
+<td>取操作数</td>
+<td></td>
+</tr>
+<tr>
+<td>EXECUTE</td>
+<td>执行</td>
+<td></td>
+</tr>
+<tr>
+<td>STORE RESULT</td>
+<td>存放结果</td>
+<td></td>
+</tr>
+<tr>
+<td>operate instruction</td>
+<td>运算指令</td>
+<td>顺序</td>
+</tr>
+<tr>
+<td>data movement instruction</td>
+<td>数据搬移指令</td>
+<td>顺序</td>
+</tr>
+<tr>
+<td>control instruction</td>
+<td>控制指令</td>
+<td>循环</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2知识点-4"><a class="markdownIt-Anchor" href="#2知识点-4"></a> 2）知识点</h3>
+<h4 id="考点总结-3"><a class="markdownIt-Anchor" href="#考点总结-3"></a> 考点总结</h4>
+<ul>
+<li>冯诺依曼模型各个组成部分及其功能对应判断</li>
+<li>不同指令类型格式各切片段对应意义 计算位数</li>
+<li>指令周期各节拍功能对应判断</li>
+</ul>
+<h4 id="模型组成"><a class="markdownIt-Anchor" href="#模型组成"></a> 模型组成</h4>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156359.png" srcset="/img/loading.gif" lazyload alt="image-20220327185440140" /></p>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203271857743.png" srcset="/img/loading.gif" lazyload alt="image-20220327185731697" /></p>
+<h4 id="指令类型格式"><a class="markdownIt-Anchor" href="#指令类型格式"></a> 指令类型格式</h4>
+<pre><code class=" mermaid">graph LR;
+	1[指令] --&gt; 操作码opcode/指令具体内容;
+	1 --&gt; 操作数operand/操作对象
+</code></pre>
+<p>指令类型与对应指令格式</p>
+<ul>
+<li>
+<p>运算指令（操作码OPCODE–目的寄存器DR–源寄存器SR–UNUSED）</p>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203281156528.png" srcset="/img/loading.gif" lazyload alt="image-20220327183523859" /></p>
+</li>
+<li>
+<p>数据搬移指令（操作码OPCODE–源寄存器SR–目的寄存器DR–寻址方式）</p>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203271838583.png" srcset="/img/loading.gif" lazyload alt="image-20220327183813532" /></p>
+</li>
+<li>
+<p>控制指令</p>
+</li>
+</ul>
+<h4 id="指令周期"><a class="markdownIt-Anchor" href="#指令周期"></a> 指令周期</h4>
+<table>
+<thead>
+<tr>
+<th>phase</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FETCH</td>
+<td>取指令</td>
+<td></td>
+</tr>
+<tr>
+<td>DECODE</td>
+<td>译码</td>
+<td></td>
+</tr>
+<tr>
+<td>EVALUATE ADDRESS</td>
+<td>地址计算</td>
+<td></td>
+</tr>
+<tr>
+<td>FETCH OPERAND</td>
+<td>取操作数</td>
+<td></td>
+</tr>
+<tr>
+<td>EXECUTE</td>
+<td>执行</td>
+<td></td>
+</tr>
+<tr>
+<td>STORE RESULT</td>
+<td>存放结果</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>FETCH  取指令</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">Load next <span class="hljs-keyword">instruction </span>(<span class="hljs-built_in">at</span> <span class="hljs-keyword">address </span>stored in PC) from memory into <span class="hljs-keyword">Instruction </span>Register (IR).<br></code></pre></td></tr></table></figure>
+<pre><code class=" mermaid">graph LR;
+	0[控制单元PC寄存器] --下一指令地址---&gt; 1[内存MAR地址寄存器];
+	1 --下一指令地址---&gt;  2[内存];
+	2 --下一指令---&gt; 3[内存MDR数据寄存器];
+	3 --下一指令---&gt; 4[控制单元IR寄存器];
+	0[控制单元PC寄存器] --PC增量/更新下一指令---&gt; 0;
+</code></pre>
+</li>
+<li>
+<p>DECODE  译码</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">First identify <span class="hljs-keyword">the</span> opcode.<br>* In LC<span class="hljs-number">-3</span>, this is always <span class="hljs-keyword">the</span> <span class="hljs-keyword">first</span> <span class="hljs-literal">four</span> bits <span class="hljs-keyword">of</span> instruction.<br>* A <span class="hljs-number">4</span>-<span class="hljs-built_in">to</span><span class="hljs-number">-16</span> decoder asserts <span class="hljs-keyword">a</span> control <span class="hljs-built_in">line</span> corresponding <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> desired opcode.<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code class=" mermaid">graph LR;
+	0[控制单元IR寄存器] --指令操作码---&gt; 1[译码器];
+	1 --选中指令---&gt; 1;
+</code></pre>
+<ul>
+<li>
+<p>EVALUATE ADDRESS  地址计算</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">For</span> instructions that require memory <span class="hljs-keyword">access</span>, compute address used <span class="hljs-keyword">for</span> <span class="hljs-keyword">access</span>.<br></code></pre></td></tr></table></figure>
+<pre><code class=" mermaid">graph LR;
+	0[控制单元IR寄存器] --指令操作数---&gt; 1[译码器] --地址值---&gt; 1;
+</code></pre>
+</li>
+<li>
+<p>FETCH OPERAND  取操作数</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">Obtain source operands needed <span class="hljs-keyword">to</span> <span class="hljs-keyword">perform</span> operation.<br></code></pre></td></tr></table></figure>
+<pre><code class=" mermaid">graph LR;
+	译码器 --地址值---&gt; 1[内存MAR地址寄存器] --地址值---&gt; 2[内存];
+	2 --地址对应数据---&gt; 3[内存MDR数据寄存器]
+</code></pre>
+</li>
+<li>
+<p>EXECUTE  执行</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">Perform</span> the operation, <span class="hljs-keyword">using</span> the source operands.<br></code></pre></td></tr></table></figure>
+<pre><code class=" mermaid">graph LR;
+	译码器 --指令---&gt; 1[处理单元ALU] --执行结果---&gt; 1;
+	内存MDR数据寄存器 --数据---&gt; 1
+</code></pre>
+</li>
+<li>
+<p>STORE RESULT  存放结果</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs delphi"><span class="hljs-keyword">Write</span> results <span class="hljs-keyword">to</span> destination.(<span class="hljs-keyword">register</span> <span class="hljs-keyword">or</span> memory)<br></code></pre></td></tr></table></figure>
+<pre><code class=" mermaid">graph LR;
+	1[处理单元ALU] --执行结果---&gt; 目的寄存器;
+</code></pre>
+</li>
+</ul>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203271840668.png" srcset="/img/loading.gif" lazyload alt="image-20220327184037612" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202203271843971.png" srcset="/img/loading.gif" lazyload alt="image-20220327184345924" /></p>
+<h2 id="lc-3结构及其isa"><a class="markdownIt-Anchor" href="#lc-3结构及其isa"></a> LC-3结构及其ISA</h2>
+<h3 id="1名词-5"><a class="markdownIt-Anchor" href="#1名词-5"></a> 1）名词</h3>
+<table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instruction Set Architecture</td>
+<td>指令集结构</td>
+<td></td>
+</tr>
+<tr>
+<td>Addressing Modes</td>
+<td>寻址模式</td>
+<td></td>
+</tr>
+<tr>
+<td>immediate</td>
+<td>立即数寻址</td>
+<td>non-memory address</td>
+</tr>
+<tr>
+<td>register</td>
+<td>寄存器寻址</td>
+<td>non-memory address</td>
+</tr>
+<tr>
+<td>PC-relative</td>
+<td>相对寻址</td>
+<td>memory address</td>
+</tr>
+<tr>
+<td>indirect</td>
+<td>间接寻址</td>
+<td>memory address</td>
+</tr>
+<tr>
+<td>base+offset</td>
+<td>基址偏移</td>
+<td>memory address</td>
+</tr>
+<tr>
+<td>load</td>
+<td>装载</td>
+<td>数据从内存移入寄存器</td>
+</tr>
+<tr>
+<td>store</td>
+<td>存储</td>
+<td>数据从寄存器转入内存</td>
+</tr>
+<tr>
+<td>condition code</td>
+<td>条件码</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2知识点-5"><a class="markdownIt-Anchor" href="#2知识点-5"></a> 2）知识点</h3>
+<h4 id="isa概述"><a class="markdownIt-Anchor" href="#isa概述"></a> ISA概述</h4>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">ISA的概念：All <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> programmer-visible components <span class="hljs-keyword">and</span> operations <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> computer.<br></code></pre></td></tr></table></figure>
+<pre><code class=" mermaid">graph LR;
+	0[ISA的构成] --- 1[内存 Memory];
+	0 --- 2[寄存器 Register];
+	2 -.- 为了减少读取内存时间的临时存储空间;
+	0 --- 3[指令集 Instruction Set];
+	3 --- 3.1[操作码 Opcode];
+	3 --- 3.2[数据类型 Data Type];
+	3 --- 3.3[寻址模式 Addressing Modes];
+	3.1 -.- 操作指令;
+	3.1 -.- 数据搬移指令;
+	3.1 -.- 控制指令;
+	3.2 -.- 补码整数;
+	3.3 -.- 4[非内存寻址];
+	3.3 -.- 5[内存寻址];
+	4 -.- 立即数寻址;
+	4 -.- 寄存器寻址;
+	5 -.- 相对寻址;
+	5 -.- 间接寻址;
+	5 -.- 基址偏移;
+</code></pre>
+<h4 id="指令及其寻址模式"><a class="markdownIt-Anchor" href="#指令及其寻址模式"></a> 指令及其寻址模式</h4>
+<p><strong>操作码对译</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作码</th>
+<th>指令</th>
+<th>寻址方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1001</td>
+<td>NOT</td>
+<td>寄存器寻址</td>
+</tr>
+<tr>
+<td>0001 (bit[5] = 0)</td>
+<td>ADD</td>
+<td>寄存器寻址</td>
+</tr>
+<tr>
+<td>0001 (bit[5] = 1)</td>
+<td>ADD</td>
+<td>立即数寻址</td>
+</tr>
+<tr>
+<td>0101 (bit[5] = 0)</td>
+<td>AND</td>
+<td>寄存器寻址</td>
+</tr>
+<tr>
+<td>0101 (bit[5] = 1)</td>
+<td>AND</td>
+<td>立即数寻址</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>LD</td>
+<td>PC相对寻址</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>LDI</td>
+<td>间接寻址</td>
+</tr>
+<tr>
+<td>0110</td>
+<td>LDR</td>
+<td>基址偏移寻址</td>
+</tr>
+<tr>
+<td>0011</td>
+<td>ST</td>
+<td>PC相对寻址</td>
+</tr>
+<tr>
+<td>1011</td>
+<td>STI</td>
+<td>间接寻址</td>
+</tr>
+<tr>
+<td>0111</td>
+<td>STR</td>
+<td>基址偏移寻址</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>LEA</td>
+<td>立即数寻址</td>
+</tr>
+<tr>
+<td>0000</td>
+<td>BR</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>操作指令</strong></p>
+<ol>
+<li>NOT 指令 <strong>1001</strong>：寄存器寻址</li>
+</ol>
+<p>​	<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204060844583.png" srcset="/img/loading.gif" lazyload alt="image-20220401114106569" /></p>
+<ol start="2">
+<li>ADD指令 <strong>0001</strong>：寄存器寻址/立即数寻址</li>
+</ol>
+<p>​		1. 寄存器寻址</p>
+<p>​			<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011147499.png" srcset="/img/loading.gif" lazyload alt="image-20220401114716282" /></p>
+<p>​		2. 立即数寻址</p>
+<p>​			立即数寻址即操作数可由指令直接获得，而不需要去任何内存/暂存区寻找。</p>
+<p>​		<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011630205.png" srcset="/img/loading.gif" lazyload alt="image-20220401163033992" /></p>
+<ol start="3">
+<li>
+<p>AND指令 <strong>0101</strong>：寄存器寻址/立即数寻址</p>
+<ol>
+<li>
+<p>寄存器寻址</p>
+<p>类似于ADD指令 仅操作码更改其它字段意义一样</p>
+</li>
+<li>
+<p>立即数寻址</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011630719.png" srcset="/img/loading.gif" lazyload alt="image-20220401163016256" /></p>
+</li>
+</ol>
+<p><strong>数据搬移指令</strong></p>
+<p>数据搬移指令的任务是在通用寄存器(GPR)和内存之间、寄存器和输入/输出设备之间搬动数据。</p>
+<pre><code class=" mermaid">graph LR;
+	寄存器 --存储--&gt; 内存;
+	内存 --装载--&gt; 寄存器
+</code></pre>
+<p>数据搬移指令的一般格式</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011547311.png" srcset="/img/loading.gif" lazyload alt="image-20220401154705061" /></p>
+<p>装载LD/存储ST/有效地址装在LEA：PC相对寻址/间接寻址/基址偏移寻址/立即数寻址</p>
+<ol>
+<li>
+<p>PC相对寻址</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-keyword">the</span> <span class="hljs-built_in">offset</span> which <span class="hljs-keyword">is</span> <span class="hljs-number">9</span> bits available <span class="hljs-keyword">for</span> address convert <span class="hljs-keyword">to</span> <span class="hljs-number">16</span> bits <span class="hljs-keyword">and</span> plus <span class="hljs-keyword">with</span> PC <span class="hljs-keyword">after</span> <span class="hljs-keyword">its</span>&#x27; increment.<br><span class="hljs-number">9</span> bits: <span class="hljs-number">-256</span> &lt;= <span class="hljs-built_in">offset</span> &lt;= +<span class="hljs-number">255</span><br><span class="hljs-keyword">the</span> address limit: PC - <span class="hljs-number">256</span> &lt;= memory &lt;= PC +<span class="hljs-number">255</span><br></code></pre></td></tr></table></figure>
+<p>LD指令 <strong>0010</strong></p>
+<p>ST指令 <strong>0011</strong></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011744882.png" srcset="/img/loading.gif" lazyload alt="image-20220401174417604" /></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">1</span><span class="hljs-string">.</span> <span class="hljs-string">对于补码整数求16位扩展，若首位为1则在首位前补齐1，首位为0则在首位前补齐0</span><br>   <span class="hljs-number">16</span><span class="hljs-string">位扩展转为16进制</span><br>   <span class="hljs-string">求得偏移值</span><br>   <span class="hljs-number">1</span> <span class="hljs-number">1010 </span><span class="hljs-number">1111</span> <span class="hljs-string">-&gt;</span> <span class="hljs-number">1111 </span><span class="hljs-number">1111 </span><span class="hljs-number">1010 </span><span class="hljs-number">1111</span> <span class="hljs-string">-&gt;</span> <span class="hljs-string">xFFAF</span><br><span class="hljs-number">2</span><span class="hljs-string">.</span> <span class="hljs-string">偏移值与已增量PC相加</span><br>   <span class="hljs-string">求得源内存地址</span><br>   <span class="hljs-string">x4018</span> <span class="hljs-string">-&gt;</span> <span class="hljs-string">x4019</span><br>   <span class="hljs-string">x4019</span> <span class="hljs-string">+</span> <span class="hljs-string">xFFAF</span> <span class="hljs-string">-&gt;</span> <span class="hljs-string">x3FC8</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>间接寻址</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">First address <span class="hljs-keyword">is</span> <span class="hljs-keyword">generated</span> <span class="hljs-keyword">from</span> PC <span class="hljs-keyword">and</span> IR(just <span class="hljs-keyword">like</span> PC-relative addressing), <span class="hljs-keyword">then</span> content <span class="hljs-keyword">of</span> that address <span class="hljs-keyword">is</span> used <span class="hljs-keyword">as</span> target <span class="hljs-keyword">for</span> <span class="hljs-keyword">load</span>/store.<br></code></pre></td></tr></table></figure>
+<p>LDI指令 <strong>1010</strong></p>
+<p>STI指令 <strong>1011</strong></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011839349.png" srcset="/img/loading.gif" lazyload alt="image-20220401183914024" /></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-number">1</span>. 对于补码整数求<span class="hljs-number">16</span>位扩展，若首位为<span class="hljs-number">1</span>则在首位前补齐<span class="hljs-number">1</span>，首位为<span class="hljs-number">0</span>则在首位前补齐<span class="hljs-number">0</span><br>   <span class="hljs-number">16</span>位扩展转为<span class="hljs-number">16</span>进制<br>   求得偏移值<br>   <span class="hljs-number">1</span> <span class="hljs-number">1100</span> <span class="hljs-number">1100</span> -&gt; <span class="hljs-number">1111</span> <span class="hljs-number">1111</span> <span class="hljs-number">1100</span> <span class="hljs-number">1100</span> -&gt; xFFCC<br><span class="hljs-number">2</span>. 偏移值与已增量PC相加<br>   求得源内存地址<br>   <span class="hljs-keyword">x</span><span class="hljs-number">4</span>A<span class="hljs-number">1</span>B -&gt; <span class="hljs-keyword">x</span><span class="hljs-number">4</span>A<span class="hljs-number">1</span>C<br>   <span class="hljs-keyword">x</span><span class="hljs-number">4</span>A<span class="hljs-number">1</span>C + xFFCC -&gt; <span class="hljs-keyword">x</span><span class="hljs-number">49E8</span><br><span class="hljs-number">3</span>. 读取<span class="hljs-keyword">x</span><span class="hljs-number">49E8</span>内容即为源内存地址：<span class="hljs-keyword">x</span><span class="hljs-number">2110</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>基址偏移寻址</p>
+<p>LDR指令 <strong>0110</strong></p>
+<p>STR指令 <strong>0111</strong></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204011919091.png" srcset="/img/loading.gif" lazyload alt="image-20220401191910834" /></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-number">1</span>. 对于补码整数求<span class="hljs-number">16</span>位扩展，若首位为<span class="hljs-number">1</span>则在首位前补齐<span class="hljs-number">1</span>，首位为<span class="hljs-number">0</span>则在首位前补齐<span class="hljs-number">0</span><br>   <span class="hljs-number">16</span>位扩展转为<span class="hljs-number">16</span>进制<br>   求得偏移值<br>   <span class="hljs-number">01</span> <span class="hljs-number">1101</span> -&gt; <span class="hljs-number">0000</span> <span class="hljs-number">0000</span> <span class="hljs-number">0001</span> <span class="hljs-number">1101</span> -&gt; <span class="hljs-keyword">x</span><span class="hljs-number">001</span>D<br><span class="hljs-number">2</span>. 读取R<span class="hljs-number">2</span>内容<span class="hljs-keyword">x</span><span class="hljs-number">2345</span><br>   <span class="hljs-keyword">x</span><span class="hljs-number">2345</span> + <span class="hljs-keyword">x</span><span class="hljs-number">001</span>D -&gt; <span class="hljs-keyword">x</span><span class="hljs-number">2362</span><br><span class="hljs-number">3</span>. 读取<span class="hljs-keyword">x</span><span class="hljs-number">2362</span>装入<span class="hljs-keyword">x</span><span class="hljs-number">0</span>F<span class="hljs-number">0</span>F装入R<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>立即数寻址</p>
+<p>有效地址装载指令LEA <strong>1110</strong></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204060852416.png" srcset="/img/loading.gif" lazyload alt="image-20220406085231282" /></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">1</span>.对于补码整数求<span class="hljs-number">16</span>位扩展， <br>  <span class="hljs-attribute">1</span> <span class="hljs-number">1111</span> <span class="hljs-number">1101</span> -&gt; <span class="hljs-number">1111</span> <span class="hljs-number">1111</span> <span class="hljs-number">1111</span> <span class="hljs-number">1101</span> -&gt; xFFFD<br><span class="hljs-attribute">2</span>.PC增量 + 偏移值<br>  <span class="hljs-attribute">x4019</span> + xFFFD -&gt; x4016<br><span class="hljs-attribute">3</span>.将计算得到的内存地址存入目的寄存器<br>  <span class="hljs-attribute">R5</span> -&gt; x4016<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>控制指令</strong></p>
+<p>条件跳转指令BR <strong>0000</strong></p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">条件码：<span class="hljs-number">3</span>个位寄存器N（负数）\<span class="hljs-built_in">Z</span>（<span class="hljs-number">0</span>）\P（正数）<br>每当寄存器被执行写入操作（<span class="hljs-keyword">ADD</span>\<span class="hljs-keyword">AND</span>\NOT\<span class="hljs-keyword">LD</span>\<span class="hljs-keyword">LDI</span>\LDR\LEA）时，根据写入结果，相应的条件位置<span class="hljs-number">1.</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204060903873.png" srcset="/img/loading.gif" lazyload alt="image-20220406090317697" /></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">1</span><span class="hljs-string">.对于补码整数求16位扩展，</span> <br>  <span class="hljs-number">0</span> <span class="hljs-number">1101 </span><span class="hljs-number">1001</span> <span class="hljs-string">-&gt;</span> <span class="hljs-number">0000 </span><span class="hljs-number">0000 </span><span class="hljs-number">1101 </span><span class="hljs-number">1001</span> <span class="hljs-string">-&gt;</span> <span class="hljs-string">x00D9</span><br><span class="hljs-number">2.</span><span class="hljs-string">PC增量</span> <span class="hljs-string">+</span> <span class="hljs-string">偏移值</span><br>  <span class="hljs-string">x4028</span> <span class="hljs-string">+</span> <span class="hljs-string">x00D9</span> <span class="hljs-string">-&gt;</span> <span class="hljs-string">x4101</span><br><span class="hljs-number">3.</span><span class="hljs-string">EXECUTE</span> <span class="hljs-string">phase</span> <span class="hljs-string">条件位为1，则检测对应条件码</span><br>  <span class="hljs-string">如条件位z为1，则检测条件码Z</span><br></code></pre></td></tr></table></figure>
+<p>–作业–</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204141826615.png" srcset="/img/loading.gif" lazyload alt="image-20220414182643516" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204141833926.png" srcset="/img/loading.gif" lazyload alt="image-20220414183324866" /></p>
+<h2 id="汇编语言"><a class="markdownIt-Anchor" href="#汇编语言"></a> 汇编语言</h2>
+<h3 id="1名词-6"><a class="markdownIt-Anchor" href="#1名词-6"></a> 1）名词</h3>
+<table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>instruction</td>
+<td>指令</td>
+<td></td>
+</tr>
+<tr>
+<td>comment</td>
+<td>注释</td>
+<td></td>
+</tr>
+<tr>
+<td>assember directive (pseudo-op)</td>
+<td>汇编指令/伪操作</td>
+<td></td>
+</tr>
+<tr>
+<td>optional/mandatory</td>
+<td>可选的/必需的</td>
+<td></td>
+</tr>
+<tr>
+<td>assembler</td>
+<td>汇编器</td>
+<td></td>
+</tr>
+<tr>
+<td>assembly</td>
+<td>汇编</td>
+<td></td>
+</tr>
+<tr>
+<td>Location Center(LC)</td>
+<td>地址跟踪计数器</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2知识点-6"><a class="markdownIt-Anchor" href="#2知识点-6"></a> 2）知识点</h3>
+<h4 id="考点总结-4"><a class="markdownIt-Anchor" href="#考点总结-4"></a> 考点总结</h4>
+<ol>
+<li>
+<p>指令转机器码</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281012880.png" srcset="/img/loading.gif" lazyload alt="image-20220428101222774" /></p>
+</li>
+<li>
+<p>机器码转指令</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281105675.png" srcset="/img/loading.gif" lazyload alt="image-20220428110534617" /></p>
+</li>
+<li>
+<p>解读汇编程序</p>
+<ol>
+<li>
+<p>伪操作</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291432712.png" srcset="/img/loading.gif" lazyload alt="image-20220429143241652" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291359904.png" srcset="/img/loading.gif" lazyload alt="image-20220429135919854" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291433027.png" srcset="/img/loading.gif" lazyload alt="image-20220429143353947" /></p>
+</li>
+<li>
+<p>指令</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown">判断指令类型，如<br><span class="hljs-bullet">	*</span> 地址装载：装载标号标记的地址<br><span class="hljs-bullet">	*</span> 内容装载：装载标号标记的地址中的存储内容<br><span class="hljs-bullet">	*</span> 间接寻址：装载标号标记的地址中存储的地址中的存储内容<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291420138.png" srcset="/img/loading.gif" lazyload alt="image-20220429142028071" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281114791.png" srcset="/img/loading.gif" lazyload alt="image-20220428111401730" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281124149.png" srcset="/img/loading.gif" lazyload alt="image-20220428112422088" /><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281130628.png" srcset="/img/loading.gif" lazyload alt="image-20220428113016557" /></p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206150910442.png" srcset="/img/loading.gif" lazyload alt="image-20220615091052383" /></p>
+</li>
+<li>
+<p>编写汇编程序</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281134162.png" srcset="/img/loading.gif" lazyload alt="image-20220428113419109" /></p>
+</li>
+</ol>
+<h4 id="汇编语言的构成"><a class="markdownIt-Anchor" href="#汇编语言的构成"></a> 汇编语言的构成</h4>
+<p>汇编程序被称作 <strong>汇编器</strong>， 翻译过程称为 <strong>汇编</strong>，汇编语言由以下三个部分构成</p>
+<p>注释</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-comment">; 注释以“;”开头</span><br></code></pre></td></tr></table></figure>
+<h4 id="指令"><a class="markdownIt-Anchor" href="#指令"></a> 指令</h4>
+<p>一条指令的构成</p>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204201242640.png" srcset="/img/loading.gif" lazyload alt="image-20220411201510614" /></p>
+<ul>
+<li>
+<p>关于<strong>标号</strong>：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs subunit">指向内存单元的一个符号名，类似于标记地址的变量在程序中被引用。<br><br>* 赋值<br>汇编程序采用地址跟踪计数器（LC），从.ORIG伪操作标识地址开始，每成功识别一条有效指令，LC增量。如果该指令行头部存在“标识”字段，则为该标识创建符号表项即二元组[符号，地址值]，其中地址值就是LC计数器的当前内容。<br>e.g:<br>	  .ORIG X3000<br>	  AND R2,R2,#0<br><span class="hljs-keyword">TEST  </span>ADD R4,R2,#<span class="hljs-string">-1</span><br>得到符号表：<br><span class="hljs-keyword">TEST </span>x3001<br><br>* 引用<br>需要显示访问内存时将被引用<br>1）跳转指令的跳转内存地址<br>2）load/store指令的访问内存地址<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>关于 <strong>操作码/操作数</strong>：</p>
+<p>与机器指令各个字段意义的格式一致，一般包括操作/目的（源）寄存器/访问内存/；立即数</p>
+<p>立即数的标识符表示其进制</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-comment">#十进制</span><br><span class="hljs-keyword">b二进制</span><br><span class="hljs-keyword"></span>x十六进制<br></code></pre></td></tr></table></figure>
+<p>对于比较特殊的TRAP指令，我们可以将其如下表示：</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>指令</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HALT</td>
+<td>TRAP x25</td>
+<td><strong>Halt execution and print message to console.</strong><br/>停止执行并将消息打印到控制台。</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>TRAP x23</td>
+<td><strong>Print prompt on console,</strong><strong>read (and echo) one character from keybd.</strong><strong>Character stored in R0[7:0].</strong><br/>在控制台打印提示符，从键盘读取并回显一个字符，存储在R0。</td>
+</tr>
+<tr>
+<td>OUT</td>
+<td>TRAP x21</td>
+<td><strong>Write one character (in R0[7:0]) to console.</strong><br/>向控制台写入一个字符（在R0）。</td>
+</tr>
+<tr>
+<td>GETC</td>
+<td>TRAP x20</td>
+<td><strong>Read one character from keyboard. Character stored in R0[7:0].</strong><br/>从键盘读取一个字符，字符存储在R0。</td>
+</tr>
+<tr>
+<td>PUTS</td>
+<td>TRAP x22</td>
+<td><strong>Write null-terminated string to console.</strong><strong>Address of string is in R0.</strong><br/>将以空字符结束的字符串写入控制台。字符串的地址在R0中。</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="伪操作"><a class="markdownIt-Anchor" href="#伪操作"></a> 伪操作</h4>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">.伪操作以“.”开头<br></code></pre></td></tr></table></figure>
+<p>伪操作的构成与指令类似，由 <strong>标号（可选）、伪操作、地址/操作对象</strong> 组成，一般用来标记内存地址</p>
+<table>
+<thead>
+<tr>
+<th>LC-3汇编器的伪操作</th>
+<th>意义</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.ORIG</td>
+<td>汇编程序开始的内存地址</td>
+<td>.ORIG x3000<br/>程序从PC: x3000开始</td>
+</tr>
+<tr>
+<td>.FILL</td>
+<td>填充操作数</td>
+<td>.ORIG X3000<br/>          AND R2,R2,#0<br/>TEST  ADD R4,R2,#-1<br/>PTR    .FILL x4000<br/>PTR标记的内存地址x3002被写入x4000</td>
+</tr>
+<tr>
+<td>.BLKW</td>
+<td>从当前地址开始分配由操作数决定个数的内存单元空间</td>
+<td>.ORIG X3000<br/>           AND R2,R2,#0<br/>TEST   ADD R4,R2,#-1<br/>PTR    .FILL x4000</td>
+</tr>
+<tr>
+<td>.STRINGZ</td>
+<td>.从当前连续占用并初始化n+1个内存单元，其参数(或操作数)是双括号括起来的n个字符。<br/>n+1个内存单元的前n个字的内容分别是字符串对应字符的ASCII码的零扩展(zero-extend)值，内存的最后一个字则被初始化为0。<br/>最后的这个字符x0000通常为ASCII码字符串的处理提供了哨兵机制。</td>
+<td><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291353939.png" srcset="/img/loading.gif" lazyload alt="image-20220429135302896" /><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291355421.png" srcset="/img/loading.gif" lazyload alt="image-20220429135545374" /><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291356689.png" srcset="/img/loading.gif" lazyload alt="image-20220429135629643" /></td>
+</tr>
+<tr>
+<td>.END</td>
+<td>程序结束</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="汇编程序的执行过程"><a class="markdownIt-Anchor" href="#汇编程序的执行过程"></a> 汇编程序的执行过程</h4>
+<p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281027881.png" srcset="/img/loading.gif" lazyload alt="image-20220428102717810" /></p>
+<p>两遍扫描</p>
+<p>第一遍：构建符号表</p>
+<ol>
+<li>
+<p>丢弃注释</p>
+</li>
+<li>
+<p>从<code>.ORIG</code>开始，对应的初始地址如<code>ORIG</code>所示，并据此将地址跟踪计数器<code>LC</code>初始化。</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">LC:</span> x3000 / x3000: <span class="hljs-keyword">AND</span> <span class="hljs-built_in">R2</span>,<span class="hljs-built_in">R2</span>,<span class="hljs-meta">#0</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p><em>每成功识别出一条有效指令</em>，LC增量(加1)。如果该指令行头部存在“标识”字段，则为该标识创建符号表项即二元组[符号，地址值]，其中地址值就是LC计数器的当前内容。</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">LC:</span> x3001 / x3001: <span class="hljs-keyword">LD</span>,<span class="hljs-built_in">R3</span>,PTR<br><span class="hljs-symbol">LC:</span> x3002 / x3002: TRAP x23<br><span class="hljs-symbol">LC:</span> x3003 / x3003: LDR <span class="hljs-built_in">R1</span>,<span class="hljs-built_in">R3</span>,<span class="hljs-meta">#0 </span><br><span class="hljs-symbol">LC:</span> x3004 / TEST -&gt; LCx3004 / x3004: <span class="hljs-keyword">ADD</span> <span class="hljs-built_in">R4</span>,<span class="hljs-built_in">R1</span>,<span class="hljs-meta">#-4</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>提取符号表</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">TEST 		</span>-&gt; x3004<br>GETCHAR 	-&gt; x300B<br>OUTPUT  	-&gt; x300E<br>ASCII   	-&gt; x3012<br>PTR     	-&gt; x3013<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>第二遍：生成机器语言程序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><code class="hljs LC```读取规则依旧如上，在符号表的帮助下每个有效指令行都将被翻译成一条机器指令。"><br>![image-20220428104810417](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204281048482.png)<br><br><br><br>## I/O设备<br><br>### 1）名词<br><br>| 英文                 | 中文                      | 释义                                                         |<br>| -------------------- | ------------------------- | ------------------------------------------------------------ |<br>| device register      | 设备寄存器                |                                                              |<br>| I/O controller       | I/O控制器                 |                                                              |<br>| Control Registers    | 控制寄存器                |                                                              |<br>| Status Register      | 状态寄存器                |                                                              |<br>| Data Register        | 数据寄存器                |                                                              |<br>| Device electronics   | 输入输出设备/外设/I/O设备 |                                                              |<br>| Memory-mapped        | 内存映射I/O指令           | 采用专门的I/O指令完成I/O操作                                 |<br>| special instructions | 专用I/O指令               | 采用内存操作指令完成I/O操作，将内存地址映射给I/O设备寄存器，并用LD/ST指令完成数据转移操作 |<br>| Asynchronous         | 异步I/O                   |                                                              |<br>| Synchronous          | 同步I/O                   |                                                              |<br>| interrupt-driven     | 中断驱动                  | I/O设备控制                                                  |<br>| polling              | 轮询                      | 处理器控制                                                   |<br>| KBSR                 | 键盘状态寄存器            | ![image-20220429113623183](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291136225.png) |<br>| KBDR                 | 键盘数据寄存器            | ![image-20220429113610622](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291136700.png) |<br>| DSR                  | 输出状态寄存器            | ![image-20220429115226226](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291152270.png) |<br>| DDR                  | 输出数据寄存器            | ![image-20220429115203979](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291152031.png) |<br>| ready bit            | 状态标志                  |                                                              |<br>| interrupt enable bit | 中断使能标志              |                                                              |<br>|                      |                           |                                                              |<br><br><br><br>### 3）知识点<br><br>#### 内存映射/专用/同步/异步<br><br>**I/O控制器**<br><br>--作业--<br><br>![image-20220429144243117](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291442166.png)<br><br><br><br>**内存映射I/O 专用I/O**<br><br>1. 内存映射I/O指令<br><br>   分配地址空间标识给输入输出设备的数据寄存器，指令操作如常。<br><br>2. 专用I/O指令<br><br>   为I/O指令设计专门的操作码。<br><br>--作业--<br><br>![image-20220429144208658](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291442706.png)<br><br><br><br>**异步I/O 同步I/O**<br><br>1. 异步I/O<br><br>   数据输入的速率未知，需要通过一定的协议/握手机制实现外设和处理器间的同步（如```KBSR```的标志位```ready bit```）。<br><br>2. 同步I/O<br><br>   数据输入的速率恒定，处理器经过固定时钟周期后读取数据。<br><br><br><br><br><br>#### 轮询I/O<br><br>处理器控制交互<br><br>*输入过程*<br><br>| 代号 | 设备           | 地址   | 字段                           |<br>| ---- | -------------- | ------ | ------------------------------ |<br>| KBSR | 键盘状态寄存器 | 0xFE00 | KBSR[15] -&gt; 单位的状态寄存器   |<br>| KBDR | 键盘数据寄存器 | 0xFE02 | KBDR[7:0] -&gt; 输入数据的ASCII值 |<br><br>KBSR[15]：控制处理器(快速)和键盘(慢速)之间的同步<br><br>- KBSR[15] = 0，键盘可以继续输入，当某个按键被按下时，结束本次键盘输入，该键对应ASCII值存入KBDR[7:0]，KBSR[15]置1<br>- KBSR[15] = 1，键盘无法继续输入，LC-3开始读取KBDR，读取完毕，KBSR[15]置0<br><br>![image-20220429114744863](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291147913.png)<br><br><br><br>*输出过程*<br><br>| 代号 | 设备           | 地址   | 字段                          |<br>| ---- | -------------- | ------ | ----------------------------- |<br>| DSR  | 输出状态寄存器 | 0xFE04 | DSR[15] -&gt; 单位的状态寄存器   |<br>| DDR  | 输出数据寄存器 | 0xFE06 | DDR[7:0] -&gt; 输入数据的ASCII值 |<br><br>--作业--<br><br>![image-20220429124257454](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291242513.png)<br><br><br><br><br><br>#### 中断驱动I/O<br><br>I/O设备控制交互<br><br>1. 中断信号的产生<br><br></code></pre></td></tr></table></figure>
+<p>[15]:ready bit, 标识输入设备是否可以被读取/输出设备是否可以读取<br />
+[14]:interrupt enable bit(IE),<br />
+IE置1, 处理器可接受中断信号, 中断驱动I/O<br />
+IE置0, 处理器禁止接受中断信号, 轮询I/O</p>
+<p>因此，当IE, ready同时置1, 设备就会产生中断信号</p>
+   <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs gherkin"><br>   <br><br>![image-20220429122720728](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291227768.png)<br><br>2. 中断信号的检测<br><br>   在STORE RESULT的同时还将进行中断信号INT（IE/ready）的检测。<br><br><br><br><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span>程序优先级<span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><br><br>LC-3定义了8个优先级别（PL0-PL7），数值越大对应的优先级越高。一个程序的PL通常与请求运行该程序的PL (即紧迫度)相同。如果<br>程序当前正运行在一个特定的PL，而此时来了一个更高PL级别的计算机访问请求，则当前这个优先级较低的程序将被挂起，直到更高优先级的程序完成那个请求之后，被挂起的程序才被恢复执行。<br><br><br><br>-作业--<br><br>![image-20220429123912837](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204291239897.png)<br><br><br><br><span class="hljs-comment">## TRAP指令 </span><br><br><span class="hljs-comment">### 1）名词</span><br><br>|<span class="hljs-string"> 英文                                     </span>|<span class="hljs-string"> 中文                                 </span>|<span class="hljs-string"> 释义                                                         </span>|<br>|<span class="hljs-string"> ---------------------------------------- </span>|<span class="hljs-string"> ------------------------------------ </span>|<span class="hljs-string"> ------------------------------------------------------------ </span>|<br>|<span class="hljs-string"> service call / system call               </span>|<span class="hljs-string"> 服务调用 / 系统调用                  </span>|<span class="hljs-string">                                                              </span>|<br>|<span class="hljs-string"> operating system(OS)                     </span>|<span class="hljs-string"> 操作系统                             </span>|<span class="hljs-string"> 拥有特权权限的程序                                           </span>|<br>|<span class="hljs-string"> service routine                          </span>|<span class="hljs-string"> 服务程序                             </span>|<span class="hljs-string"> 由操作系统提供，以用户身份执行。服务程序中封装了一系列输入输出操作，每个程序起始于固定的内存地址。LC-3最多支持256个服务程序。 </span>|<br>|<span class="hljs-string"> System Control Block / Trap Vector Table </span>|<span class="hljs-string"> 起始地址表 / 系统控制块 / 陷入矢量表 </span>|<span class="hljs-string"> 位于内存`x000`-`x00FF`，包含256个服务程序的起始地址。        </span>|<br>|<span class="hljs-string"> linkage                                  </span>|<span class="hljs-string"> 链接                                 </span>|<span class="hljs-string"> 操作系统提供的返回用户程序的机制。                           </span>|<br>|<span class="hljs-string"> trap vector                              </span>|<span class="hljs-string"> 陷入矢量                             </span>|<span class="hljs-string">                                                              </span>|<br>|<span class="hljs-string"> subroutine                               </span>|<span class="hljs-string"> 子程序                               </span>|<span class="hljs-string"> 类似于服务程序，但不是操作系统的组成部分，属于用户程序。     </span>|<br>|<span class="hljs-string">                                          </span>|<span class="hljs-string">                                      </span>|<span class="hljs-string">                                                              </span>|<br><br><br><br><span class="hljs-comment">### 2）知识点</span><br><br><span class="hljs-comment">#### TRAP机制</span><br><br>为简化底层I/O的操作，我们使用`TRAP`指令跳转执行操作系统中封装的处理I/O请求的服务程序。<br><br>![image-20220605180119696](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206051801747.png)<br><br><br><br>使用`TRAP指令`调用`OS`的服务程序执行输入输出操作。<br><br>![TRAP指令](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205052029499.png)<br><br></code></pre></td></tr></table></figure>
+<ol>
+<li>对于陷入矢量求16位扩展<br />
+00100011 -&gt; x0023</li>
+<li>读取该地址的内容, 即服务程序的起始地址<br />
+x0023 -&gt; x04A0</li>
+<li>服务程序执行至&quot;IMP R7&quot;(RET指令)返回用户程序 [链接机制]</li>
+</ol>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs gherkin"><br>![image-20220605180325304](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206051803352.png)<br><br>`<span class="hljs-string">&quot;JMP R7&quot;</span> / RET指令`<br><br>![RET指令](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202205052050991.png)<br><br>`TRAP`服务程序的结尾指令，链接回`TRAP`指令的下一指令<br><br><br><br><span class="hljs-comment"># C的底层</span><br><br><span class="hljs-comment">## C程序</span><br><br><span class="hljs-comment">### 1）名词</span><br><br>|<span class="hljs-string"> 英文                   </span>|<span class="hljs-string"> 中文       </span>|<span class="hljs-string"> 释义                                                         </span>|<br>|<span class="hljs-string"> ---------------------- </span>|<span class="hljs-string"> ---------- </span>|<span class="hljs-string"> ------------------------------------------------------------ </span>|<br>|<span class="hljs-string"> Command line arguments </span>|<span class="hljs-string"> 命令行参数 </span>|<span class="hljs-string">                                                              </span>|<br>|<span class="hljs-string"> argument count         </span>|<span class="hljs-string"> 参数个数   </span>|<span class="hljs-string">                                                              </span>|<br>|<span class="hljs-string"> bitwise operations     </span>|<span class="hljs-string"> 位运算符   </span>|<span class="hljs-string"> Bitwise operations apply the operations to the bits of variables </span>|<br>|<span class="hljs-string">                        </span>|<span class="hljs-string">            </span>|<span class="hljs-string">                                                              </span>|<br>|<span class="hljs-string">                        </span>|<span class="hljs-string">            </span>|<span class="hljs-string">                                                              </span>|<br>|<span class="hljs-string">                        </span>|<span class="hljs-string">            </span>|<span class="hljs-string">                                                              </span>|<br>|<span class="hljs-string">                        </span>|<span class="hljs-string">            </span>|<span class="hljs-string">                                                              </span>|<br>|<span class="hljs-string">                        </span>|<span class="hljs-string">            </span>|<span class="hljs-string">                                                              </span>|<br><br><br><br><span class="hljs-comment">### 2）知识点</span><br><br><span class="hljs-comment">### 格式化打印输出</span><br><br>`%d`：输出十进制整数<br><br>`%x`：输出十六进制整数<br><br>`%c`：输出单个字符 (数字转换为ASCII对应字符)<br><br>`%p`：.0以十六进制整数方式，附加前缀`0x`，打印指针<br><br>`%lx`：不带前缀`0x`的十六进制长整型<br><br>`%02x`：不带前缀`0x`的十六进制整数，不足2位左端补0，超过2位实际输出<br><br>`%2x`：不补0的`%02x`<br><br><br><br>--作业--<br><br><span class="hljs-variable">&lt;img src=&quot;https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206121716620.png&quot; alt=&quot;image-20220612171606535&quot;  /&gt;</span><br><br><br><br><br><br><span class="hljs-comment">### 指针</span><br><br><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span>指针运算符<span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><br><br>`<span class="hljs-symbol">*</span>n`：间接引用符，获取地址对应变量内容<br><br>`&amp;n`：地址运算符，获取变量内容对应地址<br><br>`int<span class="hljs-symbol">*</span>`：指针类型<br><br>--作业-- <br><br>![image-20220612180643934](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206121806997.png)![image-20220612181902558](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206121819609.png)<br><br><span class="hljs-symbol">*</span><span class="hljs-symbol">*</span>字符数组和字符指针<span class="hljs-symbol">*</span><span class="hljs-symbol">*</span><br><br>字符数组<br><br>- 声明<br><br></code></pre></td></tr></table></figure>
+<p>char a[10];     //一维字符数组<br />
+char b[5][10];  //二维字符数组<br />
+char c[20]={‘c’, ’  ', ‘p’, ‘r’, ‘o’, ‘g’, ‘r’, ‘a’,‘m’};  // 给部分数组元素赋值<br />
+//对全体元素赋值（可以省略数组长度）<br />
+char d[]={‘c’, ‘.’, ‘p’, ‘r’, ‘o’, ‘g’, ‘r’, ‘a’, ‘m’ };<br />
+char d[]={“c.program”};<br />
+/* 由于字符串的结束标志是 \0(ASCII0字符) ,由&quot; &quot;包围的字符串会自动在末尾添加,数组化字符串时要注意其长度<br />
+char d[]=“c.program”;</p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs"><br><br><br>字符指针<br><br></code></pre></td></tr></table></figure>
+<p>char <em>p = “c.program”;  // 字符型指针用char</em>定义，存储字符串第一个字符的地址</p>
+<div class="code-wrapper"><pre class="highlight"><code class="">
+
+
+--作业--
+
+![image-20220613222147609](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206132221733.png)
+
+
+
+### 命令行参数
+
+**函数参数**
+
+调用程序传递参数给函数，函数中将使用参数的副本。因此函数中参数值更改与其调用程序无关。
+
+
+
+**命令行参数**
+
+`int main ( int argc, char *argv[] )`
+
+- `argc `：传给程序的参数个数（包括程序名）
+- `argv[]`：参数列表，其中每一个元素对应的是指向每个参数首个地址的指针，对应索引如下![image-20220612172539002](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206121725046.png)
+
+
+
+--作业--
+
+&lt;img src=&quot;https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206121737606.png&quot; alt=&quot;image-20220612173730551&quot;  /&gt;![image-20220612173947452](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206121739510.png)
+
+
+
+### 位运算符
+
+对两个变量按位运算
+
+![image-20220613204807652](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206132048811.png)
+
+
+
+--作业--
+
+![image-20220612184611615](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206121846662.png)![image-20220612202802687](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206122028784.png)
+
+![image-20220613211233590](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206132112740.png)
+
+## 运行机制
+
+### 1）名词
+
+| 英文                                                  | 中文                  | 释义                                             |
+| ----------------------------------------------------- | --------------------- | ------------------------------------------------ |
+| Run-time stack                                        | 运行时栈              |                                                  |
+| frame pointer                                         | 帧指针                |                                                  |
+| declaration / function call (invocation) / definition | 函数声明 / 调用/ 定义 |                                                  |
+| Activation record                                     | 活动记录              | 存储局部变量的栈帧的所在地，帧指针标记其起始地址 |
+| bookkeeping                                           | 备忘                  |                                                  |
+| Dynamic link                                          | 动态链                |                                                  |
+
+
+
+### 2）知识点
+
+#### 变量的空间分配
+
+![image-20220614170928988](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141709064.png)
+
+
+
+--作业 --
+
+![image-20220614095016642](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206140950702.png)![image-20220614095329931](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206140953993.png)
+
+![image-20220614095830312](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206140958386.png)![image-20220614100805783](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141008862.png)
+
+
+
+#### 控制结构
+
+--作业--
+
+![image-20220614104638853](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141046915.png)![image-20220614104658290](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141046360.png)
+
+![image-20220614105020342](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141050402.png)![image-20220614105329704](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141053773.png)
+
+![image-20220614105904354](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141059415.png)![image-20220614110111873](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141101941.png)
+
+#### 函数
+
+调用函数时内存结构
+
+- 动态链：存入调用者的帧指针
+- 返回地址：调用者程序中下一指令的地址，返回时存入`R7`，使用`JSR`指令回调用者程序
+- 返回值：被调用者传递给调用者的值
+
+&lt;img src=&quot;https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141325432.png&quot; alt=&quot;image-20220614132529359&quot; style=&quot;zoom: 80%;&quot; /&gt;
+
+--作业--
+
+&lt;img src=&quot;https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141344920.png&quot; alt=&quot;image-20220614134435849&quot; style=&quot;zoom:80%;&quot; /&gt;
+
+![image-20220614133953939](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141339985.png)
+
+传递形参的指令
+
+&lt;img src=&quot;https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141357535.png&quot; alt=&quot;image-20220614135704471&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;img src=&quot;https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141405697.png&quot; alt=&quot;image-20220614140515620&quot; style=&quot;zoom:80%;&quot; /&gt;
+
+装载帧指针的指令
+
+![image-20220614165419495](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141654552.png)
+
+返回值并退出函数
+
+![image-20220614171548513](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141715582.png)![image-20220614171835868](https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202206141718933.png)
+</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/CS%E5%9F%BA%E7%A1%80/">CS基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%A6%E6%A0%A1%E8%AF%BE%E7%A8%8B/">学校课程</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CS%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/">CS理论基础</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据结构与算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/01/JAVA%E5%9F%BA%E7%A1%80/">
+                        <span class="hidden-mobile">Java基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            ✨&nbsp总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            💫&nbsp总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

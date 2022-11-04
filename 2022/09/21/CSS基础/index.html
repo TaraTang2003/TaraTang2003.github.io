@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Cosmo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 语法 层叠样式表 (Cascading Style Sheets) 组成部分：   选择器  指定 HTML 元素    声明块  声明块被花括号包裹 声明块包含一或多条声明，分号分隔 每条声明是一个属性和值的键值对      选择器 CSS选择器 基本选择器   通配选择器 (universal selector)  选择所有元素。可以将其限制为特定的名称空间或所有名称空间 ()。 12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS基础">
+<meta property="og:url" content="http://example.com/2022/09/21/CSS%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Cosmo&#39;s Kingdom">
+<meta property="og:description" content="1. 语法 层叠样式表 (Cascading Style Sheets) 组成部分：   选择器  指定 HTML 元素    声明块  声明块被花括号包裹 声明块包含一或多条声明，分号分隔 每条声明是一个属性和值的键值对      选择器 CSS选择器 基本选择器   通配选择器 (universal selector)  选择所有元素。可以将其限制为特定的名称空间或所有名称空间 ()。 12">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209201048719.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209202006358.png">
+<meta property="article:published_time" content="2022-09-21T01:16:37.714Z">
+<meta property="article:modified_time" content="2022-09-21T01:16:20.067Z">
+<meta property="article:author" content="Cosmo">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209201048719.png">
+  
+  
+  <title>CSS基础 - Cosmo&#39;s Kingdom</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cosmo&#39;s Kingdom</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                查看
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-exp-fill"></i>
+                乐园
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/books/">
+                    
+                    书
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/movies/">
+                    
+                    影
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/travel/">
+                    
+                    足迹
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CSS基础">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-09-21 09:16" pubdate>
+        2022年9月21日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      40 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CSS基础</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年9月21日 上午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="1-语法"><a class="markdownIt-Anchor" href="#1-语法"></a> 1. 语法</h1>
+<p>层叠样式表 (Cascading Style Sheets) 组成部分：</p>
+<ol>
+<li>
+<p>选择器</p>
+<blockquote>
+<p>指定 <code>HTML</code> 元素</p>
+</blockquote>
+</li>
+<li>
+<p>声明块</p>
+<blockquote>
+<p>声明块被花括号包裹</p>
+<p>声明块包含一或多条声明，分号分隔</p>
+<p>每条声明是一个属性和值的键值对</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209201048719.png" srcset="/img/loading.gif" lazyload alt="css组成" /></p>
+<h2 id="选择器"><a class="markdownIt-Anchor" href="#选择器"></a> 选择器</h2>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Selectors">CSS选择器</a></p>
+<p><strong>基本选择器</strong></p>
+<ul>
+<li>
+<p>通配选择器 (universal selector)</p>
+<blockquote>
+<p>选择所有元素。可以将其限制为特定的名称空间或所有名称空间 (<span>)。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs css">*<span class="hljs-selector-attr">[lang^=en]</span>&#123;<span class="hljs-attribute">color</span>:green;&#125;<br>*<span class="hljs-selector-class">.warning</span> &#123;<span class="hljs-attribute">color</span>:red;&#125;<br>*<span class="hljs-selector-id">#maincontent</span> &#123;<span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid blue;&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;warning&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en-us&quot;</span>&gt;</span>A green span<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> in a red paragraph.<br><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;maincontent&quot;</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en-gb&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;warning&quot;</span>&gt;</span>A red span<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> in a green paragraph.<br><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p>元素/类型选择器 (type selector)</p>
+<blockquote>
+<p>选择给定名称所有匹配元素。语法：<code>&lt;elementname&gt;</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">span</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: DodgerBlue;<br>  <span class="hljs-attribute">color</span>: <span class="hljs-number">#ffffff</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p>元素选择器 (type selector)</p>
+<blockquote>
+<p>按照给定的 <code>class</code> 属性的值，选择所有匹配的元素。语法：<code>.&lt;classname&gt;</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">span</span><span class="hljs-selector-class">.classy</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: DodgerBlue;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;classy&quot;</span>&gt;</span>Here&#x27;s a span with some text.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Here&#x27;s another.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p><code>ID</code>选择器 (ID selector)</p>
+<blockquote>
+<p>按照 <code>id</code> 属性选择一个与之匹配的元素 (同一文件下<code>id</code>唯一)。语法：<code>#&lt;idname&gt;</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">span</span><span class="hljs-selector-id">#identified</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: DodgerBlue;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;identified&quot;</span>&gt;</span>Here&#x27;s a span with some text.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Here&#x27;s another.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p>属性选择器 (attribute selector)</p>
+<blockquote>
+<p>通过已经存在的属性名或属性值匹配元素。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/*</span><br><span class="hljs-comment">a[attr]: 带有以 attr 命名的属性的元素</span><br><span class="hljs-comment">a[attr=value]: 带有以 attr 命名的属性，且属性值为 value 的元素</span><br><span class="hljs-comment">a[attr`=value]: 带有以 attr 命名的属性，且属性值是以 value 开头的元素</span><br><span class="hljs-comment">a[attr$=value]: 带有以 attr 命名的属性，且属性值是以 value 结尾的元素</span><br><span class="hljs-comment">*/</span><br><span class="hljs-selector-tag">a</span> &#123;<br>  <span class="hljs-attribute">color</span>: blue;<br>&#125;<br><span class="hljs-comment">/* 以 &quot;#&quot; 开头的页面本地链接 */</span><br><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[href`=<span class="hljs-string">&quot;#&quot;</span>]</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: gold;<br>&#125;<br><span class="hljs-comment">/* 包含 &quot;example&quot; 的链接 */</span><br><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[href*=<span class="hljs-string">&quot;example&quot;</span>]</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: silver;<br>&#125;<br><span class="hljs-comment">/* 包含 &quot;insensitive&quot; 的链接，不区分大小写 */</span><br><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[href*=<span class="hljs-string">&quot;insensitive&quot;</span> i]</span> &#123;<br>  <span class="hljs-attribute">color</span>: cyan;<br>&#125;<br><span class="hljs-comment">/* 包含 &quot;cAsE&quot; 的链接，区分大小写 */</span><br><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[href*=<span class="hljs-string">&quot;cAsE&quot;</span> s]</span> &#123;<br>  <span class="hljs-attribute">color</span>: pink;<br>&#125;<br><span class="hljs-comment">/* 以 &quot;.org&quot; 结尾的链接 */</span><br><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[href$=<span class="hljs-string">&quot;.org&quot;</span>]</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#internal&quot;</span>&gt;</span>Internal link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;http://example.com&quot;</span>&gt;</span>Example link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#InSensitive&quot;</span>&gt;</span>Insensitive internal link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;http://example.org&quot;</span>&gt;</span>Example org link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202209202006358.png" srcset="/img/loading.gif" lazyload alt="效果" /></p>
+</blockquote>
+</li>
+</ul>
+<p><strong>分组选择器（Grouping selectors）</strong></p>
+<ul>
+<li>
+<p>选择器列表 (selector list)</p>
+<blockquote>
+<p>多个选择器的组合。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#main</span>,<br><span class="hljs-selector-class">.content</span>,<br><span class="hljs-selector-tag">article</span> &#123;<br>  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.1em</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p><strong>组合器（Combinators）</strong></p>
+<ul>
+<li>
+<p>后代组合器（Descendant combinator）</p>
+<blockquote>
+<p>“ ”（空格）组合器选择前一个元素的后代节点。语法：<code>&lt;A&gt; &lt;B&gt;</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* </span><br><span class="hljs-comment">List items that are descendants of the &quot;my-things&quot; list </span><br><span class="hljs-comment">匹配所有位于任意 div 中的 span 元素</span><br><span class="hljs-comment">*/</span><br><span class="hljs-selector-tag">div</span> <span class="hljs-selector-tag">span</span> &#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">2em</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p>直接子代组合器（Child combinator）</p>
+<blockquote>
+<p><code>&gt;</code> 组合器选择前一个元素的直接子代的节点。 语法：<code>A &gt; B</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&gt;<span class="hljs-selector-tag">p</span><br>&#123;<br>	<span class="hljs-attribute">background-color</span>:yellow;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>I will be styled.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>I will not be styled.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p>一般兄弟组合器（General sibling combinato）</p>
+<blockquote>
+<p><code>~</code> 组合器选择兄弟元素。同层级元素，后一个节点在前一个节点后面的任意位置。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">p</span> ~ <span class="hljs-selector-tag">span</span> &#123;<br>  <span class="hljs-attribute">color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Here is a paragraph.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>Here is some code.<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>And here is a span.<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li>
+<p>紧邻兄弟组合器（Adjacent sibling combinator）</p>
+<blockquote>
+<p><code>+</code> 组合器选择相邻元素。同层级元素，即后一个元素紧跟在前一个之后。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 图片后面紧跟着的段落将被选中 */</span><br><span class="hljs-selector-tag">img</span> + <span class="hljs-selector-tag">p</span> &#123;<br>  <span class="hljs-attribute">font-weight</span>: bold;<br>&#125;<br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p><strong>伪选择器（Pseudo）</strong></p>
+<ul>
+<li>
+<p>伪类</p>
+<blockquote>
+<p>是通过 <code>:</code> 添加到选择器的关键字，指定要选择的元素的特殊状态。</p>
+<p>LVHA 顺序 (对于<code>&lt;a&gt;</code>标签，有特殊的样式定义先后顺序)</p>
+<ul>
+<li><code>a:link</code> 超链接的默认样式</li>
+<li><code>a:visited</code> 已经访问过的链接的样式</li>
+<li><code>a:hover</code> 处于鼠标悬停状态的链接的样式</li>
+<li><code>a:active</code> 被激活（鼠标左键按下的一瞬间）的链接的样式</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>伪元素</p>
+<blockquote>
+<p>是通过 <code>::</code> 添加到选择器的关键字，允许对被选择元素的特定部分修改样式。</p>
+<ul>
+<li><code>p::first-line</code> 块级元素的第一行文本</li>
+<li><code>p::before/p::after</code> 在匹配元素内部前/后添加修饰性内容</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="规则"><a class="markdownIt-Anchor" href="#规则"></a> @规则</h2>
+<p>在 CSS 中包含两种语法规则：</p>
+<ul>
+<li>普通规则：由选择器、属性和值构成</li>
+<li>@规则：以<code>@</code>开头后面跟随一个关键字的形式构成，也被称为“AT规则”，根据使用方法的不同又可以分为“常规规则”与“嵌套规则”两种</li>
+</ul>
+<p><strong>常规规则</strong></p>
+<p>语法：<code>@[KEYWORD] (RULE);</code></p>
+<ul>
+<li>
+<p><code>@charset &quot;&lt;charset&gt;&quot;;</code></p>
+<blockquote>
+<p>字符编码需要使用双引号<code>&quot;&quot;</code>包裹起来</p>
+<p>多种字符编码规则，它们的优先级顺序如下：</p>
+<ul>
+<li>HTML 文件开头的字符编码声明；</li>
+<li>HTTP 请求头中的字符编码声明；</li>
+<li>CSS 文件中使用 @charset 定义的字符编码声明；</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><code>@import &lt;url&gt;;</code></p>
+<blockquote>
+<p>向当前 CSS 样式文件中导入其它样式文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@import</span> url(global.css);<br><span class="hljs-keyword">@import</span> <span class="hljs-string">&quot;global.css&quot;</span>;<br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p><strong>嵌套规则</strong></p>
+<p>语法：`</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">@[KEYWORD] &#123;<br>    <span class="hljs-comment">/* 嵌套语句 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><code>@font-face&#123;&#125;</code></p>
+<blockquote>
+<p>从远程服务器或者用户本地加载指定的字体</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 定义 @font-face 规则 */</span><br><span class="hljs-keyword">@font-face</span> &#123;<br>    <span class="hljs-comment">/* 指定字体名称 */</span><br>    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Open Sans&quot;</span>;<br>    <span class="hljs-comment">/* 指定字体文件的路径 */</span><br>    <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&quot;/fonts/OpenSans-Regular-webfont.woff2&quot;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&quot;woff2&quot;</span>),<br>         <span class="hljs-built_in">url</span>(<span class="hljs-string">&quot;/fonts/OpenSans-Regular-webfont.woff&quot;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&quot;woff&quot;</span>);<br>&#125;<br><span class="hljs-comment">/* 字体的应用 */</span><br><span class="hljs-selector-tag">p</span> &#123;<br>    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Open Sans&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p><strong>优先级</strong></p>
+<p>ID选择器 &gt; 类选择器、属性选择器 &gt;  元素/类型选择器、伪元素选择器</p>
+<h1 id="2-创建"><a class="markdownIt-Anchor" href="#2-创建"></a> 2. 创建</h1>
+<p>在 HTML 中：</p>
+<ul>
+<li>
+<p>外部样式 (External style sheet)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;&lt;css文件路径&gt;&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>内部样式 (Internal style sheet )</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">        hr &#123;<span class="hljs-attribute">color</span>:sienna;&#125;</span><br><span class="language-css">        <span class="hljs-selector-tag">p</span> &#123;<span class="hljs-attribute">margin-left</span>:<span class="hljs-number">20px</span>;&#125;</span><br><span class="language-css">        <span class="hljs-selector-tag">body</span> &#123;<span class="hljs-attribute">background-image</span>:<span class="hljs-built_in">url</span>(<span class="hljs-string">&quot;images/back40.gif&quot;</span>);&#125;</span><br><span class="language-css">	</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>内联样式 (Inline style)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;color:sienna;margin-left:20px&quot;</span>&gt;</span>这是一个段落。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>优先级：</p>
+<p>内联样式 &gt; 内部样式  &gt; 外部样式 &gt;  浏览器默认样式</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/27/CSS%E5%B8%83%E5%B1%80/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CSS布局</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/12/%E7%BB%9F%E8%AE%A1%E5%AD%A6(%E5%9B%9B)%20%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90/">
+                        <span class="hidden-mobile">统计学(四) 方差分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            ✨&nbsp总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            💫&nbsp总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
