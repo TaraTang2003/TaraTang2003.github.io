@@ -1,0 +1,762 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Cosmo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="更新中......">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库(四) 数据库事务">
+<meta property="og:url" content="http://example.com/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E5%9B%9B)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/index.html">
+<meta property="og:site_name" content="Cosmo&#39;s Kingdom">
+<meta property="og:description" content="更新中......">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212100010965.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102300128.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102312789.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102337762.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102354131.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102356246.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212110002267.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212111153568.png">
+<meta property="article:published_time" content="2022-12-12T13:02:37.059Z">
+<meta property="article:modified_time" content="2022-12-12T13:01:54.859Z">
+<meta property="article:author" content="Cosmo">
+<meta property="article:tag" content="学校课程">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212100010965.png">
+  
+  
+  <title>数据库(四) 数据库事务 - Cosmo&#39;s Kingdom</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cosmo&#39;s Kingdom</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                查看
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-exp-fill"></i>
+                乐园
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/books/">
+                    
+                    书
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/movies/">
+                    
+                    影
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/travel/">
+                    
+                    足迹
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/timeline/">
+                    
+                    碎碎念
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数据库(四) 数据库事务">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-12-12 21:02" pubdate>
+        2022年12月12日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据库(四) 数据库事务</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年12月12日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>数据库事务 (Transaction)，多条SQL语句的整体。以满足多条SQL语句全部执行成功、或全部撤销的现实需求。</p>
+<h1 id="1-事务的acid特性"><a class="markdownIt-Anchor" href="#1-事务的acid特性"></a> 1. 事务的ACID特性</h1>
+<ul>
+<li>
+<p>A：Atomicity，原子性</p>
+<blockquote>
+<p>事物具有原子性，要么全部执行，要么全部不执行</p>
+</blockquote>
+</li>
+<li>
+<p>C：Consistency，一致性</p>
+<blockquote>
+<p>事务完成后，所有相关数据的状态一致</p>
+</blockquote>
+</li>
+<li>
+<p>I：Isolation，隔离性，</p>
+<blockquote>
+<p>如果有多个事务并发执行，事务见互不干扰</p>
+</blockquote>
+</li>
+<li>
+<p>D：Durability，持久性</p>
+<blockquote>
+<p>事务完成后，对数据库数据的修改被持久化存储。</p>
+</blockquote>
+</li>
+</ul>
+<p>为保证事务的ACID特性，有以下机制：</p>
+<ul>
+<li>
+<p>Shadow-database scheme</p>
+<blockquote>
+<ol>
+<li>a pointer called <code>db_pointer</code> always points to <strong>the current consistent copy</strong> of the database.</li>
+<li>all updates are made on <strong>the shadow copy</strong> of the database, and <code>db_pointer</code> is made to point to the updated shadow copy only after the transaction reaches partially commit and all updated pages have been flushed to disk.</li>
+<li>in case transaction fails, <strong>old consistent copy</strong> pointed to by <code>db_pointer</code> can be used, and <strong>the shadow copy</strong> can be deleted.</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>Concurrency control schemes</p>
+<blockquote>
+<p>Concurrency-control schemes tradeoff between the amount of concurrency they allow and the amount of overhead that they incur.</p>
+<p>Schedules must be conflict or view serializable, and recoverable, for the sake of database consistency, and preferably cascadeless.</p>
+<p>Some schemes allow only conflict-serializable schedules to be generated, while others allow view-serializable schedules that are not conflict-serializable.</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="2-事务的状态"><a class="markdownIt-Anchor" href="#2-事务的状态"></a> 2. 事务的状态</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212100010965.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<ul>
+<li><strong>Active</strong>  活动的，初始状态，表示事务正在执</li>
+<li><strong>Partially committed</strong>  部分提交的，事务中最后一个操作完成，但是还未存储至数据库</li>
+<li><strong>Failed</strong>  失败的，事务处于活动或部分提交时出错无法继续执行，或人为停止当前事务提交</li>
+<li><strong>Aborted</strong>  中止的，失败后完成回滚 (roll back) 操作后。此时，数据库恢复初始状态，事务将重新执行或杀死进程</li>
+<li><strong>Committed</strong>  提交的，所有操作成功完成且数据库永久更新</li>
+</ul>
+<h1 id="3-事务的并发"><a class="markdownIt-Anchor" href="#3-事务的并发"></a> 3. 事务的并发</h1>
+<p>调度 (schedules)</p>
+<blockquote>
+<p>事务在并发执行时，各个事务中的不同指令的先后执行顺序称为调度。</p>
+<p>通常只考虑读 (read) 写 (write) 指令。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102300128.png" srcset="/img/loading.gif" lazyload alt="调度全家福" /></p>
+<h2 id="串行调度"><a class="markdownIt-Anchor" href="#串行调度"></a> 串行调度</h2>
+<p>串行调度 (serial schedules )</p>
+<blockquote>
+<p>事务一个接一个的执行。在前一事务commit或者abort之前，后一事务不得执行。</p>
+<p>是可恢复的(Recoverable)、无级联的(Cascadeless)、严格的(Strict)</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102312789.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<h2 id="可串行化调度"><a class="markdownIt-Anchor" href="#可串行化调度"></a> 可串行化调度</h2>
+<p>可串行化调度 (serializable schedules)</p>
+<blockquote>
+<p>可串行化 (serializable)：可等价于串行调度的调度为可串行化 (serializable)的，称为可串行化调度 (serializable schedules)</p>
+<p>可串行化 (serializable) 分为：</p>
+<ul>
+<li>冲突可串行化 (conflict serializability)</li>
+<li>目标可串行化 (view serializability)。</li>
+</ul>
+</blockquote>
+<h3 id="冲突可串行化"><a class="markdownIt-Anchor" href="#冲突可串行化"></a> 冲突可串行化</h3>
+<p><strong>冲突可串行化(conflict serializable)</strong></p>
+<blockquote>
+<p>冲突(conflict)：若针对同一数据发出的两个指令属于两个事务，且至少一个指令为写指令。则此两个指令冲突</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102337762.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<p>冲突等价(conflict equivalent)：若调度<code>S</code>可通过调换不冲突指令转换为调度<code>S'</code>，则<code>S</code>和<code>S'</code>冲突等价</p>
+<p>冲突可串行化(conflict serializable)：冲突等价于串行调度的非串行调度(non-serial schedules)为冲突可串行化的</p>
+<p>优先图/前趋图(Precedence Graph)：用于判断是否冲突可串行化，无环则为冲突可串行化</p>
+<p>前趋(precede)：冲突指令<code>opi</code>与<code>opj</code>不能调换时，<code>opi</code>前趋于<code>opj</code>，事务<code>i</code>前趋于事务<code>j</code></p>
+</blockquote>
+<p><strong>作优先图</strong></p>
+<p>以调度实例<code>S1</code>为例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102354131.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<ol>
+<li>
+<p>分别列出对各个数据的读写指令，找出冲突指令（属于不同事务/读写或写写）并作出前趋关系</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102356246.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+</li>
+<li>
+<p>得到事务间的前趋关系</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">r2</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">w3</span> : 2 -&gt;</span> <span class="hljs-number">3</span><br><span class="hljs-function"><span class="hljs-title">w2</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">r3</span> : 2 -&gt;</span> <span class="hljs-number">3</span><br><span class="hljs-function"><span class="hljs-title">w2</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">w3</span> : 2 -&gt;</span> <span class="hljs-number">3</span><br><br><span class="hljs-function"><span class="hljs-title">r1</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">w2</span> : 1 -&gt;</span> <span class="hljs-number">2</span><br><span class="hljs-function"><span class="hljs-title">r2</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">w1</span> : 2 -&gt;</span> <span class="hljs-number">1</span><br><span class="hljs-function"><span class="hljs-title">w1</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">w2</span> : 1 -&gt;</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>检查优先图是否有环</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212110002267.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+</li>
+<li>
+<p>得出结论，本例是非冲突可串行化的</p>
+</li>
+</ol>
+<h3 id="目标可串行化"><a class="markdownIt-Anchor" href="#目标可串行化"></a> 目标可串行化</h3>
+<p><strong>目标可串行化(view serializable)</strong>，又称视图可串行化</p>
+<blockquote>
+<p>目标可串行化(view serializable)：目标等价于串行调度的非串行调度(non-serial schedules)为目标可串行化的</p>
+<p>目标等价(view equivalent)：若两个调度是目标等价的，则其满足条件</p>
+<ul>
+<li>
+<p>Initial Read</p>
+<p>初始（第一个）读指令均由相同事务执行</p>
+</li>
+<li>
+<p>Updated Read</p>
+<p>中间的读指令位于相同顺序的写指令后</p>
+</li>
+<li>
+<p>Final Write</p>
+<p>终极（最后一个）写指令均由相同事务执行</p>
+</li>
+</ul>
+<p>可串行化包括冲突可串行化和目标可串行化，冲突可串行化则一定目标可串行化。</p>
+</blockquote>
+<p><strong>示例</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212111153568.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<ol>
+<li>Initial Read 均为<code>X-&gt;T1;Y-&gt;T1</code></li>
+<li>Final Write 均为<code>X-&gt;T2;Y-&gt;T2</code></li>
+<li>Updated Read 均为 <code>W1(X)-&gt;R2(X);W1(Y)-&gt;R2(Y)</code></li>
+<li>得出结论，本例是目标可串行化的</li>
+</ol>
+<h2 id="可恢复不可恢复调度"><a class="markdownIt-Anchor" href="#可恢复不可恢复调度"></a> 可恢复/不可恢复调度</h2>
+<p><strong>可恢复调度(recoverable schedule) &amp; 不可恢复调度(irrecoverable schedule)</strong></p>
+<blockquote>
+<p>可恢复(recoverable)：任一事务失败后，其他事务回滚中止</p>
+<p>不可恢复(irrecoverable)：某一事务失败后，其他事务中存在事务已提交不得回滚</p>
+<p>可恢复的实现：对于每对事务<code>Ti</code>和<code>Tj</code>，如果<code>Tj</code>读取了由<code>Ti</code>写过的数据项，则<code>Ti</code>提交应先于<code>Tj</code>提交</p>
+</blockquote>
+<h2 id="级联无级联调度"><a class="markdownIt-Anchor" href="#级联无级联调度"></a> 级联/无级联调度</h2>
+<p>级联调度(cascading schedule) / 级联回滚(cascading roll back) &amp; 无级联调度(cascadeless schedule) / 无级联回滚(cascadeless rollback)</p>
+<blockquote>
+<p>级联回滚(cascading roll back)：一个事务的失败引发一系列事务的回滚（有多个事务读被失败事务写过的数据项）</p>
+<p>无级联回滚(cascadeless rollback)：不发生级联回滚</p>
+<p>无级联回滚的实现：对于每对事务<code>Ti</code>和<code>Tj</code>，如果<code>Tj</code>读取了由<code>Ti</code>写过的数据项，则<code>Ti</code>提交应先于<code>Tj</code>对于此数据项的读取</p>
+</blockquote>
+<h2 id="严格调度"><a class="markdownIt-Anchor" href="#严格调度"></a> 严格调度</h2>
+<p>严格调度(strict schedule)</p>
+<blockquote>
+<p>当事务<code>Ti</code>对于某数据项的写指令前趋于其冲突指令时，事务<code>Ti</code>也先于此事务提交的调度</p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%A6%E6%A0%A1%E8%AF%BE%E7%A8%8B/">学校课程</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E4%BA%94)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据库(五) 数据库恢复系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/19/%E8%AE%B0%E4%B8%80%E6%AC%A1wireshark%E6%8A%93%E5%8C%85%E7%9A%84%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/">
+                        <span class="hidden-mobile">记一次wireshark抓包的报文分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-light';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'TaraTang2003/utterances-comment');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            ✨&nbsp总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            💫&nbsp总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

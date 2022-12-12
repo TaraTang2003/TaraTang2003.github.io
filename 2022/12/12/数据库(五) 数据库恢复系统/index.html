@@ -1,0 +1,759 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Cosmo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="更新中......">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库(五) 数据库恢复系统">
+<meta property="og:url" content="http://example.com/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E4%BA%94)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Cosmo&#39;s Kingdom">
+<meta property="og:description" content="更新中......">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112129050.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112306562.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112319409.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112333460.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112320463.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112328017.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112334042.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212120842384.png">
+<meta property="article:published_time" content="2022-12-12T13:02:37.061Z">
+<meta property="article:modified_time" content="2022-12-12T13:01:59.761Z">
+<meta property="article:author" content="Cosmo">
+<meta property="article:tag" content="学校课程">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112129050.png">
+  
+  
+  <title>数据库(五) 数据库恢复系统 - Cosmo&#39;s Kingdom</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Cosmo&#39;s Kingdom</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                查看
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/">
+                    
+                    归档
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/">
+                    
+                    分类
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/">
+                    
+                    标签
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-exp-fill"></i>
+                乐园
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/books/">
+                    
+                    书
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/movies/">
+                    
+                    影
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/travel/">
+                    
+                    足迹
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/timeline/">
+                    
+                    碎碎念
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数据库(五) 数据库恢复系统">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-12-12 21:02" pubdate>
+        2022年12月12日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据库(五) 数据库恢复系统</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年12月12日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>数据库恢复机制(recovery schemes) 可以记录事务的执行(e.g. log in DBS)，保证事务的原子性、持久性和数据库系统的高可用性(high avaliability)。备份(backup)是另一个确保数据库系统高可用性的途径。</p>
+<h1 id="1-故障分类"><a class="markdownIt-Anchor" href="#1-故障分类"></a> 1. 故障分类</h1>
+<p>故障分类 (Classification of failure)</p>
+<ol>
+<li>
+<p>事务失败(Transaction failure)</p>
+<ul>
+<li>
+<p>逻辑错误(logical errors)</p>
+<blockquote>
+<p>代码发生错误，事务无法正确执行</p>
+</blockquote>
+</li>
+<li>
+<p>系统错误(system errors)</p>
+<blockquote>
+<p>数据库系统由于系统中的某些条件而无法实现活动事务或必须终止活动事务时发生的错误</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>系统崩溃(System Crash)</p>
+<blockquote>
+<p>有些问题可能会导致系统意外从外部停止，并可能导致系统崩溃。 例如，电源故障(power failure)</p>
+<p>非易失存储(non-volatile storage) 内容不会被系统崩溃损坏</p>
+</blockquote>
+</li>
+<li>
+<p>磁盘故障(Disk Failure)</p>
+</li>
+</ol>
+<h1 id="2-存储分类"><a class="markdownIt-Anchor" href="#2-存储分类"></a> 2. 存储分类</h1>
+<p>按照存储介质(storage medium)可以将存储分为以下三种：</p>
+<ul>
+<li>
+<p>易失存储 (volatile storage)</p>
+<blockquote>
+<p>系统崩溃时损坏</p>
+<p>e.g. 主存(main memory)、缓存(cache memory)</p>
+</blockquote>
+</li>
+<li>
+<p>非易失存储/永久存储 (non-volatile storage)</p>
+<blockquote>
+<p>系统崩溃时不损坏</p>
+<p>e.g. 磁盘(disk)、闪存(flash memory)、磁带(tape)</p>
+</blockquote>
+</li>
+<li>
+<p>可靠存储/稳定存储 (stable storage)</p>
+<blockquote>
+<p>认为能够不再任何故障中损坏的理想形式</p>
+<p>目前通过在多个非易失存储上备份近似实现</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="3-事务中数据存取过程"><a class="markdownIt-Anchor" href="#3-事务中数据存取过程"></a> 3. 事务中数据存取过程</h1>
+<p>数据库中事务对数据项目的读写指令涉及以下三个区域：</p>
+<ul>
+<li>
+<p>physical blocks</p>
+<blockquote>
+<p>存在于磁盘中</p>
+</blockquote>
+</li>
+<li>
+<p>buffer blocks</p>
+<blockquote>
+<p>存在于主存中，将被暂时置于disk buffers/system block buffers上</p>
+</blockquote>
+</li>
+<li>
+<p>private work-area/local biffer</p>
+<blockquote>
+<p>存在于主存中，每个事务都有私有工作区，防止读写的数据项的副本</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112129050.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<p>其过程涉及：</p>
+<ul>
+<li><code>input(X)</code>：将数据项从磁盘的physical block中转存至主存的buffer block</li>
+<li><code>output(X)</code>：将数据项从主存的buffer block转存至磁盘的physical block，覆盖原physical block数据</li>
+<li><code>read(X)</code>：事务读取buffer block中的数据项，对private work-area中的数据项副本进行赋值。如果buffer block中没有数据项，则触发<code>input(X)</code></li>
+<li><code>write(X)</code>：事务将private work-area数据项的值赋给buffer block数数据项</li>
+</ul>
+<p>如在事务为active状态时，所有对数据库数据的更改都暂存于主存的buffer block中而未被写入磁盘。</p>
+<h1 id="3-数据库恢复机制"><a class="markdownIt-Anchor" href="#3-数据库恢复机制"></a> 3. 数据库恢复机制</h1>
+<h2 id="基于日志的恢复log-based-recovery"><a class="markdownIt-Anchor" href="#基于日志的恢复log-based-recovery"></a> 基于日志的恢复(log-based recovery)</h2>
+<p>日志(log)</p>
+<blockquote>
+<p>日志记录了每一更改数据库数据指令(log records)，存储在可靠存储中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112306562.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><pre><code class="hljs armasm">事务开始 &lt;Ti start&gt;<br>事务部分提交 &lt;Ti commit&gt;<br>事务中止 &lt;Ti abort&gt;<br>事务将数据项X的值<span class="hljs-built_in">V1</span>更新为<span class="hljs-built_in">V2</span> &lt;TI X,<span class="hljs-built_in">V1</span>,<span class="hljs-built_in">V2</span>&gt;<br></code></pre></td></tr></table></figure>
+</blockquote>
+<p>基于日志的恢复有两个修改方案：</p>
+<ol>
+<li>
+<p>延迟数据库修改 (deferred database modification)</p>
+<blockquote>
+<p>事务在提交之前不修改数据库，所有数据项的更新值存储于buffer block中。</p>
+<ul>
+<li>日志只记录更新后的值 <code>&lt;Ti X V2&gt;</code></li>
+<li><code>redo(Ti)</code>：基于日志，恢复更新后的数据
+<ul>
+<li>事务部分提交后故障，日志只存在<code>&lt;Ti start&gt;</code>记录，无<code>&lt;Ti commit&gt;</code>记录，数据库不更新，日志忽略</li>
+<li>事务部分提交后故障，日志存在<code>&lt;Ti start&gt;</code>与<code>&lt;Ti commit&gt;</code>记录，回滚<code>redo(Ti)</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112319409.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+<p>实例</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112333460.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+</blockquote>
+</li>
+<li>
+<p>即时数据库修改 (immediate database modification)</p>
+<blockquote>
+<p>事务在活动状态时发生数据库修改，数据项更新值直接更新在磁盘的physical block中。</p>
+<ul>
+<li>日志记录更新前后的值 <code>&lt;Ti X V1 V2&gt;</code></li>
+<li><code>undo(Ti)</code>：基于日志，恢复更新前的数据
+<ul>
+<li>事务部分提交前故障，日志只存在<code>&lt;Ti start&gt;</code>记录，无<code>&lt;Ti commit&gt;</code>记录，回滚<code>undo(Ti)</code></li>
+<li>事务部分提交后故障，日志存在<code>&lt;Ti start&gt;</code>与<code>&lt;Ti commit&gt;</code>记录，回滚<code>redo(Ti)</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112320463.png" srcset="/img/loading.gif" lazyload alt="undo" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112328017.png" srcset="/img/loading.gif" lazyload alt="redo" /></p>
+<p>实例</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112334042.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="检查点checkpoint"><a class="markdownIt-Anchor" href="#检查点checkpoint"></a> 检查点(checkpoint)</h2>
+<p>由于基于日志的恢复每次翻阅日志费时，且部分事务更新结果已写入磁盘时不需要再进行<code>redo</code>，我们引入检查点(checkpoint)。</p>
+<p>检查点(checkpoint)</p>
+<blockquote>
+<ol>
+<li>
+<p>将buffer block中的所有日志记录写入stable storage</p>
+</li>
+<li>
+<p>将buffer block中的所有更新数据写入磁盘</p>
+</li>
+<li>
+<p>在日志中增加日志记录 <code>&lt;checkpoint L&gt;</code></p>
+<p><code>L</code>是事务列表，包含所有在<code>checkpoint</code>之后仍处于激活状态的事务</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212120842384.png" srcset="/img/loading.gif" lazyload alt="" /></p>
+</li>
+<li>
+<p>对<code>L</code>中的事务</p>
+</li>
+</ol>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Web%E5%BC%80%E5%8F%91/">Web开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%A6%E6%A0%A1%E8%AF%BE%E7%A8%8B/">学校课程</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E5%85%AD)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E5%8F%91/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据库(六) 数据库并发</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E5%9B%9B)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/">
+                        <span class="hidden-mobile">数据库(四) 数据库事务</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-light';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'TaraTang2003/utterances-comment');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            ✨&nbsp总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            💫&nbsp总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css" />
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

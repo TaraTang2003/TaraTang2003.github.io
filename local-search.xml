@@ -4,6 +4,114 @@
   
   
   <entry>
+    <title>数据库(三) 数据库设计规范</title>
+    <link href="/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E4%B8%89)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/"/>
+    <url>/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E4%B8%89)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/</url>
+    
+    <content type="html"><![CDATA[<h1 id="设计中的问题"><a class="markdownIt-Anchor" href="#设计中的问题"></a> 设计中的问题</h1><ul><li>插入异常 (insert abnormity)</li><li>删除异常 (delete abnormity)</li><li>更新异常 (hard to update)</li><li>数据冗余 (redundant data)</li></ul><p>关系型数据库的设计就是根据函数依赖和多值依赖把关系模式拆解成符合数据库设计范式的关系模式。</p><blockquote><p>关系模式 <code>Student&lt;U,F&gt;</code></p><p>属性组 <code>U=&#123;字段1,字段2,...&#125;</code></p><p>函数依赖组 <code>F=&#123;函数依赖1,函数依赖2,...&#125;</code></p></blockquote><h1 id="函数依赖"><a class="markdownIt-Anchor" href="#函数依赖"></a> 函数依赖</h1><p>函数依赖 (Functional Dependencies)</p><blockquote><p>函数依赖为 <code>X-&gt;Y</code> 时，<code>X: Determinant/Y: Dependent</code> 。<em>for same X , value of Y should be same.</em> <em>for different X, value of Y could be same or different.</em> (Y唯一决定于X)</p></blockquote><p>平凡函数依赖 (Trivial functional dependency)</p><blockquote><p>当函数依赖 <code>X-&gt;Y</code> 中， <code>Y</code> 是 <code>X</code> 的子集。</p></blockquote><p>非平凡函数依赖 (Non-trivial functional dependency)</p><blockquote><p>当函数依赖 <code>X-&gt;Y</code> 中， <code>Y</code> 不是 <code>X</code> 的子集。</p></blockquote><p>完全函数依赖 (Full functional Dependency)</p><blockquote><p>当函数依赖 <code>X-&gt;Y</code> 中， <code>Y</code>不可以函数依赖于<code>X</code>的某一真子集。</p></blockquote><p>部分函数依赖 (Partial functional Dependency)</p><blockquote><p>当函数依赖 <code>X-&gt;Y</code> 中， <code>Y</code>可以函数依赖于<code>X</code>的某一真子集。</p><p>如 <code>(Sno,Cno)→Sdept</code> 中存在<code>Sno →Sdept</code>，则其为部分函数依赖。</p></blockquote><p>传递函数依赖 (Transitive functional Dependency)</p><blockquote><ul><li>当 <code>X-&gt;Y</code>，且 <code>Y !-&gt;X</code>  时，若有 <code>Y-&gt;Z</code>，则存在传递函数依赖 <code>X-&gt;Z</code></li><li>当 <code>X-&gt;Y</code>，且 <code>Y -&gt;X</code>  时，若有 <code>Y-&gt;Z</code>，则<code>X-&gt;Z</code> 为直接函数依赖</li></ul></blockquote><h1 id="多值依赖"><a class="markdownIt-Anchor" href="#多值依赖"></a> 多值依赖</h1><p>多值依赖 (Multivalued Dependencies)</p><h1 id="关系型数据库设计范式"><a class="markdownIt-Anchor" href="#关系型数据库设计范式"></a> 关系型数据库设计范式</h1><p>Normalization theory is the theoretical basis for logical design of relational database.</p><h2 id="1nf"><a class="markdownIt-Anchor" href="#1nf"></a> 1NF</h2><p>第一范式：数据库表中的所有字段值都是不可分解的原子值。</p><blockquote><p>1NF (First Normal Form): every attribute of a relation must be atomic.</p></blockquote><p>即不得存在字段的嵌套关系：</p><p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204261419938.png" alt="image-20220426141906826" /></p><h2 id="2nf"><a class="markdownIt-Anchor" href="#2nf"></a> 2NF</h2><p>第二范式：建立在第一范式的基础之上，确保数据库表中的每一列都和主键相关（无部分函数依赖关系）。</p><figure class="highlight pgsql"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-number">2</span>NF: R∈<span class="hljs-number">1</span>NF <span class="hljs-keyword">and</span> <span class="hljs-keyword">no</span> partially <span class="hljs-keyword">function</span> dependency exits <span class="hljs-keyword">between</span> attributes.<br></code></pre></td></tr></table></figure><p>如该表中 ①S# -&gt; SNAME, AGE, ADDR ; ②(S#, C#) -&gt; GRADE 存在部分函数依赖关系（①）：<img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204261424869.png" alt="image-20220426142438804" /></p><p>以该表为例出现问题：</p><ul><li><p>Insert abnormity</p><ul><li>上例中，不能插入一个还未选课的学生的信息</li></ul></li><li><p>Delete abnormity</p><ul><li>上例中，如果一个学生把选过的课都退了，那么他的信息也会被删除</li></ul></li><li><p>Hard to update</p><ul><li>because of redundancy, it is hard to keep consistency when update.</li></ul></li></ul><h2 id="3nf"><a class="markdownIt-Anchor" href="#3nf"></a> 3NF</h2><p>第三范式：建立在第二范式的基础之上，确保数据库表中的每一列都和主键直接相关（不存在属性间传递依赖）。</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-number">3</span>NF: R∈<span class="hljs-number">2</span>NF <span class="hljs-keyword">and</span> <span class="hljs-keyword">no</span> transfer func tion dependency <span class="hljs-keyword">exists</span> <span class="hljs-keyword">between</span> attributes.<br></code></pre></td></tr></table></figure><p>如该表中 ①EMP# -&gt; SAL_LEVEL ; ②SAL_LEVEL -&gt; SALARY 雇员编号和薪水间存在传递依赖的关系：</p><p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204261440154.png" alt="image-20220426144031095" /></p><p>以该表为例出现的问题：</p><ul><li><p>Insert abnormity</p><ul><li>无员工信息时也没有薪水级别与薪水的对应信息</li></ul></li><li><p>Delete abnormity</p><ul><li>若某薪水级别只有一个员工，删除该员工信息，对应的薪水级别信息也被删除</li></ul></li><li><p>Hard to update</p><ul><li>because of redundancy, it is hard to keep consistency when update.</li></ul></li></ul><h2 id="bcnf"><a class="markdownIt-Anchor" href="#bcnf"></a> BCNF</h2><h1 id="er图"><a class="markdownIt-Anchor" href="#er图"></a> ER图</h1><p>ER图(entity-relation graph)</p><p><img src="https://raw.githubusercontent.com/TaraTang2003/picgo-typora/main/202204261500221.png" alt="image-20220426150026152" /></p><h1 id="设计流程"><a class="markdownIt-Anchor" href="#设计流程"></a> 设计流程</h1><h1 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h1><ul><li><a href="https://www.cnblogs.com/caiyishuai/p/10975736.html">数据库 函数依赖及范式（最通俗易懂）</a></li><li></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Web开发</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>学校课程</tag>
+      
+      <tag>数据库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数据库(六) 数据库并发</title>
+    <link href="/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E5%85%AD)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E5%8F%91/"/>
+    <url>/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E5%85%AD)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E5%8F%91/</url>
+    
+    <content type="html"><![CDATA[<h1 id="1-数据库并发导致的读取问题"><a class="markdownIt-Anchor" href="#1-数据库并发导致的读取问题"></a> 1. 数据库并发导致的读取问题</h1><h2 id="更新丢失"><a class="markdownIt-Anchor" href="#更新丢失"></a> 更新丢失</h2><p>更新丢失(Lost Update Problems)</p><h2 id="脏读"><a class="markdownIt-Anchor" href="#脏读"></a> 脏读</h2><p>脏读(Dirty Read Problems)</p><h2 id="不可重复读"><a class="markdownIt-Anchor" href="#不可重复读"></a> 不可重复读</h2><p>不可重复读(Unrepeatable Read Problem)</p><h2 id="幻读"><a class="markdownIt-Anchor" href="#幻读"></a> 幻读</h2><p>幻读</p><h1 id="2-数据库锁协议"><a class="markdownIt-Anchor" href="#2-数据库锁协议"></a> 2. 数据库锁协议</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>Web开发</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>学校课程</tag>
+      
+      <tag>数据库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数据库(五) 数据库恢复系统</title>
+    <link href="/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E4%BA%94)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F/"/>
+    <url>/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E4%BA%94)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E7%B3%BB%E7%BB%9F/</url>
+    
+    <content type="html"><![CDATA[<p>数据库恢复机制(recovery schemes) 可以记录事务的执行(e.g. log in DBS)，保证事务的原子性、持久性和数据库系统的高可用性(high avaliability)。备份(backup)是另一个确保数据库系统高可用性的途径。</p><h1 id="1-故障分类"><a class="markdownIt-Anchor" href="#1-故障分类"></a> 1. 故障分类</h1><p>故障分类 (Classification of failure)</p><ol><li><p>事务失败(Transaction failure)</p><ul><li><p>逻辑错误(logical errors)</p><blockquote><p>代码发生错误，事务无法正确执行</p></blockquote></li><li><p>系统错误(system errors)</p><blockquote><p>数据库系统由于系统中的某些条件而无法实现活动事务或必须终止活动事务时发生的错误</p></blockquote></li></ul></li><li><p>系统崩溃(System Crash)</p><blockquote><p>有些问题可能会导致系统意外从外部停止，并可能导致系统崩溃。 例如，电源故障(power failure)</p><p>非易失存储(non-volatile storage) 内容不会被系统崩溃损坏</p></blockquote></li><li><p>磁盘故障(Disk Failure)</p></li></ol><h1 id="2-存储分类"><a class="markdownIt-Anchor" href="#2-存储分类"></a> 2. 存储分类</h1><p>按照存储介质(storage medium)可以将存储分为以下三种：</p><ul><li><p>易失存储 (volatile storage)</p><blockquote><p>系统崩溃时损坏</p><p>e.g. 主存(main memory)、缓存(cache memory)</p></blockquote></li><li><p>非易失存储/永久存储 (non-volatile storage)</p><blockquote><p>系统崩溃时不损坏</p><p>e.g. 磁盘(disk)、闪存(flash memory)、磁带(tape)</p></blockquote></li><li><p>可靠存储/稳定存储 (stable storage)</p><blockquote><p>认为能够不再任何故障中损坏的理想形式</p><p>目前通过在多个非易失存储上备份近似实现</p></blockquote></li></ul><h1 id="3-事务中数据存取过程"><a class="markdownIt-Anchor" href="#3-事务中数据存取过程"></a> 3. 事务中数据存取过程</h1><p>数据库中事务对数据项目的读写指令涉及以下三个区域：</p><ul><li><p>physical blocks</p><blockquote><p>存在于磁盘中</p></blockquote></li><li><p>buffer blocks</p><blockquote><p>存在于主存中，将被暂时置于disk buffers/system block buffers上</p></blockquote></li><li><p>private work-area/local biffer</p><blockquote><p>存在于主存中，每个事务都有私有工作区，防止读写的数据项的副本</p></blockquote></li></ul><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112129050.png" alt="" /></p><p>其过程涉及：</p><ul><li><code>input(X)</code>：将数据项从磁盘的physical block中转存至主存的buffer block</li><li><code>output(X)</code>：将数据项从主存的buffer block转存至磁盘的physical block，覆盖原physical block数据</li><li><code>read(X)</code>：事务读取buffer block中的数据项，对private work-area中的数据项副本进行赋值。如果buffer block中没有数据项，则触发<code>input(X)</code></li><li><code>write(X)</code>：事务将private work-area数据项的值赋给buffer block数数据项</li></ul><p>如在事务为active状态时，所有对数据库数据的更改都暂存于主存的buffer block中而未被写入磁盘。</p><h1 id="3-数据库恢复机制"><a class="markdownIt-Anchor" href="#3-数据库恢复机制"></a> 3. 数据库恢复机制</h1><h2 id="基于日志的恢复log-based-recovery"><a class="markdownIt-Anchor" href="#基于日志的恢复log-based-recovery"></a> 基于日志的恢复(log-based recovery)</h2><p>日志(log)</p><blockquote><p>日志记录了每一更改数据库数据指令(log records)，存储在可靠存储中</p><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112306562.png" alt="" /></p><figure class="highlight armasm"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><pre><code class="hljs armasm">事务开始 &lt;Ti start&gt;<br>事务部分提交 &lt;Ti commit&gt;<br>事务中止 &lt;Ti abort&gt;<br>事务将数据项X的值<span class="hljs-built_in">V1</span>更新为<span class="hljs-built_in">V2</span> &lt;TI X,<span class="hljs-built_in">V1</span>,<span class="hljs-built_in">V2</span>&gt;<br></code></pre></td></tr></table></figure></blockquote><p>基于日志的恢复有两个修改方案：</p><ol><li><p>延迟数据库修改 (deferred database modification)</p><blockquote><p>事务在提交之前不修改数据库，所有数据项的更新值存储于buffer block中。</p><ul><li>日志只记录更新后的值 <code>&lt;Ti X V2&gt;</code></li><li><code>redo(Ti)</code>：基于日志，恢复更新后的数据<ul><li>事务部分提交后故障，日志只存在<code>&lt;Ti start&gt;</code>记录，无<code>&lt;Ti commit&gt;</code>记录，数据库不更新，日志忽略</li><li>事务部分提交后故障，日志存在<code>&lt;Ti start&gt;</code>与<code>&lt;Ti commit&gt;</code>记录，回滚<code>redo(Ti)</code></li></ul></li></ul><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112319409.png" alt="" /></p><p>实例</p><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112333460.png" alt="" /></p></blockquote></li><li><p>即时数据库修改 (immediate database modification)</p><blockquote><p>事务在活动状态时发生数据库修改，数据项更新值直接更新在磁盘的physical block中。</p><ul><li>日志记录更新前后的值 <code>&lt;Ti X V1 V2&gt;</code></li><li><code>undo(Ti)</code>：基于日志，恢复更新前的数据<ul><li>事务部分提交前故障，日志只存在<code>&lt;Ti start&gt;</code>记录，无<code>&lt;Ti commit&gt;</code>记录，回滚<code>undo(Ti)</code></li><li>事务部分提交后故障，日志存在<code>&lt;Ti start&gt;</code>与<code>&lt;Ti commit&gt;</code>记录，回滚<code>redo(Ti)</code></li></ul></li></ul><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112320463.png" alt="undo" /></p><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112328017.png" alt="redo" /></p><p>实例</p><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212112334042.png" alt="" /></p></blockquote></li></ol><h2 id="检查点checkpoint"><a class="markdownIt-Anchor" href="#检查点checkpoint"></a> 检查点(checkpoint)</h2><p>由于基于日志的恢复每次翻阅日志费时，且部分事务更新结果已写入磁盘时不需要再进行<code>redo</code>，我们引入检查点(checkpoint)。</p><p>检查点(checkpoint)</p><blockquote><ol><li><p>将buffer block中的所有日志记录写入stable storage</p></li><li><p>将buffer block中的所有更新数据写入磁盘</p></li><li><p>在日志中增加日志记录 <code>&lt;checkpoint L&gt;</code></p><p><code>L</code>是事务列表，包含所有在<code>checkpoint</code>之后仍处于激活状态的事务</p><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212120842384.png" alt="" /></p></li><li><p>对<code>L</code>中的事务</p></li></ol></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>Web开发</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>学校课程</tag>
+      
+      <tag>数据库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数据库(四) 数据库事务</title>
+    <link href="/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E5%9B%9B)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/"/>
+    <url>/2022/12/12/%E6%95%B0%E6%8D%AE%E5%BA%93(%E5%9B%9B)%20%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/</url>
+    
+    <content type="html"><![CDATA[<p>数据库事务 (Transaction)，多条SQL语句的整体。以满足多条SQL语句全部执行成功、或全部撤销的现实需求。</p><h1 id="1-事务的acid特性"><a class="markdownIt-Anchor" href="#1-事务的acid特性"></a> 1. 事务的ACID特性</h1><ul><li><p>A：Atomicity，原子性</p><blockquote><p>事物具有原子性，要么全部执行，要么全部不执行</p></blockquote></li><li><p>C：Consistency，一致性</p><blockquote><p>事务完成后，所有相关数据的状态一致</p></blockquote></li><li><p>I：Isolation，隔离性，</p><blockquote><p>如果有多个事务并发执行，事务见互不干扰</p></blockquote></li><li><p>D：Durability，持久性</p><blockquote><p>事务完成后，对数据库数据的修改被持久化存储。</p></blockquote></li></ul><p>为保证事务的ACID特性，有以下机制：</p><ul><li><p>Shadow-database scheme</p><blockquote><ol><li>a pointer called <code>db_pointer</code> always points to <strong>the current consistent copy</strong> of the database.</li><li>all updates are made on <strong>the shadow copy</strong> of the database, and <code>db_pointer</code> is made to point to the updated shadow copy only after the transaction reaches partially commit and all updated pages have been flushed to disk.</li><li>in case transaction fails, <strong>old consistent copy</strong> pointed to by <code>db_pointer</code> can be used, and <strong>the shadow copy</strong> can be deleted.</li></ol></blockquote></li><li><p>Concurrency control schemes</p><blockquote><p>Concurrency-control schemes tradeoff between the amount of concurrency they allow and the amount of overhead that they incur.</p><p>Schedules must be conflict or view serializable, and recoverable, for the sake of database consistency, and preferably cascadeless.</p><p>Some schemes allow only conflict-serializable schedules to be generated, while others allow view-serializable schedules that are not conflict-serializable.</p></blockquote></li></ul><h1 id="2-事务的状态"><a class="markdownIt-Anchor" href="#2-事务的状态"></a> 2. 事务的状态</h1><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212100010965.png" alt="" /></p><ul><li><strong>Active</strong>  活动的，初始状态，表示事务正在执</li><li><strong>Partially committed</strong>  部分提交的，事务中最后一个操作完成，但是还未存储至数据库</li><li><strong>Failed</strong>  失败的，事务处于活动或部分提交时出错无法继续执行，或人为停止当前事务提交</li><li><strong>Aborted</strong>  中止的，失败后完成回滚 (roll back) 操作后。此时，数据库恢复初始状态，事务将重新执行或杀死进程</li><li><strong>Committed</strong>  提交的，所有操作成功完成且数据库永久更新</li></ul><h1 id="3-事务的并发"><a class="markdownIt-Anchor" href="#3-事务的并发"></a> 3. 事务的并发</h1><p>调度 (schedules)</p><blockquote><p>事务在并发执行时，各个事务中的不同指令的先后执行顺序称为调度。</p><p>通常只考虑读 (read) 写 (write) 指令。</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102300128.png" alt="调度全家福" /></p><h2 id="串行调度"><a class="markdownIt-Anchor" href="#串行调度"></a> 串行调度</h2><p>串行调度 (serial schedules )</p><blockquote><p>事务一个接一个的执行。在前一事务commit或者abort之前，后一事务不得执行。</p><p>是可恢复的(Recoverable)、无级联的(Cascadeless)、严格的(Strict)</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102312789.png" alt="" /></p><h2 id="可串行化调度"><a class="markdownIt-Anchor" href="#可串行化调度"></a> 可串行化调度</h2><p>可串行化调度 (serializable schedules)</p><blockquote><p>可串行化 (serializable)：可等价于串行调度的调度为可串行化 (serializable)的，称为可串行化调度 (serializable schedules)</p><p>可串行化 (serializable) 分为：</p><ul><li>冲突可串行化 (conflict serializability)</li><li>目标可串行化 (view serializability)。</li></ul></blockquote><h3 id="冲突可串行化"><a class="markdownIt-Anchor" href="#冲突可串行化"></a> 冲突可串行化</h3><p><strong>冲突可串行化(conflict serializable)</strong></p><blockquote><p>冲突(conflict)：若针对同一数据发出的两个指令属于两个事务，且至少一个指令为写指令。则此两个指令冲突</p><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102337762.png" alt="" /></p><p>冲突等价(conflict equivalent)：若调度<code>S</code>可通过调换不冲突指令转换为调度<code>S'</code>，则<code>S</code>和<code>S'</code>冲突等价</p><p>冲突可串行化(conflict serializable)：冲突等价于串行调度的非串行调度(non-serial schedules)为冲突可串行化的</p><p>优先图/前趋图(Precedence Graph)：用于判断是否冲突可串行化，无环则为冲突可串行化</p><p>前趋(precede)：冲突指令<code>opi</code>与<code>opj</code>不能调换时，<code>opi</code>前趋于<code>opj</code>，事务<code>i</code>前趋于事务<code>j</code></p></blockquote><p><strong>作优先图</strong></p><p>以调度实例<code>S1</code>为例：</p><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102354131.png" alt="" /></p><ol><li><p>分别列出对各个数据的读写指令，找出冲突指令（属于不同事务/读写或写写）并作出前趋关系</p><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212102356246.png" alt="" /></p></li><li><p>得到事务间的前趋关系</p><figure class="highlight xl"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">r2</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">w3</span> : 2 -&gt;</span> <span class="hljs-number">3</span><br><span class="hljs-function"><span class="hljs-title">w2</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">r3</span> : 2 -&gt;</span> <span class="hljs-number">3</span><br><span class="hljs-function"><span class="hljs-title">w2</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">w3</span> : 2 -&gt;</span> <span class="hljs-number">3</span><br><br><span class="hljs-function"><span class="hljs-title">r1</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">w2</span> : 1 -&gt;</span> <span class="hljs-number">2</span><br><span class="hljs-function"><span class="hljs-title">r2</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">w1</span> : 2 -&gt;</span> <span class="hljs-number">1</span><br><span class="hljs-function"><span class="hljs-title">w1</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">w2</span> : 1 -&gt;</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure></li><li><p>检查优先图是否有环</p><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212110002267.png" alt="" /></p></li><li><p>得出结论，本例是非冲突可串行化的</p></li></ol><h3 id="目标可串行化"><a class="markdownIt-Anchor" href="#目标可串行化"></a> 目标可串行化</h3><p><strong>目标可串行化(view serializable)</strong>，又称视图可串行化</p><blockquote><p>目标可串行化(view serializable)：目标等价于串行调度的非串行调度(non-serial schedules)为目标可串行化的</p><p>目标等价(view equivalent)：若两个调度是目标等价的，则其满足条件</p><ul><li><p>Initial Read</p><p>初始（第一个）读指令均由相同事务执行</p></li><li><p>Updated Read</p><p>中间的读指令位于相同顺序的写指令后</p></li><li><p>Final Write</p><p>终极（最后一个）写指令均由相同事务执行</p></li></ul><p>可串行化包括冲突可串行化和目标可串行化，冲突可串行化则一定目标可串行化。</p></blockquote><p><strong>示例</strong></p><p><img src="https://cdn.jsdelivr.net/gh/TaraTang2003/picgo-typora/202212111153568.png" alt="" /></p><ol><li>Initial Read 均为<code>X-&gt;T1;Y-&gt;T1</code></li><li>Final Write 均为<code>X-&gt;T2;Y-&gt;T2</code></li><li>Updated Read 均为 <code>W1(X)-&gt;R2(X);W1(Y)-&gt;R2(Y)</code></li><li>得出结论，本例是目标可串行化的</li></ol><h2 id="可恢复不可恢复调度"><a class="markdownIt-Anchor" href="#可恢复不可恢复调度"></a> 可恢复/不可恢复调度</h2><p><strong>可恢复调度(recoverable schedule) &amp; 不可恢复调度(irrecoverable schedule)</strong></p><blockquote><p>可恢复(recoverable)：任一事务失败后，其他事务回滚中止</p><p>不可恢复(irrecoverable)：某一事务失败后，其他事务中存在事务已提交不得回滚</p><p>可恢复的实现：对于每对事务<code>Ti</code>和<code>Tj</code>，如果<code>Tj</code>读取了由<code>Ti</code>写过的数据项，则<code>Ti</code>提交应先于<code>Tj</code>提交</p></blockquote><h2 id="级联无级联调度"><a class="markdownIt-Anchor" href="#级联无级联调度"></a> 级联/无级联调度</h2><p>级联调度(cascading schedule) / 级联回滚(cascading roll back) &amp; 无级联调度(cascadeless schedule) / 无级联回滚(cascadeless rollback)</p><blockquote><p>级联回滚(cascading roll back)：一个事务的失败引发一系列事务的回滚（有多个事务读被失败事务写过的数据项）</p><p>无级联回滚(cascadeless rollback)：不发生级联回滚</p><p>无级联回滚的实现：对于每对事务<code>Ti</code>和<code>Tj</code>，如果<code>Tj</code>读取了由<code>Ti</code>写过的数据项，则<code>Ti</code>提交应先于<code>Tj</code>对于此数据项的读取</p></blockquote><h2 id="严格调度"><a class="markdownIt-Anchor" href="#严格调度"></a> 严格调度</h2><p>严格调度(strict schedule)</p><blockquote><p>当事务<code>Ti</code>对于某数据项的写指令前趋于其冲突指令时，事务<code>Ti</code>也先于此事务提交的调度</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>Web开发</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>学校课程</tag>
+      
+      <tag>数据库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>记一次wireshark抓包的报文分析</title>
     <link href="/2022/11/19/%E8%AE%B0%E4%B8%80%E6%AC%A1wireshark%E6%8A%93%E5%8C%85%E7%9A%84%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/"/>
     <url>/2022/11/19/%E8%AE%B0%E4%B8%80%E6%AC%A1wireshark%E6%8A%93%E5%8C%85%E7%9A%84%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90/</url>
